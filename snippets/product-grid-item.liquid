@@ -6,14 +6,14 @@
 {% endcomment %}
 
 <div class="product-grid-item relative group">
-    <div class="block image-wrapper relative pt-[140%]">
+    <div class="block image-wrapper relative">
       <img
         width="{{ prod.featured_image.width }}"
         height="{{ prod.featured_image.height }}"
         src="{{ prod.featured_image | image_url: width: 410 }}"
         srcset="{{ prod.featured_image | image_url: width: 205 }} 1x, {{ prod.featured_image | image_url: width: 410 }} 2x"
         alt="{{ prod.featured_image.alt }}"
-        class="aspect-square"
+        class="aspect-square w-full h-full object-fit"
         loading="lazy"
       >
     </div>
