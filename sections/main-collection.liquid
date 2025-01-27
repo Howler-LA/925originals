@@ -13,7 +13,7 @@
     </h2>
     <div class="grid-wrapper">
       {%- paginate collection.products by 12 -%}
-        <div class="product-grid">
+        <div class="grid grid-cols-3 gap-12">
           {% for prod in collection.products %}
             {% render 'product-grid-item', prod: prod %}
           {% endfor %}
