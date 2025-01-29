@@ -38,13 +38,13 @@
       </p>
     </div>
     
-      {% form 'product', prod %}
+      {% comment %} {% form 'product', prod %}
         <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
         <input type="hidden" name="quantity" value="1">
         <input type="submit" value="Add to cart">
         <div data-ajax-cart-messages="form">
           <!-- Error messages appear here -->
         </div>
-      {% endform %}
+      {% endform %} {% endcomment %}
     
 </div>
