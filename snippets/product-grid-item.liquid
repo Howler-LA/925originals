@@ -18,7 +18,7 @@
       >
     </div>
     <div class="content pt-4 grid grid-cols-2">
-      <a href="{{ prod.url }}" class="after:content-[''] after:inset-0 after:absolute">
+      <a href="{{ prod.url | within:collection }}" class="after:content-[''] after:inset-0 after:absolute">
         <div class="h3">
           {{ prod.title }}
         </div>
