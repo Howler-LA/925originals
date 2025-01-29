@@ -23,12 +23,9 @@
       </div>
 
       <div class="columns-2 space-y-2">
-        <a href="#" class="block">Contact Us</a>
-        <a href="#" class="block">Shipping</a>
-        <a href="#" class="block">Returns</a>
-        <a href="#" class="block">Our Story</a>
-        <a href="#" class="block">Careers</a>
-        <a href="#" class="block">Press</a>
+        {% for link in linklists.footer.links %}
+          <a href="{{ link.url }}" class="block">{{ link.title }}</a>
+        {% endfor %}
       </div>
 
       <div class="h-full bg-neutral-50"></div>
@@ -40,19 +37,3 @@
     </div>
   </div>
 </footer>
-
-{% comment %} <div class="px-6 md:px-8 py-12">
-  <div class="container">
-    <div>
-      {% for link in linklists.footer.links %}
-        <a href="{{ link.url }}">
-          {{ link.title }}
-        </a>
-      {% endfor %}
-    </div>
-  
-    <small>
-      &copy; {{ "now" | date: "%Y" }} Slayed Starter Theme
-    </small>
-  </div>
-</div> {% endcomment %}
