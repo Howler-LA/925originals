@@ -77,7 +77,8 @@
         </button>
       {% else %}
         <a href="{{ routes.search_url }}" class=" [&>svg]:h-[28px]">
-          {% render 'icon-search' %}
+          {% comment %} {% render 'icon-search' %} {% endcomment %}
+          <i data-lucide="search"></i>
         </a>
       {% endif %}
 
