@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "faq_BzizYk": {
@@ -7,14 +16,14 @@
           "type": "item",
           "settings": {
             "heading": "FAQ Item 1",
-            "body": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque totam cum cupiditate officia et quaerat blanditiis culpa? Hic, nesciunt id.<\/p>"
+            "body": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque totam cum cupiditate officia et quaerat blanditiis culpa? Hic, nesciunt id.</p>"
           }
         },
         "item_EBEdYH": {
           "type": "item",
           "settings": {
             "heading": "FAQ Item 2",
-            "body": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque totam cum cupiditate officia et quaerat blanditiis culpa? Hic, nesciunt id.<\/p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque totam cum cupiditate officia et quaerat blanditiis culpa? Hic, nesciunt id.<\/p>"
+            "body": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque totam cum cupiditate officia et quaerat blanditiis culpa? Hic, nesciunt id.</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque totam cum cupiditate officia et quaerat blanditiis culpa? Hic, nesciunt id.</p>"
           }
         }
       },
@@ -22,14 +31,14 @@
         "item_qmT3Hm",
         "item_EBEdYH"
       ],
+      "disabled": true,
       "settings": {
         "heading": "FAQ Demo Section"
       }
     },
     "main": {
       "type": "main-page",
-      "settings": {
-      }
+      "settings": {}
     }
   },
   "order": [
