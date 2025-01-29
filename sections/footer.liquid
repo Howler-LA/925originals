@@ -30,8 +30,12 @@
 
       <div class="flex flex-col gap-2">
         <p href="#">Join the Mailing List</p>
-        <form>
+        <form class="relative">
           <input type="text" placeholder="Email address" class="h-12 bg-transparent border-b w-full" />
+          <button class="absolute size-12 right-0 top-0 flex items-center justify-center">
+            <span class="sr-only">Submit</span>
+            <i data-lucide="chevron-right"></i>
+          </button>
         </form>
       </div>
       <div class="h-full bg-neutral-50"></div>
