@@ -30,7 +30,7 @@
           </span>
         {% endif %}
         <span class="text-[14px]">
-          {{ prod.price | money_with_currency }}
+          {{ prod.price | money }}
         </span>
         {% if prod.compare_at_price_max != blank and prod.compare_at_price_max > prod.price %}
           <s class="text-[13px]">{{ prod.compare_at_price_max | money_with_currency }}</s>
