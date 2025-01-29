@@ -16,7 +16,7 @@
   {% render 'promo-bar' %}
 {% endif %}
 
-<div class="p-4 lg:px-[5rem] lg:pb-10 lg:pt-20">
+<div class="container lg:pb-10 lg:pt-20">
   <div class="flex items-center gap-8 relative h-10">
     <nav
       :class="$store.global.isMobileMenuVisible ? 'open' : 'closed'"
@@ -91,7 +91,7 @@
 
     <div class="flex items-center gap-8 self-center ml-auto">
 
-      <a href="{{ routes.root_url }}" class="header-logo font-medium">
+      <a href="{{ routes.root_url }}" class="font-medium">
         925Originals
       </a>
 
