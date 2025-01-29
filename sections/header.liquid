@@ -95,19 +95,20 @@
         925Originals
       </a>
 
-      <button type="button" x-data @click="$store.global.isMinicartVisible = true">
-        Your Cart
-      </button>
-
-      <a
-        href="{{ routes.cart_url }}"
-        class="border border-neutral-600 rounded-md size-5 flex items-center justify-center text-sm font-medium"
-        x-cloak
-      >
-        <span data-ajax-cart-bind="item_count">
-          {{- cart.item_count -}}
-        </span>
-      </a>
+      <div class="flex items-center gap-2">
+        <button type="button" x-data @click="$store.global.isMinicartVisible = true">
+          Your Cart
+        </button>
+        <a
+          href="{{ routes.cart_url }}"
+          class="border border-neutral-600 rounded-md size-5 flex items-center justify-center text-sm font-medium"
+          x-cloak
+        >
+          <span data-ajax-cart-bind="item_count">
+            {{- cart.item_count -}}
+          </span>
+        </a>
+      </div>
       
     </div>
 
