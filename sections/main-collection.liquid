@@ -6,14 +6,14 @@
 }
 {% endschema %}
 
-<div class="px-4 lg:p-20">
+<div class="px-4 lg:px-20">
   <div class="collection-inner">
     <h2 class="mb-12 max-w-max mx-auto sr-only">
       {{ collection.title }}
     </h2>
     <div class="grid-wrapper">
       {%- paginate collection.products by 12 -%}
-        <div class="grid grid-cols-3 gap-12">
+        <div class="grid grid-cols-4 gap-20">
           {% for prod in collection.products %}
             {% render 'product-grid-item', prod: prod %}
           {% endfor %}
