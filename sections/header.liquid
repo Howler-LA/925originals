@@ -46,10 +46,6 @@
       {% render 'mobile-menu' %}
     </nav>
 
-    <a href="{{ routes.root_url }}" class="header-logo">
-      Slayed Dev
-    </a>
-
     <div class="hidden md:block">
       {% render 'header-menu' %}
     </div>
@@ -91,6 +87,9 @@
         </a>
       {% endif %}
 
+      <a href="{{ routes.root_url }}" class="header-logo font-medium">
+        925Originals
+      </a>
 
       <a
         href="{{ routes.cart_url }}"
