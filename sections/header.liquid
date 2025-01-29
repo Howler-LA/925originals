@@ -1,7 +1,7 @@
 {% schema %}
   {
     "name": "header",
-    "class": "section-header sticky top-0 z-20 border-b",
+    "class": "section-header sticky top-0 z-20",
     "tag": "header",
     "settings": [
       {
@@ -91,6 +91,10 @@
         925Originals
       </a>
 
+      <button type="button" x-data @click="$store.global.isMinicartVisible = true">
+        Your Cart
+      </button>
+
       <a
         href="{{ routes.cart_url }}"
         class="[&>svg]:h-[22px] [&>svg]:w-auto relative p-2"
@@ -101,9 +105,7 @@
           {{- cart.item_count -}}
         </span>
       </a>
-      <button type="button" x-data @click="$store.global.isMinicartVisible = true">
-        Open Cart
-      </button>
+      
     </div>
 
   </div>
