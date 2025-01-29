@@ -52,45 +52,6 @@
 
     <div class="flex items-center gap-8 self-center ml-auto">
 
-      {% if settings.enable_modal %}
-        <button
-          type="button"
-          class="text-white fill-white p-2 [&>svg]:h-[28px]"
-          @click="$store.global.openModal()"
-          aria-label="Open Modal">
-          {% render 'icon-bubble-bottom' %}
-        </button>
-      {% endif %}
-
-      {% if settings.enable_predictive_search %}
-        <a href="{{ routes.search_url }}" class="block md:hidden text-white fill-white p-2 [&>svg]:h-[28px]">
-          {% render 'icon-search' %}
-        </a>
-        <button
-          type="button"
-          class="text-white fill-white p-2 [&>svg]:h-[28px] hidden md:block"
-          @click="$store.global.isPredictiveSearchVisible = true"
-          :aria-expanded="$store.global.isPredictiveSearchVisible ? 'true' : 'false'"
-          aria-label="Search"
-          aria-controls="predictive-search">
-          {% render 'icon-search' %}
-        </button>
-      {% else %}
-        <a href="{{ routes.search_url }}" class=" [&>svg]:h-[28px] text-neutral-500">
-          {% comment %} {% render 'icon-search' %} {% endcomment %}
-          {% comment %} <i data-lucide="search"></i> {% endcomment %}
-           Search
-        </a>
-      {% endif %}
-
-      {% if shop.customer_accounts_enabled %}
-        <a href="{{ routes.account_url }}" class="[&>svg]:h-[28px] text-neutral-500">
-          {% comment %} {% render 'icon-user' %} {% endcomment %}
-          {% comment %} <i data-lucide="user"></i> {% endcomment %}
-           Account
-        </a>
-      {% endif %}
-
       <a href="{{ routes.root_url }}" class="header-logo font-medium">
         925Originals
       </a>
