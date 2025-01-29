@@ -40,11 +40,22 @@
   }
 {% endschema %}
 
-<div class="container grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-20">
+<div 
+  class="shopify-section-main-product-inner container grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-20"
+  data-handle="{{ product.handle }}"
+  data-id="{{ product.id }}"
+  data-url="{{ product.url }}"
+  data-section="{{ section.id }}"
+  data-prodify="{{ section.settings.picker_type }}"
+>
   <div class="min-h-[calc(100vh-200px)] bg-neutral-100 grid grid-cols-4 gap-20">
-    <div class="h-full bg-red-100 col-span-2 col-start-2"></div>
+    <div class="h-full bg-red-100 col-span-2 col-start-2">
+      
+    </div>
   </div>
-  <div class="min-h-[calc(100vh-200px)] bg-neutral-100"></div>
+  <div class="min-h-[calc(100vh-200px)] bg-neutral-100">
+    
+  </div>
 </div>
 
 {% comment %}
