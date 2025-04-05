@@ -43,8 +43,9 @@
             src="{{ prod.media[1] | image_url: width: 410 }}"
             srcset="{{ prod.media[1] | image_url: width: 205 }} 1x, {{ prod.media[1] | image_url: width: 410 }} 2x"
             alt="{{ prod.media[1].alt }}"
-            class="object-cover object-top h-full w-full mix-blend-multiply"
+            class="object-cover h-full w-full mix-blend-multiply"
             loading="lazy"
+            autoplay playsinline muted loop
           />
         {% else %}
           <img
