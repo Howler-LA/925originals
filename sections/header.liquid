@@ -59,7 +59,7 @@
       {% if settings.enable_modal %}
         <button
           type="button"
-          class="text-white fill-white p-2 [&>svg]:h-[28px]"
+          class="text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px]"
           @click="$store.global.openModal()"
           aria-label="Open Modal">
           {% render 'icon-bubble-bottom' %}
@@ -67,12 +67,12 @@
       {% endif %}
 
       {% if settings.enable_predictive_search %}
-        <a href="{{ routes.search_url }}" class="block md:hidden text-white fill-white p-2 [&>svg]:h-[28px]">
+        <a href="{{ routes.search_url }}" class="block md:hidden text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px]">
           {% render 'icon-search' %}
         </a>
         <button
           type="button"
-          class="text-white fill-white p-2 [&>svg]:h-[28px] hidden md:block"
+          class="text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px] hidden md:block"
           @click="$store.global.isPredictiveSearchVisible = true"
           :aria-expanded="$store.global.isPredictiveSearchVisible ? 'true' : 'false'"
           aria-label="Search"
@@ -80,13 +80,13 @@
           {% render 'icon-search' %}
         </button>
       {% else %}
-        <a href="{{ routes.search_url }}" class="text-white fill-white p-2 [&>svg]:h-[28px]">
+        <a href="{{ routes.search_url }}" class="text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px]">
           {% render 'icon-search' %}
         </a>
       {% endif %}
 
       {% if shop.customer_accounts_enabled %}
-        <a href="{{ routes.account_url }}" class="text-white fill-white p-2 [&>svg]:h-[28px]">
+        <a href="{{ routes.account_url }}" class="text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px]">
           {% render 'icon-user' %}
         </a>
       {% endif %}
@@ -94,7 +94,7 @@
 
       <a
         href="{{ routes.cart_url }}"
-        class="[&>svg]:h-[22px] [&>svg]:w-auto relative text-white p-2"
+        class="[&>svg]:h-[22px] [&>svg]:w-auto relative text-neutral-800 p-2"
         x-cloak>
         {% render 'icon-cart' %}
         <span data-ajax-cart-bind="item_count" class="text-cloud-burst-500 absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12px]">
