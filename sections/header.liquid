@@ -1,7 +1,7 @@
 {% schema %}
   {
     "name": "header",
-    "class": "section-header sticky top-0 z-20 border-b",
+    "class": "section-header sticky top-0 z-20",
     "tag": "header",
     "settings": [
       {
@@ -17,7 +17,7 @@
 {% endif %}
 
 <div class="py-[var(--space-sm)] lg:pt-[var(--space-lg)]">
-  <div class="container flex items-center relative mx-auto gap-2">
+  <div class="container flex items-center relative mx-auto gap-[var(--space-md)]">
     <nav
       :class="$store.global.isMobileMenuVisible ? 'open' : 'closed'"
       aria-label="Mobile Navigation Overlay"
