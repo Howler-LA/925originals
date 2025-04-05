@@ -11,7 +11,7 @@
     <div class="aspect-[4/5] bg-neutral-100"></div>
   </div>
   <div class="grid grid-cols-2 gap-0.5 absolute inset-x-0 bottom-0 text-sm">
-    <div class="bg-white flex justify-between">
+    <div class="bg-white flex justify-between py">
       <span>{{ prod.title }}</span>
       <div class="text-right">
         {% if prod.price_varies %}
@@ -20,7 +20,7 @@
           </span>
         {% endif %}
         <span>
-          {{ prod.price | money_with_currency }}
+          {{ prod.price | money }}
         </span>
         {% if prod.compare_at_price_max != blank and prod.compare_at_price_max > prod.price %}
           <s class="text-[13px]">{{ prod.compare_at_price_max | money_with_currency }}</s>
