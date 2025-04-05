@@ -77,7 +77,8 @@
           :aria-expanded="$store.global.isPredictiveSearchVisible ? 'true' : 'false'"
           aria-label="Search"
           aria-controls="predictive-search">
-          {% render 'icon-search' %}
+          <!-- {% render 'icon-search' %} -->
+          <i data-lucide="search"></i>
         </button>
       {% else %}
         <a href="{{ routes.search_url }}" class="text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px]">
