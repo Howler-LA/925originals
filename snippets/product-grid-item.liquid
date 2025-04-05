@@ -36,6 +36,7 @@
     </div>
     <div class="aspect-[4/6] bg-neutral-100 relative">
       <div class="absolute inset-0">
+        
         {% assign first_video = prod.media | where: "media_type", "video" | first %}
         {% if first_video %}
           <video
@@ -49,6 +50,7 @@
         {% else %}
           <p>No video found.</p>
         {% endif %}
+        {{ first_video | json }} 
       </div>
     </div>
   </div>
