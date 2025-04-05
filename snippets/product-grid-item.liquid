@@ -37,16 +37,29 @@
     <div class="aspect-[4/6] bg-neutral-100 relative">
       <div class="absolute inset-0">
         {% if prod.media.size > 1 %}
-          <video 
-            width="{{ prod.media[1].width }}"
-            height="{{ prod.media[1].height }}"
-            class="object-cover h-full w-full mix-blend-multiply"
-            controls
-            autoplay playsinline muted loop
-          >
-            <source src="{{ prod.media[1] | asset_url }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          {% assign first_video = prod.media | where: 'media_type', 'video' | first %}
+          {% if first_video %}
+            <video
+              width="{{ first_video.width }}"
+              height="{{ first_video.height }}"
+              class="object-cover h-full w-full mix-blend-multiply"
+              controls
+              autoplay playsinline muted loop
+            >
+              <source src="{{ first_video | media_url }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          {% else %}
+            <img
+              width="{{ prod.featured_image.width }}"
+              height="{{ prod.featured_image.height }}"
+              src="{{ prod.featured_image | image_url: width: 410 }}"
+              srcset="{{ prod.featured_image | image_url: width: 205 }} 1x, {{ prod.featured_image | image_url: width: 410 }} 2x"
+              alt="{{ prod.featured_image.alt }}"
+              class="object-contain h-full w-full mix-blend-multiply"
+              loading="lazy"
+            />
+          {% endif %}
           {% comment %} <video
             width="{{ prod.media[1].width }}"
             height="{{ prod.media[1].height }}"
