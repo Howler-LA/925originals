@@ -15,7 +15,7 @@
           src="{{ prod.featured_image | image_url: width: 410 }}"
           srcset="{{ prod.featured_image | image_url: width: 205 }} 1x, {{ prod.featured_image | image_url: width: 410 }} 2x"
           alt="{{ prod.featured_image.alt }}"
-          class="object-cover h-full w-full mix-blend-multiply"
+          class="object-contain h-full w-full mix-blend-multiply"
           loading="lazy"
         />
       </div>
@@ -28,7 +28,7 @@
           src="{{ prod.featured_image | image_url: width: 410 }}"
           srcset="{{ prod.featured_image | image_url: width: 205 }} 1x, {{ prod.featured_image | image_url: width: 410 }} 2x"
           alt="{{ prod.featured_image.alt }}"
-          class="object-cover h-full w-full mix-blend-multiply"
+          class="object-contain h-full w-full mix-blend-multiply"
           loading="lazy"
         />
       </div>
