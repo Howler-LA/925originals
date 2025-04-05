@@ -83,13 +83,13 @@
       {% else %}
         <a href="{{ routes.search_url }}" class="text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px]">
           <!-- {% render 'icon-search' %} -->
-          <i data-lucide="menu"></i>
+          <i data-lucide="search"></i>
         </a>
       {% endif %}
 
       {% if shop.customer_accounts_enabled %}
         <a href="{{ routes.account_url }}" class="text-neutral-800 fill-neutral-800 p-2 [&>svg]:h-[28px]">
-          {% render 'icon-user' %}
+          <i data-lucide="user"></i>
         </a>
       {% endif %}
 
