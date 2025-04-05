@@ -11,27 +11,15 @@
     <h2 class="mb-12 max-w-max mx-auto sr-only">
       {{ collection.title }}
     </h2>
-    <div class="grid-wrapper grid grid-cols-1 gap-[var(--space-sm)] lg:grid-cols-2 lg:gap-[var(--space-lg)]">
-
-      <div class="grid grid-cols-2 gap-0.5">
-        <div class="aspect-[4/5] bg-neutral-100"></div>
-        <div class="aspect-[4/5] bg-neutral-100"></div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-0.5">
-        <div class="aspect-[4/5] bg-neutral-100"></div>
-        <div class="aspect-[4/5] bg-neutral-100"></div>
-      </div>
-
-      <!-- {%- paginate collection.products by 12 -%}
-        <div class="product-grid">
+    <div class="grid-wrapper flex flex-col gap-5 lg:gap-20">
+      {%- paginate collection.products by 12 -%}
+        <div class="product-grid grid grid-cols-1 gap-[var(--space-sm)] lg:grid-cols-2 lg:gap-[var(--space-lg)]">
           {% for prod in collection.products %}
             {% render 'product-grid-item', prod: prod %}
           {% endfor %}
         </div>
-  
         {% render 'pagination-navigation', paginate: paginate %}
-      {% endpaginate %} -->
+      {% endpaginate %}
     </div>
   </div>
 </div>
