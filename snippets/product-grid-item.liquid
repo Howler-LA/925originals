@@ -50,7 +50,11 @@
         {% else %}
           <p>No video found.</p>
         {% endif %} {% endcomment %}
-        {{ first_video | json }} 
+         <div class="prose ">
+          <pre>
+            {{ first_video | json }} 
+          </pre>
+        </div>
       </div>
     </div>
   </div>
