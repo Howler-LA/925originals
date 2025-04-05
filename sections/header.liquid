@@ -16,8 +16,8 @@
   {% render 'promo-bar' %}
 {% endif %}
 
-<div class="py-[var(--space-sm)] lg:pt-[var(--space-lg)]">
-  <div class="container flex items-center relative mx-auto gap-[var(--space-md)]">
+<div class="py-[var(--space-sm)] lg:pt-[var(--space-lg)] lg:px-[var(--space-lg)]">
+  <div class="flex items-center relative mx-auto gap-[var(--space-md)]">
     <nav
       :class="$store.global.isMobileMenuVisible ? 'open' : 'closed'"
       aria-label="Mobile Navigation Overlay"
