@@ -10,7 +10,12 @@
     {% form 'product', prod %}
       <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
       <input type="hidden" name="quantity" value="1">
-      <input type="submit" value="Add to cart">
+      <button
+        type="submit" 
+        class="bg-white size-20 flex items-center justify-center rounded-full shadow-md shadow-black/5"
+        value="Add to cart">
+        Add to cart
+      </button>
       <div data-ajax-cart-messages="form"></div>
     {% endform %}
   </div>
