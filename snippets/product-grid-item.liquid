@@ -11,15 +11,15 @@
     <div class="aspect-[4/5] bg-neutral-100"></div>
   </div>
   <div class="grid grid-cols-2 gap-0.5 absolute inset-x-0 bottom-0 text-sm">
-    <div class="bg-white grid grid-cols-2">
+    <div class="bg-white flex justify-between">
       <span>{{ prod.title }}</span>
       <div class="text-right">
         {% if prod.price_varies %}
-          <span class="text-[14px]">
+          <span>
             From
           </span>
         {% endif %}
-        <span class="text-[14px]">
+        <span>
           {{ prod.price | money_with_currency }}
         </span>
         {% if prod.compare_at_price_max != blank and prod.compare_at_price_max > prod.price %}
@@ -50,11 +50,11 @@
       </a>
       <p class="flex flex-wrap items-center space-x-1 [&>*]:whitespace-nowrap">
         {% if prod.price_varies %}
-          <span class="text-[14px]">
+          <span>
             From
           </span>
         {% endif %}
-        <span class="text-[14px]">
+        <span>
           {{ prod.price | money_with_currency }}
         </span>
         {% if prod.compare_at_price_max != blank and prod.compare_at_price_max > prod.price %}
