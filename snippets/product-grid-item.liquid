@@ -11,8 +11,21 @@
     <div class="aspect-[4/5] bg-neutral-100"></div>
   </div>
   <div class="grid grid-cols-2 gap-0.5 absolute inset-x-0 bottom-0">
-    <div class="bg-white">
+    <div class="bg-white grid grid-cols-2">
       <span>{{ prod.title }}</span>
+      <div class="text-right">
+        {% if prod.price_varies %}
+          <span class="text-[14px]">
+            From
+          </span>
+        {% endif %}
+        <span class="text-[14px]">
+          {{ prod.price | money_with_currency }}
+        </span>
+        {% if prod.compare_at_price_max != blank and prod.compare_at_price_max > prod.price %}
+          <s class="text-[13px]">{{ prod.compare_at_price_max | money_with_currency }}</s>
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
