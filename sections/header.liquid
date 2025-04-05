@@ -96,10 +96,10 @@
 
       <a
         href="{{ routes.cart_url }}"
-        class="size-5 flex items-center border border-neutral-800 rounded font-medium"
+        class="size-5 flex items-center justify-center border border-neutral-800 rounded font-medium"
         x-cloak>
         <!-- <i data-lucide="shopping-cart"></i> -->
-        <span data-ajax-cart-bind="item_count">
+        <span data-ajax-cart-bind="item_count" class="text-xs">
           {{- cart.item_count -}}
         </span>
       </a>
