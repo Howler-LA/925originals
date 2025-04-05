@@ -48,7 +48,18 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-0.5 absolute inset-x-0 bottom-0 text-sm">
+  <div class="grid grid-cols-2 gap-0.5 absolute inset-x-0 bottom-0 text-sm bg-white">
+    <div class="col-span-2">
+      {% for option in prod.options_with_values %}
+        {% if option.name == 'Color' %}
+          <ul>
+            {% for value in option.values %}
+              <li>{{ value }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
+    </div>
     <div class="bg-white">
       <div class="flex justify-between items-center">
         <span>{{ prod.title }}</span>
