@@ -13,8 +13,8 @@
 {% endschema %}
 
 <div class="p-[var(--space-sm)] lg:mb-[var(--space-md)] lg:pt-[var(--space-lg)] lg:px-[var(--space-lg)]">
-  <div class="flex items-center justify-between gap-[var(--space-sm)] lg:gap-[var(--space-md)]">
-    <div>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-[var(--space-sm)] lg:gap-[var(--space-md)]">
       {% for link in linklists.footer.links %}
         <a href="{{ link.url }}">
           {{ link.title }}
@@ -23,7 +23,7 @@
     </div>
   
     <div>
-      &copy; {{ "now" | date: "%Y" }} Slayed Starter Theme
+      &copy; {{ "now" | date: "%Y" }} {{ shop.name }}
     </div>
   </div>
 </div>
