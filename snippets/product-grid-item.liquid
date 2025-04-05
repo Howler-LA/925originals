@@ -38,7 +38,7 @@
       <div class="absolute inset-0">
         
         {% assign first_video = prod.media | where: "media_type", "video" | first %}
-        {% if first_video %}
+        {% comment %} {% if first_video %}
           <video
             autoplay
             loop
@@ -49,7 +49,7 @@
           </video>
         {% else %}
           <p>No video found.</p>
-        {% endif %}
+        {% endif %} {% endcomment %}
         {{ first_video | json }} 
       </div>
     </div>
