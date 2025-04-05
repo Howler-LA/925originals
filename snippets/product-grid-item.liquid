@@ -35,21 +35,32 @@
     </div>
   </div>
   <div class="grid grid-cols-2 gap-0.5 absolute inset-x-0 bottom-0 text-sm">
-    <div class="bg-white flex justify-between py">
-      <span>{{ prod.title }}</span>
-      <div class="text-right">
-        {% if prod.price_varies %}
+    <div class="bg-white">
+      <div class="flex justify-between items-center">
+        <span>{{ prod.title }}</span>
+        <div class="text-right">
+          {% if prod.price_varies %}
+            <span>
+              From
+            </span>
+          {% endif %}
           <span>
-            From
+            {{ prod.price | money }}
           </span>
-        {% endif %}
-        <span>
-          {{ prod.price | money }}
-        </span>
-        {% if prod.compare_at_price_max != blank and prod.compare_at_price_max > prod.price %}
-          <s class="text-[13px]">{{ prod.compare_at_price_max | money_with_currency }}</s>
-        {% endif %}
+          {% if prod.compare_at_price_max != blank and prod.compare_at_price_max > prod.price %}
+            <s class="text-[13px]">{{ prod.compare_at_price_max | money_with_currency }}</s>
+          {% endif %}
+        </div>
       </div>
+      {% form 'product', prod %}
+        <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="submit" value="Add to cart">
+        <div data-ajax-cart-messages="form">
+          <!-- Error messages appear here -->
+        </div>
+        </button>
+      {% endform %}
     </div>
   </div>
 </div>
