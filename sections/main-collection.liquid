@@ -11,8 +11,14 @@
     <h2 class="mb-12 max-w-max mx-auto sr-only">
       {{ collection.title }}
     </h2>
-    <div class="grid-wrapper">
-      {%- paginate collection.products by 12 -%}
+    <div class="grid-wrapper grid grid-cols-2 gap-0.5">
+
+      <div class="grid grid-cols-2 gap-0.5">
+        <div class="aspect-[4/5] bg-neutral-100"></div>
+        <div class="aspect-[4/5] bg-neutral-100"></div>
+      </div>
+
+      <!-- {%- paginate collection.products by 12 -%}
         <div class="product-grid">
           {% for prod in collection.products %}
             {% render 'product-grid-item', prod: prod %}
@@ -20,7 +26,7 @@
         </div>
   
         {% render 'pagination-navigation', paginate: paginate %}
-      {% endpaginate %}
+      {% endpaginate %} -->
     </div>
   </div>
 </div>
