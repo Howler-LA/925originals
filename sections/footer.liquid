@@ -12,46 +12,18 @@
   }
 {% endschema %}
 
-<footer class="py-4 lg:py-20">
-  <div class="container flex flex-col gap-4 lg:gap-10">
-    <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-20">
-
-      <div class="flex flex-col gap-2 text-neutral-500">
-        <p>Free shipping on orders over $400</p>
-        <p>Credit card, Apple Pay, Paypal, Klarna</p>
-        <p>Free returns within 14 days.</p>
-      </div>
-
-      <div class="columns-2 space-y-2">
-        {% for link in linklists.footer.links %}
-          <a href="{{ link.url }}" class="block">{{ link.title }}</a>
-        {% endfor %}
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <p>Join the Mailing List</p>
-        <form class="relative">
-          <input type="text" placeholder="Email address" class="h-12 bg-transparent border-b w-full" />
-          <button class="absolute size-8 top-2 hover:bg-neutral-100 transition rounded-lg right-0 top-0 flex items-center justify-center">
-            <span class="sr-only">Submit</span>
-            <i data-lucide="chevron-right"></i>
-          </button>
-        </form>
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <p>Follow Us</p>
-        <ul class="flex gap-2">
-          <li><a class="size-12 flex items-center justify-center bg-neutral-50 hover:bg-neutral-100 rounded-lg" href=""><i data-lucide="facebook">Facebook</i></a></li>
-          <li><a class="size-12 flex items-center justify-center bg-neutral-50 hover:bg-neutral-100 rounded-lg" href=""><i data-lucide="twitter">Twitter</i></a></li>
-          <li><a class="size-12 flex items-center justify-center bg-neutral-50 hover:bg-neutral-100 rounded-lg" href=""><i data-lucide="youtube">Youtube</i></a></li>
-          <li><a class="size-12 flex items-center justify-center bg-neutral-50 hover:bg-neutral-100 rounded-lg" href=""><i data-lucide="facebook">Facebook</i></a></li>
-        </ul>
-      </div>
-
+<div class="px-6 md:px-8 py-12">
+  <div class="container">
+    <div>
+      {% for link in linklists.footer.links %}
+        <a href="{{ link.url }}">
+          {{ link.title }}
+        </a>
+      {% endfor %}
     </div>
-    <div class="">
-      © {{ "now" | date: "%Y" }} 925Originals
-    </div>
+  
+    <small>
+      &copy; {{ "now" | date: "%Y" }} Slayed Starter Theme
+    </small>
   </div>
-</footer>
+</div>
