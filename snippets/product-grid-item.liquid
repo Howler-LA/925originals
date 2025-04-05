@@ -36,15 +36,27 @@
     </div>
     <div class="aspect-[4/5] bg-neutral-100 relative">
       <div class="absolute inset-0">
-        <img
-          width="{{ prod.featured_image.width }}"
-          height="{{ prod.featured_image.height }}"
-          src="{{ prod.featured_image | image_url: width: 410 }}"
-          srcset="{{ prod.featured_image | image_url: width: 205 }} 1x, {{ prod.featured_image | image_url: width: 410 }} 2x"
-          alt="{{ prod.featured_image.alt }}"
-          class="object-contain h-full w-full mix-blend-multiply"
-          loading="lazy"
-        />
+        {% if prod.media.size > 1 %}
+          <img
+            width="{{ prod.media[1].width }}"
+            height="{{ prod.media[1].height }}"
+            src="{{ prod.media[1] | image_url: width: 410 }}"
+            srcset="{{ prod.media[1] | image_url: width: 205 }} 1x, {{ prod.media[1] | image_url: width: 410 }} 2x"
+            alt="{{ prod.media[1].alt }}"
+            class="object-contain h-full w-full mix-blend-multiply"
+            loading="lazy"
+          />
+        {% else %}
+          <img
+            width="{{ prod.featured_image.width }}"
+            height="{{ prod.featured_image.height }}"
+            src="{{ prod.featured_image | image_url: width: 410 }}"
+            srcset="{{ prod.featured_image | image_url: width: 205 }} 1x, {{ prod.featured_image | image_url: width: 410 }} 2x"
+            alt="{{ prod.featured_image.alt }}"
+            class="object-contain h-full w-full mix-blend-multiply"
+            loading="lazy"
+          />
+        {% endif %}
       </div>
     </div>
   </div>
