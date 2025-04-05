@@ -46,15 +46,15 @@
       {% render 'mobile-menu' %}
     </nav>
 
-    <a href="{{ routes.root_url }}">
-      {{ shop.name }}
-    </a>
-
     <div class="hidden md:block">
       {% render 'header-menu' %}
     </div>
 
     <div class="flex items-center space-x-3 self-center ml-auto">
+
+      <a href="{{ routes.root_url }}">
+        {{ shop.name }}
+      </a>
 
       {% if settings.enable_modal %}
         <button
