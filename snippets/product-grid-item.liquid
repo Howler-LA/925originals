@@ -5,9 +5,16 @@
   %}
 {% endcomment %}
 
-<div class="grid grid-cols-2 gap-0.5">
-  <div class="aspect-[4/5] bg-neutral-100"></div>
-  <div class="aspect-[4/5] bg-neutral-100"></div>
+<div class="product-grid-item">
+  <div class="grid grid-cols-2 gap-0.5">
+    <div class="aspect-[4/5] bg-neutral-100"></div>
+    <div class="aspect-[4/5] bg-neutral-100"></div>
+  </div>
+  <div class="grid grid-cols-2 gap-0.5">
+    <div class="bg-white">
+      <span>{{ prod.title }}</span>
+    </div>
+  </div>
 </div>
 
 <div class="product-grid-item relative group hidden">
