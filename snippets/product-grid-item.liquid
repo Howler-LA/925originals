@@ -38,13 +38,14 @@
       <div class="absolute inset-0">
         {% for media in prod.media %}
           {% if media.media_type == 'video' %}
-            <video
-              src="{{ media | media_url }}"
+            {{  media | json }}
+            {% comment %} <video
+              src="{{ media | video_url }}"
               controls
               poster="{{ media.preview_image.src }}"
               class="object-contain h-full w-full"
               loading="lazy"
-            ></video>
+            ></video> {% endcomment %}
             {% break %}
           {% endif %}
         {% endfor %}
