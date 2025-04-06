@@ -53,7 +53,7 @@
   </div>
   <div class="grid grid-cols-2 gap-x-0.5 absolute inset-x-0 bottom-0 text-sm">
     <div class="bg-white flex flex-col gap-1 pt-2 pr-2">
-      <div class="flex justify-between items-center">
+      <a href="{{  prod.url }}" class="flex justify-between items-center">
         <span>{{ prod.title }}</span>
         <div class="text-right">
           {% if prod.price_varies %}
@@ -68,7 +68,7 @@
             <s class="text-[13px]">{{ prod.compare_at_price_max | money_with_currency }}</s>
           {% endif %}
         </div>
-      </div>
+      </a>
       <div class="col-span-2">
         {% for option in prod.options_with_values %}
           {% if option.name == 'Color' %}
