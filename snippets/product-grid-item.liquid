@@ -36,25 +36,18 @@
     </div>
     <div class="aspect-[4/6] bg-neutral-100 relative">
       <div class="absolute inset-0">
-        
-        {% assign first_video = prod.media | where: "media_type", "video" | first %}
-        {% comment %} {% if first_video %}
-          <video
-            autoplay
-            loop
-            muted
-            class="object-contain h-full w-full"
-          >
-            <source src="{{ first_video | media_url }}" type="video/mp4" />
-          </video>
-        {% else %}
-          <p>No video found.</p>
-        {% endif %} {% endcomment %}
-         <div class="prose ">
-          <pre>
-            {{ first_video.sources | json }} 
-          </pre>
-        </div>
+        {% for media in prod.media %}
+          {% if media.media_type == 'video' %}
+            <video
+              src="{{ media | video_url }}"
+              controls
+              poster="{{ media.preview_image.src }}"
+              class="object-contain h-full w-full"
+              loading="lazy"
+            ></video>
+            {% break %}
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
