@@ -39,7 +39,7 @@
         {% for media in prod.media %}
           {% if media.media_type == 'video' %}
             <video
-              src="{{ media | url }}"
+              src="{{ media.src }}"
               controls
               poster="{{ media.preview_image.src }}"
               class="object-contain h-full w-full"
