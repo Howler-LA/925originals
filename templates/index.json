@@ -9,6 +9,24 @@
  */
 {
   "sections": {
+    "collection_list": {
+      "type": "block_collection-list",
+      "blocks": {
+        "featured-collection-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "featured-collection-0"
+      ],
+      "settings": {
+        "title": "Collections",
+        "columns_desktop": 3
+      }
+    },
     "image_banner": {
       "type": "block_image-banner",
       "blocks": {
@@ -50,29 +68,11 @@
         "collection": "all",
         "products_to_show": 6
       }
-    },
-    "collection_list": {
-      "type": "block_collection-list",
-      "blocks": {
-        "featured-collection-0": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "frontpage"
-          }
-        }
-      },
-      "block_order": [
-        "featured-collection-0"
-      ],
-      "settings": {
-        "title": "Collections",
-        "columns_desktop": 3
-      }
     }
   },
   "order": [
-    "image_banner",
     "featured_collection",
-    "collection_list"
+    "collection_list",
+    "image_banner"
   ]
 }
