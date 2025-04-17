@@ -1,19 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": {
-      "type": "main-index",
+    "image_banner": {
+      "type": "block_image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Jackets"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Explore jackets"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
+        "image": "shopify://shop_images/925PreviewFA25-008.jpg",
+        "image_2": "shopify://shop_images/925PreviewFA25-007.jpg",
+        "full_page_height_enable": true
       }
     },
-    "featured-product-grid": {
-      "type": "featured-product-grid",
+    "featured_collection": {
+      "type": "block_featured-collection",
       "settings": {
-        "featured_collection": "homepage-collection"
+        "title": "Featured products",
+        "collection": "all",
+        "products_to_show": 6
+      }
+    },
+    "collection_list": {
+      "type": "block_collection-list",
+      "blocks": {
+        "featured-collection-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "featured-collection-0"
+      ],
+      "settings": {
+        "title": "Collections",
+        "columns_desktop": 3
       }
     }
   },
-  "order": [ 
-    "main",
-    "featured-product-grid"
+  "order": [
+    "image_banner",
+    "featured_collection",
+    "collection_list"
   ]
 }
