@@ -11,11 +11,79 @@
   "sections": {
     "main": {
       "type": "main-product",
+      "blocks": {
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "title": "Details",
+            "content": "<p>Use collapsible tabs for more detailed information that will help customers make a purchasing decision.</p><p>Ex: Shipping and return policies, size guides, and other common questions.</p>",
+            "page": ""
+          }
+        },
+        "tab_fKYf9a": {
+          "type": "tab",
+          "settings": {
+            "title": "Size and Fit",
+            "content": "<p>Use collapsible tabs for more detailed information that will help customers make a purchasing decision.</p><p>Ex: Shipping and return policies, size guides, and other common questions.</p>",
+            "page": ""
+          }
+        },
+        "tab_Tqa9kg": {
+          "type": "tab",
+          "settings": {
+            "title": "Shipping",
+            "content": "<p>Use collapsible tabs for more detailed information that will help customers make a purchasing decision.</p><p>Ex: Shipping and return policies, size guides, and other common questions.</p>",
+            "page": ""
+          }
+        },
+        "tab_HqaQ8a": {
+          "type": "tab",
+          "settings": {
+            "title": "Garment Care",
+            "content": "<p>Use collapsible tabs for more detailed information that will help customers make a purchasing decision.</p><p>Ex: Shipping and return policies, size guides, and other common questions.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "price",
+        "variant_picker",
+        "buy_buttons",
+        "tab",
+        "tab_fKYf9a",
+        "tab_Tqa9kg",
+        "tab_HqaQ8a"
+      ],
       "settings": {
+        "show_vendor": true
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "products_to_show": 5
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "product-recommendations"
   ]
 }
