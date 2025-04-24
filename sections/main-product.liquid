@@ -1,0 +1,200 @@
+{% schema %}
+  {
+    "name": "Product Section",
+    "class": "section-main-product",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "picker_type",
+        "label": "Variant Picker Type",
+        "options": [
+          {
+            "value": "radio",
+            "label": "Radio Buttons"
+          }, {
+            "value": "select",
+            "label": "Select Dropdowns"
+          }
+        ],
+        "default": "radio"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collapsable_row",
+        "name": "Collapsable Row",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }, {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<div class="container">
+  <div
+    class="shopify-section-main-product-inner mx-auto"
+    data-handle="{{ product.handle }}"
+    data-id="{{ product.id }}"
+    data-url="{{ product.url }}"
+    data-section="{{ section.id }}"
+    data-prodify="{{ section.settings.picker_type }}">
+
+    <script type="application/json" data-prodify-variants-json>
+      {{ product.variants | json }}
+    </script>
+
+    <a class="skip-to-content-link" href="#product-info-{{ section.id }}">
+      Skip to product info
+    </a>
+
+    <div class="flex flex-col gap-5 lg:flex-row lg:gap-20">
+      
+      <!-- Image Container -->
+      
+      <div class="media flex-1 lg:order-last" data-prodify-media-container>
+        <div class="image-wrapper relative overflow-hidden bg-stone-100">
+          {% if product.selected_variant and product.selected_variant.image %}
+            {% assign media = product.selected_variant.image %}
+          {% else %}
+            {% assign media = product.featured_image %}
+          {% endif %}
+          <img
+            src="{{ media | image_url }}"
+            alt="{{ media.alt }}"
+            srcset="{{ media | image_url: width: 800 }} 800w, {{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1426 }} 1426w"
+            sizes="(min-width: 768px) 55vw, 100vw"
+            height="{{ media.height }}"
+            width="{{ media.width }}"
+            class="h-full w-full object-contain inset-0 mix-blend-multiply"
+            loading="eager">
+          <h1 class="text-4xl z-50 relative sr-only">
+            {{ product.selected_or_first_available_variant.options }}
+          </h1>
+        </div>
+        <span class="top-0 left-0 z-100 text-[10px] sr-only">
+          {{ product.selected_or_first_available_variant.id }}
+        </span>
+      </div>
+
+      <!-- Info Container -->
+
+      <div 
+        class="info flex-none lg:order-first lg:w-1/4" 
+        id="product-info-{{ section.id }}">
+        <div class="sticky top-0 flex flex-col justify-center">
+          
+          <span class="text-subtle">{{ product.type }}</span>
+          
+          <header class="mb-5 flex items-center justify-between lg:mb-10">
+            <h1 class="font-medium">{{ product.title | escape }}</h1>
+            <div>{% render 'price' %}</div>
+          </header>
+          
+          {% render 'product-variant-picker'
+            , product: product
+            , product_form_id: 'product-form-id'
+            , picker_type: section.settings.picker_type %}
+          
+          <div class="quantity-row">
+            <label for="quantity-control-input">Quantity</label>
+            <div class="quantity-control-container">
+              <button type="button" data-prodify-quantity-decrement>
+                {% render 'icon-minus' %}
+              </button>
+              <input
+                tabindex="-1"
+                type="number"
+                id="quantity-control-input"
+                value="1"
+                disabled=""
+                data-prodify-quantity-presentation>
+              <button type="button" data-prodify-quantity-increment>
+                {% render 'icon-plus' %}
+              </button>
+            </div>
+          </div>
+
+          <ajax-cart-product-form>
+            <form
+              action="{{ routes.cart_add_url }}"
+              id="product_form_id"
+              class="product-form"
+              novalidate="novalidate"
+              data-prodify-product-form>
+              <input
+                type="hidden"
+                name="id"
+                value="{{ product.selected_or_first_available_variant.id }}">
+              <input
+                type="hidden"
+                name="quantity"
+                value="1"
+                data-prodify-quantity-hidden-input>
+              <div class="mb-[10px]">
+                <button
+                  type="submit"
+                  name="add"
+                  class="px-6 rounded-lg hover:bg-stone-400 bg-stone-900 text-white w-full h-12 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-black"
+                  {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                  {% endif %}>
+                  <span class="[[processing]_&]:hidden">
+                    {%- if product.selected_or_first_available_variant.available -%}
+                      Add to cart
+                    {%- else -%}
+                      Sold out
+                    {%- endif -%}
+                  </span>
+                  <span class="hidden [[processing]_&]:block [[processing]_&]:cursor-not-allowed">
+                    Adding to cart...
+                  </span>
+                </button>
+              </div>
+              <div data-ajax-cart-errors="form" class="text-red-500">
+                <!-- Error messages appear here -->
+              </div>
+
+              {%- if product.selected_or_first_available_variant.available -%}
+                <button
+                  type="button"
+                  class="w-full h-12 px-6 text-white bg-stone-900 flex items-center justify-center hover:after:border-offset-1"
+                  onclick="onBuyNowClicked()">
+                  Buy it now
+                </button>
+                <script>
+                  const onBuyNowClicked = () => {
+                    window.location.href = `/cart/${window?.prodify?.currentVariant?.id}:1`;
+                  }
+                </script>
+              {%- endif -%}
+
+              {{ form | payment_button }}
+            </form>
+          </ajax-cart-product-form>
+
+          <div class="description prose">
+            {{ product.description }}
+          </div>
+          {% for block in section.blocks %}
+            <div class="collapsable-row border border-gray-500 my-4 p-4">
+              <h2>{{ block.settings.heading }}</h2>
+              <div>{{ block.settings.content }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

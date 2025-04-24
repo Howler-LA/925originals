@@ -1,0 +1,62 @@
+<footer class="lg:pt-20 flex flex-col text-base/4">
+  <div class="container grid lg:grid-cols-4 gap-10 lg:gap-x-20 lg:gap-y-10">
+    
+    <div class="text-subtle">
+      <div class="flex flex-col gap-2">
+        <p>Free shipping on orders over 400$</p>
+        <p>Credit card, Apple Pay, Paypal, Klarna</p>
+        <p>Free returns within 14 days.</p>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2">
+      <nav class="flex flex-col gap-2">
+        <a href="#">Returns</a>
+        <a href="#">Stockists</a>
+        <a href="#">Legals</a>
+      </nav>
+      <nav class="flex flex-col gap-2">
+        <a href="#">Lookbooks</a>
+        <a href="#">Call Us</a>
+        <a href="#">Email Us</a>
+      </nav>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <span>Join the Mailing List</span>
+      <button class="h-10 border-b flex justify-between items-center">
+        <span class="text-subtle">Email Address</span>
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>        
+      </button>
+    </div>
+    
+    <div class="flex flex-col gap-2">
+      <span>Follow Us</span>
+      <nav class="flex-grow flex gap-2">
+        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
+        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
+        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
+        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
+      </nav>
+    </div>
+    
+    <div class="col-span-full">
+      © {{ shop.name }} 2025
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Primary navigation"
+    }
+  ]
+}
+{% endschema %}

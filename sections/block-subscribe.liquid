@@ -1,0 +1,55 @@
+{% schema %}
+{
+  "name": "Email signup banner",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Opening soon",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Be the first to know when we launch.</p>",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "Email signup banner",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email signup banner",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "paragraph"
+        },
+        {
+          "type": "email_form"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+<div class="pb-5 lg:pb-20">
+  <div class="container">
+    <header class="flex flex-col pt-2.5 lg:pt-5 gap-2">
+      <time class="text-subtle">{{ article.published_at | time_tag: format: 'date' }}</time>
+      <h1 class="text-foreground font-medium">{{- article.title -}}</h1>
+    </header>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Article header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "Show collection description"
+    }
+  ]
+}
+{% endschema %}

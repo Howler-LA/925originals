@@ -1,0 +1,24 @@
+<article class="shrink-0 flex flex-col gap-5 group">
+  <a href="{{ card_product.url | within: collection }}">
+    <div class="aspect-[4/5] bg-stone-50 hover:bg-stone-100 transition duration-300 ease relative">
+      <img
+        width="{{ card_product.featured_image.width }}"
+        height="{{ card_product.featured_image.height }}"
+        src="{{ card_product.featured_image | image_url: width: 410 }}"
+        srcset="{{ card_product.featured_image | image_url: width: 205 }} 1x, {{ card_product.featured_image | image_url: width: 410 }} 2x"
+        alt="{{ card_product.featured_image.alt }}"
+        class="absolute inset-0 object-contain h-full mix-blend-multiply p-2"
+        loading="lazy"
+      >
+    </div>
+  </a>
+  <header class="flex">
+    <div class="flex-grow">
+      <h3>{{ card_product.title }}</h3>
+      <div class="text-subtle  ease transition duration-300 opacity-0 group-hover:opacity-100">Olive</div>
+    </div>
+    <div class="text-right ease transition duration-300 opacity-0 group-hover:opacity-100">
+      <span>{{ card_product.price | money }}</span>
+    </div>
+  </header>
+</article>

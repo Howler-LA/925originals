@@ -1,0 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero-image": {
+      "type": "block-hero-image",
+      "settings": {
+        "image": "shopify://shop_images/925PreviewFA25-008.jpg",
+        "image_2": "shopify://shop_images/925PreviewFA25-007.jpg",
+        "full_page_height_enable": true
+      }
+    },
+    "block_featured_collection_TUqKU6": {
+      "type": "block-featured-collection",
+      "settings": {}
+    },
+    "block_collection_list_ABHrQy": {
+      "type": "block-collection-list",
+      "settings": {}
+    },
+    "block_subscribe_V47YdG": {
+      "type": "block-subscribe",
+      "blocks": {
+        "heading_tTL7p9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Opening soon"
+          }
+        },
+        "paragraph_TRjkDF": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to know when we launch.</p>"
+          }
+        },
+        "email_form_UTcaMj": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_tTL7p9",
+        "paragraph_TRjkDF",
+        "email_form_UTcaMj"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero-image",
+    "block_featured_collection_TUqKU6",
+    "block_collection_list_ABHrQy",
+    "block_subscribe_V47YdG"
+  ]
+}

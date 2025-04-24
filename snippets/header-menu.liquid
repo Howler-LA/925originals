@@ -1,0 +1,9 @@
+<ul class="header-menu flex gap-8 items-center">
+  {% for link in linklists.main-menu.links %}
+    <li>
+      <a href="{{ link.url }}" {% if link.active %}class="active"{% endif %}>
+        {{ link.title | escape }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

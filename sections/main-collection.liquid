@@ -1,0 +1,34 @@
+{% schema %}
+{
+  "name": "Main Collection Section",
+  "class": "section-main-collection",
+  "tag": "section"
+}
+{% endschema %}
+
+
+<div id="ProductGridContainer">
+  <div
+    class="container grid grid-flow-row grid-cols-2 gap-5 lg:gap-20 md:grid-cols-2 lg:grid-cols-4"
+    id="product-grid"
+    data-id="{{ section.id }}"
+  >
+    {%- liquid
+      paginate collection.products by 12
+        for product in collection.products
+          assign lazy_load = false
+          if forloop.index > 2
+            assign lazy_load = true
+          endif
+          render 'card-product-double', card_product: product, lazy_load: lazy_load
+        else
+          if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0
+            for i in (1..4)
+              render 'card-product-double'
+            endfor
+          endif
+        endfor
+      endpaginate
+    -%}
+  </div>
+</div>

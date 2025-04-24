@@ -1,0 +1,181 @@
+{% schema %}
+  {
+    "name": "header",
+    "class": "section-header sticky top-0 z-20",
+    "tag": "header",
+    "settings": [
+      {
+      "type": "paragraph",
+      "content": "t:sections.header.settings.paragraph"
+      }
+    ]
+  }
+{% endschema %}
+
+{% if settings.show_promo_bar %}
+  {% render 'promo-bar' %}
+{% endif %}
+
+<div class="leading-10 lg:leading-6 pt-10 lg:pt-20 pb-5 lg:pb-10">
+  <div class="container flex items-center text-foreground relative mx-auto">
+    <nav
+      :class="$store.global.isMobileMenuVisible ? 'open' : 'closed'"
+      aria-label="Mobile Navigation Overlay"
+      class="block md:hidden"
+      style="transition: all 300ms;"
+      id="mobile-nav"
+      role="navigation"
+      x-cloak 
+      x-data>
+      <button
+        id="mobile-nav-trigger"
+        type="button"
+        @click="$store.global.toggleMobileMenu()"
+        :aria-expanded="$store.global.isMobileMenuVisible"
+        aria-label="Mobile Navigation Button"
+        aria-controls="mobile-menu-list"
+        x-data>
+        <span class="sr-only">Menu</span>
+        <span aria-hidden="true" x-show="!$store.global.isMobileMenuVisible">
+          {% render 'icon-hamburger' %}
+        </span>
+        <span aria-hidden="true" x-show="$store.global.isMobileMenuVisible">
+          {% render 'icon-close-x' %}
+        </span>
+      </button>
+      {% render 'mobile-menu' %}
+    </nav>
+
+    <div class="hidden md:block">
+      {% render 'header-menu' %}
+    </div>
+
+    <div class="flex items-center gap-8 self-center ml-auto">
+
+      <a href="{{ routes.root_url }}">
+        {{ shop.name }}
+      </a>
+
+      {% if settings.enable_modal %}
+        <button
+          type="button"
+          class="text-foreground fill-white p-2 [&>svg]:h-[28px]"
+          @click="$store.global.openModal()"
+          aria-label="Open Modal">
+          {% render 'icon-bubble-bottom' %}
+        </button>
+      {% endif %}
+
+      {% if settings.enable_predictive_search %}
+        <a href="{{ routes.search_url }}" class="block md:hidden text-foreground fill-current p-2 [&>svg]:h-[28px]">
+          {% render 'icon-search' %}
+        </a>
+        <button
+          type="button"
+          class="text-foreground fill-white p-2 [&>svg]:h-[28px] hidden md:block"
+          @click="$store.global.isPredictiveSearchVisible = true"
+          :aria-expanded="$store.global.isPredictiveSearchVisible ? 'true' : 'false'"
+          aria-label="Search"
+          aria-controls="predictive-search">
+          {% render 'icon-search' %}
+          <span class="sr-only">Search</span>
+        </button>
+      {% else %}
+        <a href="{{ routes.search_url }}" class="text-foreground fill-current p-2 [&>svg]:h-[28px] flex gap-2 items-center">
+          {% render 'icon-search' %}
+          <span class="sr-only">Search</span>
+        </a>
+      {% endif %}
+
+      {% if shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_url }}" class="text-foreground fill-white p-2 [&>svg]:h-[28px] flex gap-2 items-center">
+          {% render 'icon-user' %}
+          <span class="sr-only">Account</span>
+        </a>
+      {% endif %}
+
+      <button 
+        class="flex items-center gap-2" 
+        x-data @click.prevent="$store.global.isMinicartVisible = true"
+      >
+        <span>{{ 'templates.cart.cart' | t }}</span>
+        <span class="text-xs font-medium cursor-pointer transition bg-background text-foreground hover:text-foreground-active inline-flex size-6 border border-foreground/50 rounded-lg justify-center items-center">{{ cart.item_count }}</span>
+        <span class="sr-only">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <style>
+    .section-header .header-logo {
+      color: white;
+      text-decoration: none;
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+
+    #mobile-nav-trigger {
+      display: none;
+      -webkit-appearance: none;
+      appearance: none;
+      -moz-appearance: none;
+      background: transparent;
+      border: 0;
+    }
+
+    #mobile-nav-trigger svg {
+      fill: white;
+      width: 26px;
+      height: auto;
+    }
+
+    @media(max-width: 768px) {
+      .section-header .header-logo {
+        /* position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+        font-size: 1.5rem;
+        margin-left: 1rem;
+      }
+
+      #mobile-nav-trigger {
+        display: block;
+      }
+    }
+
+    .cart-icon-wrapper {
+      text-decoration: none;
+      color: white;
+      margin-left: auto;
+      position: relative;
+    }
+
+    .cart-icon-wrapper span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -35%);
+      z-index: 5;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .bi-bag {
+      display: none;
+    }
+
+    .js-ajax-cart-not-empty .header .bi-bag-fill {
+      display: block;
+    }
+
+    .js-ajax-cart-empty .header .bi-bag-empty {
+      display: block;
+    }
+
+    .js-ajax-cart-empty .header .bi-bag-fill {
+      display: none;
+    }
+  </style>
+</div>

@@ -1,0 +1,6 @@
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    color: theme('colors.stone.800');
+  }
+}

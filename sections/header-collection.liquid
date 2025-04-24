@@ -1,0 +1,24 @@
+<div class="pb-5 lg:pb-10">
+  <div class="container">
+    <header class="flex flex-col gap-2">
+      <h1 class="text-foreground">{{- collection.title | escape -}}</h1>
+      {%- if section.settings.show_collection_description -%}
+      <div class="text-subtle max-w-prose">{{ collection.description }}</div>
+      {%- endif -%}
+    </header>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "Show collection description"
+    }
+  ]
+}
+{% endschema %}

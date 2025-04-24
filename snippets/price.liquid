@@ -1,0 +1,30 @@
+{% comment %}
+  Renders a list of product's price (regular, sale)
+
+  Accepts:
+  - product: {Object} Product Liquid object (optional)
+  - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
+  - price_class: {String} Adds a price class to the price element (optional)
+
+  Usage:
+  {% render 'price', product: product %}
+{% endcomment %}
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+-%}
+
+<div class="flex items-center py-2" data-prodify-price-container>
+  <span class="sr-only">Regular Price</span>
+  {% if product.selected_or_first_available_variant.compare_at_price %}
+    <span class="line-through">
+      {{ product.selected_or_first_available_variant.compare_at_price | money_without_trailing_zeros }}
+    </span>
+  {% endif %}
+  <span>
+    {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
+  </span>
+</div>
