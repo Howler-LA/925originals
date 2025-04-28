@@ -21,6 +21,14 @@
       "type": "block-featured-collection",
       "settings": {}
     },
+    "block_hero_video_7ni749": {
+      "type": "block-hero-video",
+      "name": "Hero Video",
+      "settings": {
+        "video": "shopify://files/videos/Stocksy_unlicensed_comp_watermarked_6548099.mp4",
+        "full_width": true
+      }
+    },
     "block_collection_list_ABHrQy": {
       "type": "block-collection-list",
       "settings": {}
@@ -56,6 +64,7 @@
   "order": [
     "hero-image",
     "block_featured_collection_TUqKU6",
+    "block_hero_video_7ni749",
     "block_collection_list_ABHrQy",
     "block_subscribe_V47YdG"
   ]

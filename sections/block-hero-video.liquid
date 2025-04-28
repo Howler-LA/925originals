@@ -1,8 +1,26 @@
 {% schema %}
 {
-  "name": "Hero",
+  "name": "Hero Video",
   "class": "section-block-hero",
-  "tag": "section"
+  "tag": "section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "First image"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "Full width"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Video"
+    }
+  ]
 }
 {% endschema %}
 
