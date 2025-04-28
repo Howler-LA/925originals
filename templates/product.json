@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,20 +15,52 @@
         "collapsable_row_7EjzKy": {
           "type": "collapsable_row",
           "settings": {
-            "heading": "Some Heading",
-            "content": ""
+            "heading": "Details",
+            "content": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>"
+          }
+        },
+        "collapsable_row_cKgRPR": {
+          "type": "collapsable_row",
+          "settings": {
+            "heading": "Size and Fit",
+            "content": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>"
+          }
+        },
+        "collapsable_row_q7kndw": {
+          "type": "collapsable_row",
+          "settings": {
+            "heading": "Shipping",
+            "content": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>"
+          }
+        },
+        "collapsable_row_b4RqCg": {
+          "type": "collapsable_row",
+          "settings": {
+            "heading": "Garment Care",
+            "content": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>"
           }
         }
       },
       "block_order": [
-        "collapsable_row_7EjzKy"
+        "collapsable_row_7EjzKy",
+        "collapsable_row_cKgRPR",
+        "collapsable_row_q7kndw",
+        "collapsable_row_b4RqCg"
       ],
       "settings": {
         "picker_type": "radio"
       }
+    },
+    "block_related_products_4XYWCN": {
+      "type": "block-related-products",
+      "name": "Related Products",
+      "settings": {
+        "show_product_recommendations": false
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "block_related_products_4XYWCN"
   ]
 }

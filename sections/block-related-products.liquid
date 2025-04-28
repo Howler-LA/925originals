@@ -3,28 +3,38 @@
   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
 >
   {%- if recommendations.performed? and recommendations.products_count > 0 -%}
-    {% if recommendations.intent == 'related' %}
-      <h2>You may also like</h2>
-    {% elsif recommendations.intent == 'complementary' %}
-      <h2>Pair it with</h2>
-    {% endif %}
+    <div class="pb-5 lg:pb-20">
+      <div class="container">
+        <header class="flex flex-col pt-2.5 lg:pt-5 gap-2">
+          {% if recommendations.intent == 'related' %}
+            <h2 class="text-foreground font-medium">You may also like</h2>
+          {% elsif recommendations.intent == 'complementary' %}
+            <h2 class="text-foreground font-medium">Pair it with</h2>
+          {% endif %}
+        </header>
+      </div>
+    </div>
 
-    <ul>
-      {%- for product in recommendations.products -%}
-        <li class="product">
-          <a href="{{ product.url }}">
-            <img
-              class="product__img"
-              src="{{ product.featured_image | image_url: width: 300, height: 300 }}"
-              alt="{{ product.featured_image.alt }}"
-            />
-
-            <p class="product__title">{{ product.title }}</p>
-            <p class="product__price">{{ product.price | money}}</p>
-          </a>
-        </li>
-      {%- endfor -%}
-    </ul>
+    <div class="container">
+      <ul class="grid lg:grid-cols-4 gap-10 lg:gap-20">
+        {%- liquid
+          for product in recommendations.products
+            assign lazy_load = false
+            if forloop.index > 2
+              assign lazy_load = true
+            endif
+            render 'card-product-double', card_product: product, lazy_load: lazy_load
+          else
+            if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0
+              for i in (1..4)
+                render 'card-product-double'
+              endfor
+            endif
+          endfor
+        -%}
+        
+      </ul>
+    </div>
   {%- endif -%}
 </div>
 

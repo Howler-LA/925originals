@@ -73,9 +73,9 @@
         checked
       {% endif %}
       {% if option_disabled %}
-        class="disabled hidden [&:checked+label]:bg-stone-800 [&:checked+label]:text-white"
+        class="disabled hidden [&:checked+label]:underline [&:checked+label]:underline-offset-4"
       {% else %}
-        class="hidden [&.disabled+label]:line-through [&:checked+label]:bg-stone-800 [&:checked+label]:text-white"
+        class="hidden [&.disabled+label]:line-through [&:checked+label]:underline [&:checked+label]:underline-offset-4"
       {% endif %}
     >
     <label 
@@ -83,7 +83,9 @@
       @keyup.enter="$el.click()"
       tabindex="0"
       class="
-        lowercase
+        cursor-pointer
+        font-medium text-subtle
+        peer-checked:font-bold peer-checked:underline
       "
       >
       {{ value -}}
@@ -111,3 +113,10 @@
     </option>
   {%- endif -%}
 {%- endfor -%}
+
+
+<!-- class="
+        cursor-pointer rounded-lg bg-stone-50 px-2.5
+        py-1 lowercase leading-none transition-all duration-200 hover:bg-stone-100
+        peer-checked:border peer-checked:border-stone-400 peer-checked:bg-white peer-checked:ring-4 peer-checked:ring-stone-100 peer-checked:hover:bg-white
+      " -->

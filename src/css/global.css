@@ -1,3 +1,11 @@
 .a {
   display: none;
 }
+
+.container {
+  @apply max-w-none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none!important;
+}

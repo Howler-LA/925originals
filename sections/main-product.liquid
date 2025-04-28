@@ -1,7 +1,7 @@
 {% schema %}
   {
     "name": "Product Section",
-    "class": "section-main-product",
+    "class": "section-main-product pb-5 lg:pb-20",
     "tag": "section",
     "settings": [
       {
@@ -91,21 +91,25 @@
       <div 
         class="info flex-none lg:order-first lg:w-1/4" 
         id="product-info-{{ section.id }}">
-        <div class="sticky top-0 flex flex-col justify-center">
+        <div class="sticky top-0 flex flex-col justify-center gap-8">
           
           <span class="text-subtle">{{ product.type }}</span>
           
-          <header class="mb-5 flex items-center justify-between lg:mb-10">
+          <header class="flex items-center justify-between">
             <h1 class="font-medium">{{ product.title | escape }}</h1>
             <div>{% render 'price' %}</div>
           </header>
+
+          <div class="description prose text-subtle">
+            {{ product.description }}
+          </div>
           
           {% render 'product-variant-picker'
             , product: product
             , product_form_id: 'product-form-id'
             , picker_type: section.settings.picker_type %}
           
-          <div class="quantity-row">
+          <div class="quantity-row hidden">
             <label for="quantity-control-input">Quantity</label>
             <div class="quantity-control-container">
               <button type="button" data-prodify-quantity-decrement>
@@ -182,15 +186,30 @@
             </form>
           </ajax-cart-product-form>
 
-          <div class="description prose">
-            {{ product.description }}
+          <div>
+            {% for block in section.blocks %}
+              {%- case block.type -%}
+                {%- when '@app' -%}
+                  {% render block %}
+                {%- when 'collapsable_row' -%}
+                  <div class="tab py-3 border-b last:border-0" {{ block.shopify_attributes }}>
+                    <details id="Details-{{ block.id }}-{{ section.id }}">
+                      <summary class="list-none">
+                        <h2 class="flex justify-between">
+                          {{ block.settings.heading }}
+                          <span class="h-5 w-5 [details[open]_&]:rotate-180">
+                            {% render 'icon-caret' %}
+                          </span>
+                        </h2>
+                      </summary>
+                      <div class="py-5" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                        {{ block.settings.content }}
+                      </div>
+                    </details>
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
           </div>
-          {% for block in section.blocks %}
-            <div class="collapsable-row border border-gray-500 my-4 p-4">
-              <h2>{{ block.settings.heading }}</h2>
-              <div>{{ block.settings.content }}</div>
-            </div>
-          {% endfor %}
         </div>
       </div>
     </div>
