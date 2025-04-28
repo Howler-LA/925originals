@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "header-collection": {
+    "collection-header": {
       "type": "header-collection",
       "settings": {}
     },
@@ -19,7 +19,7 @@
     }
   },
   "order": [
-    "header-collection",
+    "collection-header",
     "main-collection"
   ]
 }
