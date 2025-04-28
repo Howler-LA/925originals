@@ -1,9 +1,20 @@
 <ul class="header-menu flex gap-8 items-center">
   {% for link in linklists.main-menu.links %}
-    <li>
+    <li class="relative group">
       <a href="{{ link.url }}" {% if link.active %}class="active"{% endif %}>
         {{ link.title | escape }}
       </a>
+      {% if link.links != blank %}
+          <ul class="hidden group-hover:flex flex-col gap-1 absolute top-full pt-1 bg-white">
+            {%- for child_link in link.links -%}
+              <li>
+                <a href="{{ child_link.url }}" {% if child_link.active %}aria-current="page"{% endif %}>
+                  {{ child_link.title | escape }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+      {%- endif -%}
     </li>
   {% endfor %}
 </ul>
