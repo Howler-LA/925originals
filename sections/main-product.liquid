@@ -62,24 +62,30 @@
       <!-- Image Container -->
       
       <div class="media flex-1 lg:order-last" data-prodify-media-container>
-        <div class="image-wrapper relative overflow-hidden bg-stone-100">
+        <div class="image-wrapper relative overflow-hidden flex flex-col gap-4">
+          {%  comment  %}
           {% if product.selected_variant and product.selected_variant.image %}
             {% assign media = product.selected_variant.image %}
           {% else %}
             {% assign media = product.featured_image %}
           {% endif %}
-          <img
-            src="{{ media | image_url }}"
-            alt="{{ media.alt }}"
-            srcset="{{ media | image_url: width: 800 }} 800w, {{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1426 }} 1426w"
-            sizes="(min-width: 768px) 55vw, 100vw"
-            height="{{ media.height }}"
-            width="{{ media.width }}"
-            class="h-full w-full object-contain inset-0 mix-blend-multiply"
-            loading="eager">
-          <h1 class="text-4xl z-50 relative sr-only">
-            {{ product.selected_or_first_available_variant.options }}
-          </h1>
+          {% endcomment  %}
+          {% for media in product.media %}
+            <div class="bg-stone-100">
+              <img
+                src="{{ media | image_url }}"
+                alt="{{ media.alt }}"
+                srcset="{{ media | image_url: width: 800 }} 800w, {{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1426 }} 1426w"
+                sizes="(min-width: 768px) 55vw, 100vw"
+                height="{{ media.height }}"
+                width="{{ media.width }}"
+                class="h-full w-full object-contain inset-0 mix-blend-multiply"
+                loading="eager">
+              <h1 class="text-4xl z-50 relative sr-only">
+                {{ product.selected_or_first_available_variant.options }}
+              </h1>
+            </div>
+          {% endfor %}
         </div>
         <span class="top-0 left-0 z-100 text-[10px] sr-only">
           {{ product.selected_or_first_available_variant.id }}
@@ -108,6 +114,24 @@
             , product: product
             , product_form_id: 'product-form-id'
             , picker_type: section.settings.picker_type %}
+
+            <div class="related-products">
+              <ul class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                {% for related_product in collections.all.products %}
+                  {% if related_product.title == product.title %}
+                    <li class="related-product-item">
+                      <a href="{{ related_product.url }}" class="block">
+                        <img
+                          src="{{ related_product.featured_image | image_url: width: 300 }}"
+                          alt="{{ related_product.featured_image.alt }}"
+                          class="w-full h-auto object-cover">
+                        <h3 class="mt-2 text-center">{{ related_product.title }}</h3>
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
           
           <div class="quantity-row hidden">
             <label for="quantity-control-input">Quantity</label>
@@ -185,6 +209,8 @@
               {{ form | payment_button }}
             </form>
           </ajax-cart-product-form>
+
+    
 
           <div>
             {% for block in section.blocks %}
