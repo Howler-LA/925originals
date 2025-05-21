@@ -5,6 +5,7 @@
  * default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 const path = require('path')
+const colors = require('tailwindcss/colors')
 let plugin = require('tailwindcss/plugin')
 
 module.exports = {
@@ -51,9 +52,9 @@ module.exports = {
         },
       },
       colors: {
-        'background': 'var(--color-white)',
-        'foreground': 'var(--color-stone-800)',
-        'subtle': 'var(--color-stone-400)',
+        background: '#fff',
+        foreground: '#000',
+        subtle: '#666',
         'cloud-burst': {
           DEFAULT: '#79716b',
           50: '#fafaf9',
