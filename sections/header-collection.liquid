@@ -1,7 +1,7 @@
 <div class="pb-5 lg:pb-10">
   <div class="container">
     <header class="flex flex-col gap-2">
-      <h1 class="text-foreground">{{- collection.title | escape -}}</h1>
+      {% render 'component-title' html:'h1' title:collection.title | escape %}
       {%- if section.settings.show_collection_description -%}
       <div class="text-subtle max-w-prose">{{ collection.description }}</div>
       {%- endif -%}

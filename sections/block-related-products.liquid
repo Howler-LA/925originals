@@ -23,7 +23,18 @@
             if forloop.index > 2
               assign lazy_load = true
             endif
-            render 'card-product-double', card_product: product, lazy_load: lazy_load
+            for media in product.media
+              if media.media_type == 'video'
+                assign video = true
+              else
+                assign video = false
+              endif
+            endfor
+            if video == true
+              render 'card-product-double', card_product: product, lazy_load: lazy_load
+            else
+              render 'card-product-single', card_product: product, lazy_load: lazy_load
+            endif
           else
             if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0
               for i in (1..4)

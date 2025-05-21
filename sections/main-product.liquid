@@ -61,8 +61,8 @@
       
       <!-- Image Container -->
       
-      <div class="media flex-1 lg:order-last" data-prodify-media-container>
-        <div class="image-wrapper relative overflow-hidden flex flex-col gap-4">
+      <div class="media flex-1 lg:order-first" data-prodify-media-container>
+        <div class="image-wrapper relative overflow-hidden flex flex-col gap-5">
           {%  comment  %}
           {% if product.selected_variant and product.selected_variant.image %}
             {% assign media = product.selected_variant.image %}
@@ -71,20 +71,21 @@
           {% endif %}
           {% endcomment  %}
           {% for media in product.media %}
-            <div class="bg-stone-100">
-              <img
-                src="{{ media | image_url }}"
-                alt="{{ media.alt }}"
-                srcset="{{ media | image_url: width: 800 }} 800w, {{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1426 }} 1426w"
-                sizes="(min-width: 768px) 55vw, 100vw"
-                height="{{ media.height }}"
-                width="{{ media.width }}"
-                class="h-full w-full object-contain inset-0 mix-blend-multiply"
-                loading="eager">
-              <h1 class="text-4xl z-50 relative sr-only">
-                {{ product.selected_or_first_available_variant.options }}
-              </h1>
-            </div>
+              <div class="bg-stone-100 h-screen max-h-[calc(100vh-200px)] overflow-hidden">
+                <img
+                  class="w-full h-full block object-contain mix-blend-multiply"
+                  src="{{ media | image_url }}"
+                  alt="{{ media.alt }}"
+                  srcset="{{ media | image_url: width: 800 }} 800w, {{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1426 }} 1426w"
+                  sizes="(min-width: 768px) 55vw, 100vw"
+                  height="{{ media.height }}"
+                  width="{{ media.width }}"
+                  loading="eager"
+                >
+                <h1 class="text-4xl z-50 relative sr-only">
+                  {{ product.selected_or_first_available_variant.options }}
+                </h1>
+              </div>
           {% endfor %}
         </div>
         <span class="top-0 left-0 z-100 text-[10px] sr-only">
@@ -102,11 +103,11 @@
           <span class="text-subtle">{{ product.type }}</span>
           
           <header class="flex items-center justify-between">
-            <h1 class="font-medium">{{ product.title | escape }}</h1>
+            {% render 'component-title' html:'h1' class:'' title:product.title %}
             <div>{% render 'price' %}</div>
           </header>
 
-          <div class="description prose text-subtle">
+          <div class="description prose leading-normal text-subtle">
             {{ product.description }}
           </div>
           
@@ -116,16 +117,18 @@
             , picker_type: section.settings.picker_type %}
 
             <div class="related-products">
-              <ul class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+              <ul class="flex gap-2">
                 {% for related_product in collections.all.products %}
                   {% if related_product.title == product.title %}
-                    <li class="related-product-item">
-                      <a href="{{ related_product.url }}" class="block">
+                    <li class="related-product-item relative group">
+                      <a href="{{ related_product.url }}" class="block w-20 ring-1 ring-stone-200 p-2 rounded relative">
                         <img
                           src="{{ related_product.featured_image | image_url: width: 300 }}"
                           alt="{{ related_product.featured_image.alt }}"
-                          class="w-full h-auto object-cover">
-                        <h3 class="mt-2 text-center">{{ related_product.title }}</h3>
+                          class="w-full h-full object-fit">
+                        <div class="absolute inset-x-0 top-0 -mx-4 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all ease">
+                          <h3 class="leading-none text-center font-medium -translate-y-full -mt-4 bg-stone-900 rounded text-stone-100 p-2">{{ related_product.title }}</h3>
+                        </div>
                       </a>
                     </li>
                   {% endif %}

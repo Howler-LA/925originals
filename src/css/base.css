@@ -1,6 +1,9 @@
+@import url("https://use.typekit.net/vjm2cjv.css");
+
 @layer base {
   html {
     -webkit-tap-highlight-color: transparent;
     color: theme('colors.stone.800');
   }
+  
 }

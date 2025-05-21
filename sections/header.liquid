@@ -1,7 +1,7 @@
 {% schema %}
   {
     "name": "header",
-    "class": "section-header sticky top-0 z-20",
+    "class": "section-header sticky top-0 z-50 bg-white",
     "tag": "header",
     "settings": [
       {
@@ -17,7 +17,7 @@
 {% endif %}
 
 <div class="leading-10 lg:leading-6 pt-10 lg:pt-20 pb-5 lg:pb-10">
-  <div class="container flex items-center text-foreground relative mx-auto">
+  <div class="container flex items-center text-foreground relative mx-auto gap-8">
     <nav
       :class="$store.global.isMobileMenuVisible ? 'open' : 'closed'"
       aria-label="Mobile Navigation Overlay"
@@ -46,15 +46,18 @@
       {% render 'mobile-menu' %}
     </nav>
 
+    <a href="{{ routes.root_url }}" class="font-bold relative transition ease group/logo">
+      <div class="absolute inset-0 -mx-1">
+        <div class="absolute inset-0 bg-black max-w-0 transition-all ease w-full group-hover/logo:max-w-full"></div>
+      </div>
+      {% render 'component-title' html:'span' title:shop.name | escape %}
+    </a>
+
     <div class="hidden md:block">
       {% render 'header-menu' %}
     </div>
 
     <div class="flex items-center gap-8 self-center ml-auto">
-
-      <a href="{{ routes.root_url }}">
-        {{ shop.name }}
-      </a>
 
       {% if settings.enable_modal %}
         <button
@@ -65,6 +68,8 @@
           {% render 'icon-bubble-bottom' %}
         </button>
       {% endif %}
+
+      {%  comment %}
 
       {% if settings.enable_predictive_search %}
         <a href="{{ routes.search_url }}" class="block md:hidden text-foreground fill-current p-2 [&>svg]:h-[28px]">
@@ -93,6 +98,8 @@
           <span class="sr-only">Account</span>
         </a>
       {% endif %}
+
+      {% endcomment %}
 
       <button 
         class="flex items-center gap-2" 
