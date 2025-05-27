@@ -9,10 +9,19 @@
       @mouseleave="hoverable=false"
       class="group {% if link.links != blank %}hoverable{%- endif -%}"
     >
-      <a href="{{ link.url }}" class="flex items-end gap-2" {% if link.active %}class="active"{% endif %}>
+      <a href="{{ link.url }}" class="flex items-end gap-1" {% if link.active %}class="active"{% endif %}>
         <span class="leading-[20px]">{{ link.title | escape }}</span>
         {% if link.links != blank %}
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-5 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          class="size-5 opacity-50 group-hover:rotate-180 transition" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="1.75" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
         {%- endif -%}
       </a>
       {% if link.links != blank %}
@@ -52,14 +61,6 @@
 </ul>
 
 <style>
-  /* ––––––––––––––––––––––––––––––––––––––––––––––––––
-    Based on: https://codepen.io/nickelse/pen/YGPJQG
-    Influenced by: https://sproutsocial.com/
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-
-  /* #Mega Menu Styles
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
   .mega-menu {
     /*opacity: 0;
     visibility: hidden;*/
@@ -68,28 +69,4 @@
     text-align: left;
     width: 100%;
   }
-
-  /* #hoverable Class Styles
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  .hoverable {
-    position: static;
-  }
-
-  .hoverable:hover .mega-menu {
-    opacity: 100;
-    visibility: visible;
-  }
-
-/*  .hoverable:hover:before {
-    content: '';
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background: rgba(0,0,0,.1);
-  }*/
-
 </style>
