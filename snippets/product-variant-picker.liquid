@@ -13,8 +13,9 @@
     <div class="variant-radios">
       {% for option in product.options_with_values %}
         <fieldset
-          class="mb-5"
-        data-prodify-option-container>
+          class="mb-5 {% if option.name == 'Color' %} sr-only {% endif %}"
+          data-prodify-option-container
+        >
           <div class="flex justify-between">
             <legend class="font-medium text-subtle">
               {{ option.name }}

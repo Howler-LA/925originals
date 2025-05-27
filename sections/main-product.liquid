@@ -76,7 +76,7 @@
       Skip to product info
     </a>
 
-    <div class="flex flex-col gap-5 lg:flex-row lg:gap-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
       
       <!-- Image Container -->
       
@@ -90,7 +90,7 @@
           {% endif %}
           {% endcomment  %}
           {% for media in product.media %}
-              <div class="bg-stone-100 h-screen max-h-[calc(100vh-200px)] overflow-hidden">
+              <div class="bg-stone-100 h-screen max-h-[calc(100vh-200px)] overflow-hidden p-20">
                 <img
                   class="w-full h-full block object-contain mix-blend-multiply"
                   src="{{ media | image_url }}"
@@ -115,9 +115,10 @@
       <!-- Info Container -->
 
       <div 
-        class="info flex-none lg:order-first lg:w-1/4 xl:h-screen xl:max-h-[calc(100vh-200px)] flex flex-col justify-center" 
-        id="product-info-{{ section.id }}">
-        <div class="sticky top-0 flex flex-col justify-center gap-8">
+        class="info lg:col-start-2 xl:h-screen xl:max-h-[calc(100vh-200px)] flex flex-col justify-center items-center" 
+        id="product-info-{{ section.id }}"
+      >
+        <div class="sticky top-0 flex flex-col justify-center gap-6 w-1/2">
           
           <span class="text-subtle sr-only">{{ product.type }}</span>
           
@@ -137,39 +138,11 @@
           </div>
 
           <div class="h-px bg-stone-200"></div>
-          
 
-          {% comment  %}
-          <div x-data="{color:'{{ product_color }}'}">
-            <span x-text="color" class="text-sm">The Color</span>
-            <ul>
-              {%- for option in product.options_with_values -%}
-                {% if option.name == 'Color' %}
-                  <li class="flex items-center gap-2">
-                    <span class="text-sm text-subtle">{{ option.name }}</span>
-                    <div class="flex items-center gap-2">
-                      {%- for value in option.values -%}
-                        <div
-                          type="button"
-                          class=""
-                          data-prodify-option-value="{{ value }}"
-                          data-prodify-option-name="{{ option }}"
-                          :class="{ 'bg-stone-900': color === '{{ value }}' }"
-                          @mouseover="color = '{{ value }}'"
-                          @mouseleave="color = 'Nothing'"
-                        >
-                          {{  value }}
-                        </div>
-                      {% endfor %}
-                    </div>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-          </div>
-          {% endcomment %}
-
-          <div x-data="{color:'{{ product_color | strip }}'}" class="related-products flex flex-col gap-4">
+          <div 
+            x-data="{color:'{{ product_color | strip }}'}" 
+            class="related-products flex flex-col gap-4"
+          >
             <span x-text="color">Color!</span>
             <ul class="grid grid-cols-5 gap-2">
               {% for related_product in collections.all.products %}
@@ -261,7 +234,7 @@
                 <button
                   type="submit"
                   name="add"
-                  class="px-6 rounded-lg hover:bg-stone-400 bg-stone-900 text-white w-full h-12 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-black"
+                  class="w-full h-14 rounded-xl px-6 text-white bg-stone-900 flex items-center justify-center hover:after:border-offset-1 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-black"
                   {% if product.selected_or_first_available_variant.available == false %}
                   disabled
                   {% endif %}>
@@ -284,7 +257,7 @@
               {%- if product.selected_or_first_available_variant.available -%}
                 <button
                   type="button"
-                  class="w-full h-12 px-6 text-white bg-stone-900 flex items-center justify-center hover:after:border-offset-1"
+                  class="w-full h-14 rounded-xl px-6 text-stone-700 border border-stone-900/50 flex items-center justify-center hover:border-stone-900 transition ease"
                   onclick="onBuyNowClicked()">
                   Buy it now
                 </button>
@@ -298,8 +271,6 @@
               {{ form | payment_button }}
             </form>
           </ajax-cart-product-form>
-
-    
 
           <div>
             {% for block in section.blocks %}
