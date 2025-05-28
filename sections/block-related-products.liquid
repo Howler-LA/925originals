@@ -1,5 +1,5 @@
 <div
-  class="product-recommendations"
+  class="product-recommendations pb-5 lg:pb-20"
   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
 >
   {%- if recommendations.performed? and recommendations.products_count > 0 -%}
@@ -7,9 +7,9 @@
       <div class="container">
         <header class="flex flex-col pt-2.5 lg:pt-5 gap-2">
           {% if recommendations.intent == 'related' %}
-            <h2 class="text-foreground font-medium">You may also like</h2>
+            {% render 'component-title' html:'h2' class:'' title:'You may also like' %}
           {% elsif recommendations.intent == 'complementary' %}
-            <h2 class="text-foreground font-medium">Pair it with</h2>
+            {% render 'component-title' html:'h2' class:'' title:'Pair it with' %}
           {% endif %}
         </header>
       </div>
