@@ -4,7 +4,7 @@
 >
   {% for link in linklists.main-menu.links %}
     <li 
-      x-data="{hoverable:false}"  
+      x-data="{hoverable:false}"
       @mouseenter="hoverable=true"
       @mouseleave="hoverable=false"
       class="group {% if link.links != blank %}hoverable{%- endif -%}"

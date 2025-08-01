@@ -1,25 +1,37 @@
-<ul
+<div
   id="mobile-menu-list"
-  class="mobile-menu-list z-20 p-[30px] bg-stone-900 w-screen -left-6 absolute top-full"
+  class="z-20 py-5 inset-x-0 bg-white w-full border-b absolute top-full"
   x-show="$store.global.isMobileMenuVisible"
   role="menu"
 >
-  {% for link in linklists['main-menu'].links %}
-    <li class="mobile-menu-item" role="presentation">
-      <a href="{{ link.url }}" role="menuitem">{{ link.title }}</a>
-    </li>
-  {% endfor %}
-  <li></li>
-</ul>
-
-<style>
-  .mobile-menu-list li a {
-    display: block;
-    font-size: 26px;
-    font-weight: bold;
-    letter-spacing: 1.2px;
-    color: white;
-    text-decoration: none;
-    margin-bottom: 10px;
-  }
-</style>
+  <div class="container">
+    <ul class="flex flex-col">
+      {% for link in linklists['main-menu'].links %}
+        <li 
+          x-data="{hoverable:true}" 
+          class="border-b last:border-0" role="presentation"
+        >
+          <div class="flex items-center justify-between py-2">
+            <a class="flex" href="{{ link.url }}" role="menuitem">{{ link.title }}</a>
+            {% if link.links != blank %}
+              <button @click.prevent="hoverable=!hoverable" class="block size-8 rounded-lg flex items-center justify-center" x-text="hoverable ? '-' : '+' "></button>
+            {% endif %}
+          </div>
+          {% if link.links != blank %}
+            <div x-show="hoverable" class="pb-4 flex flex-col">
+              {%- for child_link in link.links -%}
+                <a 
+                  href="{{ child_link.url }}" 
+                  class="font-normal text-foreground"
+                >
+                  {{ child_link.title | escape }}
+                </a>
+              {%- endfor -%}
+              <a href="/products/all">Shop All</a>
+            </div>
+          {%- endif -%}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
