@@ -12,8 +12,8 @@
     "hero-image": {
       "type": "block-hero-image",
       "settings": {
-        "image": "shopify://shop_images/925PreviewFA25-008.jpg",
-        "image_2": "shopify://shop_images/925PreviewFA25-007.jpg",
+        "image": "shopify://shop_images/000193740006.jpg",
+        "image_2": "shopify://shop_images/000193760034.jpg",
         "full_page_height_enable": true
       }
     },
@@ -25,7 +25,7 @@
       "type": "block-hero-video",
       "name": "Hero Video",
       "settings": {
-        "video": "shopify://files/videos/Stocksy_unlicensed_comp_watermarked_6548099.mp4",
+        "video": "shopify://files/videos/C0148.MP4",
         "full_width": true
       }
     },

@@ -90,9 +90,9 @@
           {% endif %}
           {% endcomment  %}
           {% for media in product.media %}
-              <div class="bg-stone-100 h-screen max-h-[calc(100vh-200px)] overflow-hidden p-20">
+              <div class="h-screen max-h-[calc(100vh-200px)] overflow-hidden">
                 <img
-                  class="w-full h-full block object-contain mix-blend-multiply"
+                  class="w-full h-full block object-contain"
                   src="{{ media | image_url }}"
                   alt="{{ media.alt }}"
                   srcset="{{ media | image_url: width: 800 }} 800w, {{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1426 }} 1426w"
@@ -176,7 +176,7 @@
                       href="{{ related_product.url }}" 
                       {% assign color_hover = color | strip %}
                       {% assign product_color_hover = product_color | strip %}
-                      class="block ring-1 {% if color_hover == product_color_hover %} ring-stone-400 {% else %} ring-stone-200 hover:ring-stone-400 {% endif %} p-2 absolute inset-0">
+                      class="block ring-1 {% if color_hover == product_color_hover %} ring-stone-400 {% else %} ring-stone-200 hover:ring-stone-400 {% endif %} p-2 absolute rounded inset-0">
                       <img
                         src="{{ related_product.featured_image | image_url: width: 300 }}"
                         alt="{{ related_product.featured_image.alt }}"
