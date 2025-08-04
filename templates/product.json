@@ -23,7 +23,8 @@
           "type": "collapsable_row",
           "settings": {
             "heading": "Size and Fit",
-            "content": ""
+            "content": "",
+            "image": "{{ product.metafields.details.size_and_fit.value }}"
           }
         },
         "collapsable_row_q7kndw": {

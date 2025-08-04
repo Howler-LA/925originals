@@ -11,6 +11,7 @@
   "sections": {
     "hero-image": {
       "type": "block-hero-image",
+      "name": "SHOP MENS",
       "settings": {
         "image": "shopify://shop_images/000193740006.jpg",
         "image_2": "shopify://shop_images/000193760034.jpg",
@@ -23,7 +24,24 @@
     },
     "block_hero_video_7ni749": {
       "type": "block-hero-video",
-      "name": "Hero Video",
+      "name": "MENS PREVIEW VID",
+      "settings": {
+        "video": "shopify://files/videos/C0148.MP4",
+        "full_width": true
+      }
+    },
+    "block_hero_image_Pr8NXa": {
+      "type": "block-hero-image",
+      "name": "SHOP WOMANS",
+      "settings": {
+        "image": "shopify://shop_images/000193770009.jpg",
+        "image_2": "shopify://shop_images/000193770023.jpg",
+        "full_page_height_enable": true
+      }
+    },
+    "block_hero_video_xX6Edn": {
+      "type": "block-hero-video",
+      "name": "WOMANS PREVIEW VID",
       "settings": {
         "video": "shopify://files/videos/C0148.MP4",
         "full_width": true
@@ -65,6 +83,8 @@
     "hero-image",
     "block_featured_collection_TUqKU6",
     "block_hero_video_7ni749",
+    "block_hero_image_Pr8NXa",
+    "block_hero_video_xX6Edn",
     "block_collection_list_ABHrQy",
     "block_subscribe_V47YdG"
   ]

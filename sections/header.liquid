@@ -1,7 +1,7 @@
 {% schema %}
   {
     "name": "header",
-    "class": "section-header sticky top-0 z-50 bg-white",
+    "class": "section-header top-0 z-50 mt-10 sticky top-0 bg-white",
     "tag": "header",
     "settings": [
       {
@@ -16,7 +16,7 @@
   {% render 'promo-bar' %}
 {% endif %}
 
-<div class="leading-10 lg:leading-6 pt-10 lg:pt-20 pb-5 lg:pb-10">
+<div class="leading-10 lg:leading-6 pt-10 lg:pt-10 pb-5 lg:pb-10">
   <div class="container flex items-center text-stone-900 relative mx-auto gap-8">
     <nav
       :class="$store.global.isMobileMenuVisible ? 'open' : 'closed'"

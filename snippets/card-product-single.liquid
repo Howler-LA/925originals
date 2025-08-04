@@ -4,8 +4,8 @@
       <img
         width="{{ card_product.featured_image.width }}"
         height="{{ card_product.featured_image.height }}"
-        src="{{ card_product.featured_image | image_url: width: 410 }}"
-        srcset="{{ card_product.featured_image | image_url: width: 205 }} 1x, {{ card_product.featured_image | image_url: width: 410 }} 2x"
+        src="{{ card_product.featured_image | image_url: width: 900 }}"
+        srcset="{{ card_product.featured_image | image_url: width: 205 }} 1x, {{ card_product.featured_image | image_url: width: 900 }} 2x"
         alt="{{ card_product.featured_image.alt }}"
         class="absolute inset-0 object-contain h-full transition ease duration-500"
         loading="lazy"
@@ -15,8 +15,8 @@
           <img
             width="{{ card_product.media[1].width }}"
             height="{{ card_product.media[1].height }}"
-            src="{{ card_product.media[media[1]] | image_url: width: 410 }}"
-            srcset="{{ card_product.featured_image | image_url: width: 205 }} 1x, {{ card_product.media[1] | image_url: width: 410 }} 2x"
+            src="{{ card_product.media[media[1]] | image_url: width: 900 }}"
+            srcset="{{ card_product.featured_image | image_url: width: 205 }} 1x, {{ card_product.media[1] | image_url: width: 900 }} 2x"
             alt="{{ card_product.media[1].alt }}"
             class="absolute inset-0 object-contain h-full transition ease duration-500"
             loading="lazy"
