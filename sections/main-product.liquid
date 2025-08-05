@@ -88,6 +88,9 @@
       
       <div class="media flex-1 lg:order-first" data-prodify-media-container>
         <div class="image-wrapper relative overflow-hidden flex flex-col gap-5">
+
+          {% render 'product-image-gallery', product: product  %}
+
           {%  comment  %}
           {% if product.selected_variant and product.selected_variant.image %}
             {% assign media = product.selected_variant.image %}
@@ -96,7 +99,7 @@
           {% endif %}
           {% endcomment  %}
           {% for media in product.media %}
-              <div class="h-screen max-h-[calc(100vh-200px)] overflow-hidden">
+              <div class="h-screen max-h-[calc(100vh-200px)] overflow-hidden hidden">
                 <img
                   class="w-full h-full block object-contain"
                   src="{{ media | image_url }}"
@@ -121,10 +124,10 @@
       <!-- Info Container -->
 
       <div 
-        class="info lg:col-start-2 xl:h-screen xl:max-h-[calc(100vh-200px)] flex flex-col justify-center items-center" 
+        class="info lg:col-start-2 flex flex-col items-center" 
         id="product-info-{{ section.id }}"
       >
-        <div class="sticky top-0 flex flex-col justify-center gap-6 w-full max-w-xl">
+        <div class="sticky xl:h-screen xl:max-h-[calc(100vh-200px)] top-20 flex flex-col justify-center gap-6 w-full max-w-xl">
           
           <span class="text-subtle sr-only">{{ product.type }}</span>
           

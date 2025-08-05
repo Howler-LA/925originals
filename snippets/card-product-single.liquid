@@ -1,3 +1,20 @@
+{% assign current_collection = collection.handle %}
+
+{% if current_collection == 'mens' and card_product.metafields.media.mens %}
+  {% for file in card_product.metafields.media.mens.value limit:1 %}
+    {% assign alt_image = file %}
+  {% endfor %}
+  {% assign stuff = 'mens collection' %}
+{% elsif current_collection == 'womens' and card_product.metafields.media.womens %}
+  {% for file in card_product.metafields.media.womens.value limit:1 %}
+    {% assign alt_image = file %}
+  {% endfor %}
+  {% assign stuff = 'womens collection' %}
+{% elsif card_product.media[1] %}
+  {% assign alt_image = card_product.media[1] %}
+  {% assign stuff = 'Something!!' %}
+{% endif %}
+
 <article class="shrink-0 flex flex-col gap-5 group">
   <a href="{{ card_product.url | within: collection }}">
     <div class="aspect-[4/5] transition duration-300 ease relative">
@@ -10,19 +27,21 @@
         class="absolute inset-0 object-contain h-full transition ease duration-500"
         loading="lazy"
       >
-      {% if card_product.media[1] %}
+
+      {% if alt_image %}
         <div class="absolute inset-0 bg-stone-50 opacity-0 group-hover:opacity-100 transition ease duration-500">
           <img
             width="{{ card_product.media[1].width }}"
             height="{{ card_product.media[1].height }}"
-            src="{{ card_product.media[media[1]] | image_url: width: 900 }}"
-            srcset="{{ card_product.featured_image | image_url: width: 205 }} 1x, {{ card_product.media[1] | image_url: width: 900 }} 2x"
+            src="{{ alt_image | image_url: width: 900 }}"
+            srcset="{{alt_image | image_url: width: 205 }} 1x, {{ alt_image | image_url: width: 900 }} 2x"
             alt="{{ card_product.media[1].alt }}"
             class="absolute inset-0 object-contain h-full transition ease duration-500"
             loading="lazy"
           >
         </div>
       {% endif %}
+
     </div>
   </a>
   <header class="flex">
