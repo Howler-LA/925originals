@@ -89,7 +89,10 @@
       <div class="media flex-1 lg:order-first" data-prodify-media-container>
         <div class="image-wrapper relative overflow-hidden flex flex-col gap-5">
 
-          {% render 'product-image-gallery', product: product  %}
+          {% render 
+            'product-image-gallery', 
+            product: product  
+          %}
 
           {%  comment  %}
           {% if product.selected_variant and product.selected_variant.image %}
