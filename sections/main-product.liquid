@@ -89,10 +89,7 @@
       <div class="media flex-1 lg:order-first" data-prodify-media-container>
         <div class="image-wrapper relative overflow-hidden flex flex-col gap-5">
 
-          {% render 
-            'product-image-gallery', 
-            product: product  
-          %}
+          {% render 'product-image-gallery', product: product  %}
 
           {%  comment  %}
           {% if product.selected_variant and product.selected_variant.image %}
@@ -185,7 +182,7 @@
                     class="related-product-item relative group aspect-square"
                   >
                     <a 
-                      href="{{ related_product.url }}" 
+                      href="{{ related_product.url | within: collection }}" 
                       {% assign color_hover = color | strip %}
                       {% assign product_color_hover = product_color | strip %}
                       class="block ring-1 {% if color_hover == product_color_hover %} ring-stone-400 {% else %} ring-stone-200 hover:ring-stone-400 {% endif %} p-2 absolute rounded inset-0">

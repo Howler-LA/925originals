@@ -9,20 +9,20 @@
         imageGalleryActiveUrl: null,
         imageGalleryImageIndex: null,
         imageGallery: [
-          {% for image in product.images %}
-            {
-                'photo': '{{ image.src | img_url: 'master' }}',
-                'alt': '{{ image.alt | escape }}'
-            }{% unless forloop.last and images == blank %},{% endunless %}
-          {% endfor %}
           {% if images %}
             {% for image in images %}
               {
                   'photo': '{{ image | image_url: width: 900 }}',
                   'alt': '{{ image.alt | escape }}'
-              }{% unless forloop.last %},{% endunless %}
+              },
             {% endfor %}
           {% endif %}
+          {% for image in product.images %}
+            {
+                'photo': '{{ image.src | img_url: 'master' }}',
+                'alt': '{{ image.alt | escape }}'
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
         ],
         imageGalleryOpen(event) {
             this.imageGalleryImageIndex = event.target.dataset.index;

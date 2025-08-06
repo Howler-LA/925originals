@@ -1,11 +1,11 @@
 {% assign current_collection = collection.handle %}
 
-{% if current_collection == 'mens' and card_product.metafields.media.mens %}
+{% if current_collection contains 'mens' and card_product.metafields.media.mens %}
   {% for file in card_product.metafields.media.mens.value limit:1 %}
     {% assign alt_image = file %}
   {% endfor %}
   {% assign stuff = 'mens collection' %}
-{% elsif current_collection == 'womens' and card_product.metafields.media.womens %}
+{% elsif current_collection contains 'womens' and card_product.metafields.media.womens %}
   {% for file in card_product.metafields.media.womens.value limit:1 %}
     {% assign alt_image = file %}
   {% endfor %}

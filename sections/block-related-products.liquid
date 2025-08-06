@@ -18,7 +18,12 @@
     <div class="container">
       <ul class="grid lg:grid-cols-4 gap-10 lg:gap-20">
         {%- liquid
-          for product in recommendations.products
+          if product.metafields.related.fit != blank
+            assign products = product.metafields.related.fit.value
+          else
+            assign products = recommendations.products
+          endif
+          for product in products
             assign lazy_load = false
             if forloop.index > 2
               assign lazy_load = true
