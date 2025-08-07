@@ -1,7 +1,16 @@
-{% if collection.handle == 'mens' and product.metafields.media.mens %}
-  {% assign images = product.metafields.media.mens.value %}
-{% elsif collection.handle == 'womens' and product.metafields.media.womens %}
-  {% assign images = product.metafields.media.womens.value %}
+{% if card_product.metafields.media %}
+  {% if current_collection contains '-women' and card_product.metafields.media.womens %}
+    {% for file in card_product.metafields.media.womens.value limit:1 %}
+      {% assign alt_image = file %}
+    {% endfor %}
+  {% elsif current_collection contains '-men' and card_product.metafields.media.mens %}
+    {% for file in card_product.metafields.media.mens.value limit:1 %}
+      {% assign alt_image = file %}
+    {% endfor %}
+  {% endif %}
+{% elsif card_product.media[1] %}  
+  no meta fields!
+  {% assign alt_image = card_product.media[1] %}
 {% endif %}
 
 <div x-data="{
