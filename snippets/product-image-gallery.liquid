@@ -52,9 +52,9 @@
       class="select-none ease animate-fade-in-view" 
       style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);"
     >
-      <ul x-ref="gallery" id="gallery">
+      <ul x-ref="gallery" id="gallery" class="space-y-10 lg:space-y-20">
         <template x-for="(image, index) in imageGallery">
-          <li class="h-screen max-h-[calc(100vh-200px)] overflow-hidden">
+          <li class="overflow-hidden">
             <img 
               x-on:click="imageGalleryOpen" 
               :src="image.photo" 

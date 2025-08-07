@@ -97,7 +97,7 @@
           {% else %}
             {% assign media = product.featured_image %}
           {% endif %}
-          {% endcomment  %}
+          
           {% for media in product.media %}
               <div class="h-screen max-h-[calc(100vh-200px)] overflow-hidden hidden">
                 <img
@@ -115,6 +115,7 @@
                 </h1>
               </div>
           {% endfor %}
+          {% endcomment  %}
         </div>
         <span class="top-0 left-0 z-100 text-[10px] sr-only">
           {{ product.selected_or_first_available_variant.id }}
@@ -289,7 +290,7 @@
                 {%- when 'collapsable_row' -%}
                   <div class="tab py-3 border-b last:border-0" {{ block.shopify_attributes }}>
                     <details id="Details-{{ block.id }}-{{ section.id }}">
-                      <summary class="list-none">
+                      <summary class="list-none cursor-pointer">
                         <h2 class="flex justify-between">
                           {{ block.settings.heading }}
                           <span class="h-5 w-5 [details[open]_&]:rotate-180">
@@ -299,6 +300,9 @@
                       </summary>
                       <div class="py-5" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                         {{ block.settings.content }}
+                        {% if block.settings.image %}
+                          {% render 'product-modal-size', fit_image : block.settings.image %}
+                        {% endif %}
                       </div>
                     </details>
                   </div>
