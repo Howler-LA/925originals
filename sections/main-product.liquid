@@ -135,7 +135,7 @@
             <div class="flex justify-between items-center">
               {% assign product_title = product.title | downcase %}
               {% render 'component-title' html:'h1' class:'' title:product_title %}
-              <div>{% render 'price' %}</div>
+              <div class="tracking-tight relative font-bold font-narrow capitalize text-lg">{% render 'price' %}</div>
             </div>
             <div class="text-subtle">
               {{ product_color }}

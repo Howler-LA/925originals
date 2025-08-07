@@ -1,11 +1,12 @@
 {% assign current_collection = collection.handle %}
 
-{% if current_collection contains 'mens' and card_product.metafields.media.mens %}
+{% comment %}
+{% if current_collection == 'mens' and card_product.metafields.media.mens %}
   {% for file in card_product.metafields.media.mens.value limit:1 %}
     {% assign alt_image = file %}
   {% endfor %}
   {% assign stuff = 'mens collection' %}
-{% elsif current_collection contains 'womens' and card_product.metafields.media.womens %}
+{% elsif current_collection == 'womens' and card_product.metafields.media.womens %}
   {% for file in card_product.metafields.media.womens.value limit:1 %}
     {% assign alt_image = file %}
   {% endfor %}
@@ -13,6 +14,22 @@
 {% elsif card_product.media[1] %}
   {% assign alt_image = card_product.media[1] %}
   {% assign stuff = 'Something!!' %}
+{% endif %}
+{% endcomment %}
+
+{% if card_product.metafields.media %}
+  {% if current_collection contains '-women' and card_product.metafields.media.womens %}
+    {% for file in card_product.metafields.media.womens.value limit:1 %}
+      {% assign alt_image = file %}
+    {% endfor %}
+  {% elsif current_collection contains '-men' and card_product.metafields.media.mens %}
+    {% for file in card_product.metafields.media.mens.value limit:1 %}
+      {% assign alt_image = file %}
+    {% endfor %}
+  {% endif %}
+{% elsif card_product.media[1] %}  
+  no meta fields!
+  {% assign alt_image = card_product.media[1] %}
 {% endif %}
 
 <article class="shrink-0 flex flex-col gap-5 group">
