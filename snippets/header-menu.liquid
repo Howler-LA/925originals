@@ -1,5 +1,5 @@
 <ul 
-  class="header-menu flex gap-8 items-center"
+  class="header-menu flex items-center"
   x-data="{ hoveredImage: null }"
 >
   {% for link in linklists.main-menu.links %}
@@ -9,7 +9,7 @@
       @mouseleave="hoverable=false"
       class="group {% if link.links != blank %}hoverable{%- endif -%}"
     >
-      <a href="{{ link.url }}" class="flex items-end gap-1" {% if link.active %}class="active"{% endif %}>
+      <a href="{{ link.url }}" class="flex items-end gap-1 px-4" {% if link.active %}class="active"{% endif %}>
         <span class="leading-[20px]">{{ link.title | escape }}</span>
         {% if link.links != blank %}
         <svg 
@@ -25,38 +25,41 @@
         {%- endif -%}
       </a>
       {% if link.links != blank %}
-        <div x-show="hoverable" class="pt-10 lg:pt-12 pb-5 lg:pb-10 mega-menu mb-16 sm:mb-0 bg-background bg-white transition ease duration-200">
-          <div class="container grid lg:grid-cols-4 gap-10 lg:gap-20">
-            <div class="flex flex-col gap-40">
-              <div class="flex flex-col">
-                {%- for child_link in link.links -%}
-                  <div class="flex flex-col">
-                    <a 
-                      href="{{ child_link.url }}" 
-                      class="font-normal text-foreground block py-1 hover:underline underline-offset-2"
-                      @mouseenter="hoveredImage = '{{ child_link.object.featured_image | img_url: '800x600' }}'"
-                      @mouseleave="hoveredImage = null"
-                    >
-                      {{ child_link.title | escape }}
-                    </a>
-                  </div>
-                {%- endfor -%}
+        <div x-show="hoverable" class="pt-10 lg:pt-12 pb-5 lg:pb-10 mega-menu mb-16 sm:mb-0 bg-background bg-white transition ease duration-200 border-b border-black/5">
+          <div class="container grid lg:grid-cols-5 gap-10 lg:gap-20">
+            <div class="flex flex-col gap-8 justify-between">
+              <div class="flex flex-col gap-4">
+                {% render 'component-title' html:'h2' title:link.title | escape %}
+                <div class="">
+                  {%- for child_link in link.links -%}
+                    <div class="flex flex-col">
+                      <a 
+                        href="{{ child_link.url }}" 
+                        class="font-normal text-foreground block py-1 hover:underline underline-offset-2"
+                        @mouseenter="hoveredImage = '{{ child_link.object.featured_image | img_url: '800x600' }}'"
+                        @mouseleave="hoveredImage = null"
+                      >
+                        {{ child_link.title | escape }}
+                      </a>
+                    </div>
+                  {%- endfor -%}
+                </div>
               </div>
               <a 
-                class="w-full h-14 rounded-xl px-6 text-stone-700 border border-stone-900/50 flex items-center justify-center hover:border-stone-900 transition ease" 
-                href="/products/all"
-              >Shop All</a>
+                class="w-full h-14 rounded-xl px-6 text-stone-700 border border-stone-900/50 flex items-center justify-center hover:text-stone-100 hover:bg-stone-900 transition ease" 
+                href="{{ link.url }}"
+              >{{ link.title }}</a>
             </div>
-            <div class="col-span-2 col-start-3">
+            <div class="col-span-2 col-start-4">
               <div class="h-full bg-stone-100 relative">
-                <div id="image-container" class="absolute inset-0 flex items-center justify-center">
+                <div id="image-container" class="items-center justify-center aspect-[6/4]">
                   <template x-if="hoveredImage">
                     <img 
                       :src="hoveredImage" 
                       alt="" 
                       width="" 
                       height="" 
-                      class="object-cover w-full h-full transition-opacity duration-200 mix-blend-multiply" 
+                      class="absolute inset-0 object-cover w-full h-full transition-opacity duration-200" 
                     />
                   </template>
                 </div>

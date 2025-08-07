@@ -8,26 +8,33 @@
     <ul class="flex flex-col">
       {% for link in linklists['main-menu'].links %}
         <li 
-          x-data="{hoverable:true}" 
+          x-data="{hoverable:false}" 
           class="border-b last:border-0" role="presentation"
         >
           <div class="flex items-center justify-between py-2">
-            <a class="flex" href="{{ link.url }}" role="menuitem">{{ link.title }}</a>
+            <a class="flex" href="{{ link.url }}" role="menuitem">
+              {% render 'component-title' html:'h2' title:link.title | escape %}
+            </a>
             {% if link.links != blank %}
-              <button @click.prevent="hoverable=!hoverable" class="block size-8 rounded-lg flex items-center justify-center" x-text="hoverable ? '-' : '+' "></button>
+              <button @click.prevent="hoverable=!hoverable" class="block size-8 bg-stone-100 rounded-lg flex items-center justify-center" x-text="hoverable ? '-' : '+' "></button>
             {% endif %}
           </div>
           {% if link.links != blank %}
-            <div x-show="hoverable" class="pb-4 flex flex-col">
-              {%- for child_link in link.links -%}
-                <a 
-                  href="{{ child_link.url }}" 
-                  class="font-normal text-foreground"
-                >
-                  {{ child_link.title | escape }}
-                </a>
-              {%- endfor -%}
-              <a href="/products/all">Shop All</a>
+            <div x-show="hoverable" class="space-y-5 mb-5">
+              <div class="flex flex-col">
+                {%- for child_link in link.links -%}
+                  <a 
+                    href="{{ child_link.url }}" 
+                    class="font-normal text-foreground leading-8 block"
+                  >
+                    {{ child_link.title | escape }}
+                  </a>
+                {%- endfor -%}
+              </div>
+              <a 
+                class="w-full h-14 my-5 rounded-xl px-6 text-stone-700 border border-stone-900/50 flex items-center justify-center hover:text-stone-100 hover:bg-stone-900 transition ease" 
+                href="{{ link.url }}"
+              >{{ link.title }}</a>
             </div>
           {%- endif -%}
         </li>

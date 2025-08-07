@@ -53,9 +53,18 @@
     {%- endif -%}
   </div>
   <div class="lg:absolute inset-0 flex items-center py-5">
-    <div class="container">
-      <div class="text-foreground">Something goes here</div>
-      <div class="text-subtle">Another thing</div>
+    <div class="container flex flex-col items-start">
+      {% if section.settings.headline %}
+        <a href="{{ section.settings.link_url }}" class="font-bold relative transition ease group/logo hover:text-white">
+          <div class="absolute inset-0 -mx-1">
+            <div class="absolute inset-0 bg-black max-w-0 transition-all ease w-full group-hover/logo:max-w-full"></div>
+          </div>
+          {% render 'component-title' html:'span' title:section.settings.headline %}
+        </a>
+      {% endif %}
+      {% if section.settings.headline %}
+        <div class="lg:text-white/75 relative">{{ section.settings.subtitle }}</div>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -65,6 +74,21 @@
   "name": "Hero Image",
   "tag": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link"
+    },
     {
       "type": "image_picker",
       "id": "image",

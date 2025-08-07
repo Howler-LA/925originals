@@ -13,6 +13,9 @@
       "type": "block-hero-image",
       "name": "SHOP MENS",
       "settings": {
+        "headline": "Shop Mens Collection",
+        "subtitle": "Made in USA",
+        "link_url": "shopify://collections/all-men",
         "image": "shopify://shop_images/000193740006.jpg",
         "image_2": "shopify://shop_images/000193760034.jpg",
         "full_page_height_enable": true
@@ -34,6 +37,9 @@
       "type": "block-hero-image",
       "name": "SHOP WOMANS",
       "settings": {
+        "headline": "",
+        "subtitle": "",
+        "link_url": "",
         "image": "shopify://shop_images/000193770009.jpg",
         "image_2": "shopify://shop_images/000193770023.jpg",
         "full_page_height_enable": true

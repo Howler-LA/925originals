@@ -5,6 +5,21 @@
   "tag": "section",
   "settings": [
     {
+      "type": "text",
+      "id": "headline",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link"
+    },
+    {
       "type": "video",
       "id": "video",
       "label": "First image"
@@ -28,10 +43,18 @@
   {{ section.settings.video 
     | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "absolute inset-0 object-cover h-full w-full mix-blend-multiply" }}
   <div class="absolute inset-0 z-20 flex items-center justify-center">
-    <div class="container">
-      <div class="text-white mix-blend-difference">
-        Some copy goes here
-      </div>
+    <div class="container flex flex-col items-start">
+      {% if section.settings.headline %}
+        <a href="{{ section.settings.link_url }}" class="font-bold relative transition ease group/logo hover:text-white">
+          <div class="absolute inset-0 -mx-1">
+            <div class="absolute inset-0 bg-black max-w-0 transition-all ease w-full group-hover/logo:max-w-full"></div>
+          </div>
+          {% render 'component-title' html:'span' title:section.settings.headline %}
+        </a>
+      {% endif %}
+      {% if section.settings.headline %}
+        <div class="text-white/75 relative">{{ section.settings.subtitle }}</div>
+      {% endif %}
     </div>
   </div>
 </div>
