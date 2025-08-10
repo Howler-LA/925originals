@@ -282,30 +282,32 @@
             </form>
           </ajax-cart-product-form>
 
-          <div>
+          <div class="border-b">
             {% for block in section.blocks %}
               {%- case block.type -%}
                 {%- when '@app' -%}
                   {% render block %}
                 {%- when 'collapsable_row' -%}
-                  <div class="tab py-3 border-b last:border-0" {{ block.shopify_attributes }}>
-                    <details id="Details-{{ block.id }}-{{ section.id }}">
-                      <summary class="list-none cursor-pointer">
-                        <h2 class="flex justify-between">
-                          {{ block.settings.heading }}
-                          <span class="h-5 w-5 [details[open]_&]:rotate-180">
-                            {% render 'icon-caret' %}
-                          </span>
-                        </h2>
-                      </summary>
-                      <div class="py-5" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                        {{ block.settings.content }}
-                        {% if block.settings.image %}
-                          {% render 'product-modal-size', fit_image : block.settings.image %}
-                        {% endif %}
-                      </div>
-                    </details>
-                  </div>
+                  {% if block.settings.content != blank or block.settings.image != blank %}
+                    <div class="tab py-3 border-t" {{ block.shopify_attributes }}>
+                      <details id="Details-{{ block.id }}-{{ section.id }}">
+                        <summary class="list-none cursor-pointer">
+                          <h2 class="flex justify-between">
+                            {{ block.settings.heading }}
+                            <span class="h-5 w-5 [details[open]_&]:rotate-180">
+                              {% render 'icon-caret' %}
+                            </span>
+                          </h2>
+                        </summary>
+                        <div class="py-5" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                          {{ block.settings.content }}
+                          {% if block.settings.image %}
+                            {% render 'product-modal-size', fit_image : block.settings.image %}
+                          {% endif %}
+                        </div>
+                      </details>
+                    </div>
+                  {% endif %}
               {%- endcase -%}
             {%- endfor -%}
           </div>

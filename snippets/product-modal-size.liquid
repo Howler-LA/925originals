@@ -49,13 +49,13 @@
             <div
                 x-on:click.stop
                 x-trap.noscroll.inert="open"
-                class="relative min-w-96 max-w-screen-md rounded-xl bg-white p-6 shadow-lg"
+                class="relative min-w-96 rounded-xl bg-white p-6 shadow-lg"
             >
                 <img
                   width="{{ fit_image.width }}"
                   height="{{ fit_image.height }}"
-                  src="{{ fit_image | image_url: width: 1200 }}"
-                  srcset="{{fit_image | image_url: width: 600 }} 1x, {{ fit_image | image_url: width: 1200 }} 2x"
+                  src="{{ fit_image | image_url: width: 1600 }}"
+                  srcset="{{fit_image | image_url: width: 1200 }} 1x, {{ fit_image | image_url: width: 1600 }} 2x"
                   alt="{{ fit_image.alt }}"
                   class="w-full h-auto"
                   loading="lazy"
