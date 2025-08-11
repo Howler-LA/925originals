@@ -1,0 +1,48 @@
+<div class="py-5 lg:py-10 border-y border-stone-200 mb-5 lg:mb-10">
+  <div class="container grid grid-flow-row grid-cols-2 gap-5 lg:grid-cols-4">
+    <div class="col-span-full">
+      <h2>
+        {{ section.settings.heading }}
+      </h2>
+    </div>
+    {% for block in section.blocks %}
+      <div class="aspect-[4/5] bg-stone-100">asdfasd</div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Denim Selector",
+    "class": "denim-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Item",
+        "type": "item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }, {
+            "type": "richtext",
+            "id": "body",
+            "label": "Body Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Denim Selector"
+      }
+    ]
+  }
+{% endschema %}

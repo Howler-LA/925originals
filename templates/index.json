@@ -13,11 +13,11 @@
       "type": "block-hero-image",
       "name": "SHOP MENS",
       "settings": {
-        "headline": "Shop Mens Collection",
-        "subtitle": "Made in USA",
+        "headline": "SHOP MENS",
+        "subtitle": "",
         "link_url": "shopify://collections/all-men",
-        "image": "shopify://shop_images/000193740006.jpg",
-        "image_2": "shopify://shop_images/000193760034.jpg",
+        "image": "shopify://shop_images/Landing_Page_Mens_1.jpg",
+        "image_2": "shopify://shop_images/Landing_Page_Mens_2.jpg",
         "full_page_height_enable": true
       }
     },
@@ -29,6 +29,9 @@
       "type": "block-hero-video",
       "name": "MENS PREVIEW VID",
       "settings": {
+        "headline": "SHOP DENIM",
+        "subtitle": "",
+        "link_url": "shopify://collections/denim-men",
         "video": "shopify://files/videos/C0148.MP4",
         "full_width": true
       }
@@ -37,18 +40,22 @@
       "type": "block-hero-image",
       "name": "SHOP WOMANS",
       "settings": {
-        "headline": "",
+        "headline": "SHOP WOMANS",
         "subtitle": "",
-        "link_url": "",
-        "image": "shopify://shop_images/000193770009.jpg",
-        "image_2": "shopify://shop_images/000193770023.jpg",
+        "link_url": "shopify://collections/new-arrivals-womens",
+        "image": "shopify://shop_images/delaney_landing_page_2.jpg",
+        "image_2": "shopify://shop_images/delaney_landing_page_1.jpg",
         "full_page_height_enable": true
       }
     },
     "block_hero_video_xX6Edn": {
       "type": "block-hero-video",
+      "disabled": true,
       "name": "WOMANS PREVIEW VID",
       "settings": {
+        "headline": "",
+        "subtitle": "",
+        "link_url": "",
         "video": "shopify://files/videos/C0148.MP4",
         "full_width": true
       }
