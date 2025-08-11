@@ -1,13 +1,31 @@
-<div class="py-5 lg:py-10 border-y border-stone-200 mb-5 lg:mb-10">
-  <div class="container grid grid-flow-row grid-cols-2 gap-5 lg:grid-cols-4">
+<div class="py-5 lg:py-10 border-y border-stone-100 mb-5 lg:mb-20">
+  <div class="container grid grid-flow-row grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-y-10 lg:gap-x-20">
     <div class="col-span-full">
-      <h2>
-        {{ section.settings.heading }}
-      </h2>
+      <h2 class="text-black font-bold text-lg font-narrow tracking-tight">{{ section.settings.heading }}<h2>
     </div>
     {% for block in section.blocks %}
-      <div class="aspect-[4/5] bg-stone-100">asdfasd</div>
+      <a href="#" class="flex flex-col gap-5">
+        <img
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          src="{{ block.settings.image | image_url: width: 900 }}"
+          srcset="{{ block.settings.image | image_url: width: 205 }} 1x, {{ block.settings.image | image_url: width: 900 }} 2x"
+          alt="{{ block.settings.image.alt }}"
+          class="h-auto w-full transition ease duration-500"
+          loading="lazy"
+        />
+        <div class="flex flex-col gap-2" x-data="{moreinfo:false}">
+          <div class="flex justify-between">
+            <h3 class="text-black font-bold capitalize text-lg font-narrow tracking-tight">{{ block.settings.heading }}</h3>
+            <button @click="moreinfo=!moreinfo" class="text-subtle underline underline-offset-2 text-sm">More Info</button>
+          </div>
+          <div x-show="moreinfo" class="prose leading-normal text-subtle">{{ block.settings.body }}</div>
+        </div>
+      </a>
     {% endfor %}
+    <div class="h-full border border-dashed border-stone-300 rounded-lg flex items-center justify-center">
+      <div class="text-subtle">Shop All Styles</div>
+    </div>
   </div>
 </div>
 
@@ -31,11 +49,24 @@
             "type": "text",
             "id": "heading",
             "label": "Heading"
-          }, {
+          }, 
+          {
             "type": "richtext",
             "id": "body",
             "label": "Body Text"
-          }
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+  "type": "metaobject_list",
+  "id": "my_material_list_setting",
+  "label": "Materials",
+  "metaobject_type": "shopify--material",
+  "limit": 12
+}
         ]
       }
     ],

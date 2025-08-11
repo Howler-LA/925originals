@@ -18,21 +18,10 @@
     "main-collection": {
       "type": "main-collection",
       "settings": {}
-    },
-    "block_denim_selector_yp7tGh": {
-      "type": "block-denim-selector",
-      "name": "Denim Selector",
-      "settings": {
-        "headline": "",
-        "subtitle": "",
-        "link_url": "",
-        "full_page_height_enable": true
-      }
     }
   },
   "order": [
     "collection-header",
-    "block_denim_selector_yp7tGh",
     "main-collection"
   ]
 }

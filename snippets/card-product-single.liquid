@@ -12,7 +12,15 @@
   {% assign alt_image = card_product.media[1] %}
 {% endif %}
 
-<article class="shrink-0 flex flex-col gap-5 group">
+{% capture tags %}
+  {% if card_product.tags.size > 0 %}
+    {% for tag in card_product.tags %}
+      {{ tag | downcase | replace: ' ', '-' }}
+    {% endfor %}
+  {% endif %}
+{% endcapture %}
+
+<article class="shrink-0 flex flex-col gap-5 group {{ tags }}">
   <a href="{{ card_product.url | within: collection }}">
     <div class="aspect-[4/5] transition duration-300 ease relative">
       <img
