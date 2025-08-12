@@ -11,7 +11,9 @@
   "sections": {
     "article-header": {
       "type": "header-article",
-      "settings": {}
+      "settings": {
+        "show_collection_description": true
+      }
     },
     "main-article": {
       "type": "main-article",
