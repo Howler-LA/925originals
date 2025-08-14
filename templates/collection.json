@@ -11,6 +11,7 @@
   "sections": {
     "collection-header": {
       "type": "header-collection",
+      "disabled": true,
       "settings": {
         "show_collection_description": true
       }
