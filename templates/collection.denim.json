@@ -23,7 +23,8 @@
           "settings": {
             "heading": "Casual Fit",
             "body": "<p>Mid-rise with a slim thigh and narrower knee for a close, comfortable fit. The tailored leg opening provides a modern, versatile look.</p>",
-            "image": "shopify://shop_images/StockCasualDenim-JulianWash-front.jpg"
+            "image": "shopify://shop_images/StockCasualDenim-JulianWash-front.jpg",
+            "tag": "casual-fit"
           }
         },
         "item_UU9c48": {
@@ -31,7 +32,8 @@
           "settings": {
             "heading": "Relaxed Fit",
             "body": "<p>Relaxed fitting jeans made from 12 oz. cotton denim. A size 32 waist comes with a 10 1/2\" rise and 18 1/2\" leg opening. A roomy thigh, knee, and staight leg opening provide for a relaxed, classic look.</p>",
-            "image": "shopify://shop_images/StockRelaxedDenim-NightWash-front.jpg"
+            "image": "shopify://shop_images/StockRelaxedDenim-NightWash-front.jpg",
+            "tag": "relaxed-fit"
           }
         },
         "item_wnLcHT": {
@@ -39,7 +41,8 @@
           "settings": {
             "heading": "Straight Fit",
             "body": "<p>High rise with a moderate hip and wider knee for comfort. The relaxed leg opening keeps a clean, straight line from knee to hem for a classic, balanced look.</p>",
-            "image": "shopify://shop_images/StockStraightDenim-MidnightBlackWash-front.jpg"
+            "image": "shopify://shop_images/StockStraightDenim-MidnightBlackWash-front.jpg",
+            "tag": "straight-fit"
           }
         }
       },

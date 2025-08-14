@@ -1,10 +1,10 @@
-<div class="py-5 lg:py-10 border-y border-stone-100 mb-5 lg:mb-20">
+<div class="py-5 lg:py-10 border-y border-stone-100 mb-5 lg:mb-20 shadow-lg shadow-zinc-500/5">
   <div class="container grid grid-flow-row grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-y-10 lg:gap-x-20">
     <div class="col-span-full">
       <h2 class="text-black font-bold text-lg font-narrow tracking-tight">{{ section.settings.heading }}<h2>
     </div>
     {% for block in section.blocks %}
-      <a href="#" class="flex flex-col gap-5">
+      <a href="{{ collection.url }}/{{ block.settings.tag }}" class="flex flex-col gap-5">
         <img
           width="{{ block.settings.image.width }}"
           height="{{ block.settings.image.height }}"
@@ -17,7 +17,10 @@
         <div class="flex flex-col gap-2" x-data="{moreinfo:false}">
           <div class="flex justify-between">
             <h3 class="text-black font-bold capitalize text-lg font-narrow tracking-tight">{{ block.settings.heading }}</h3>
-            <button @click="moreinfo=!moreinfo" class="text-subtle underline underline-offset-2 text-sm">More Info</button>
+            <button @click="moreinfo=!moreinfo" class="text-subtle text-sm">
+              <span :class="moreinfo ? 'hidden' : 'block'">+ More Info</span>
+              <span :class="moreinfo ? 'block' : 'hidden'">- Less Info</span>
+            </button>
           </div>
           <div x-show="moreinfo" class="prose leading-normal text-subtle">{{ block.settings.body }}</div>
         </div>
@@ -61,12 +64,10 @@
             "label": "Image"
           },
           {
-  "type": "metaobject_list",
-  "id": "my_material_list_setting",
-  "label": "Materials",
-  "metaobject_type": "shopify--material",
-  "limit": 12
-}
+            "type": "text",
+            "id": "tag",
+            "label": "Tag"
+          }
         ]
       }
     ],
