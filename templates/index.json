@@ -13,6 +13,18 @@
       "type": "block-hero-image",
       "name": "SHOP MENS",
       "settings": {
+        "headline": "SHOP EXCLUSIVE",
+        "subtitle": "FANTASY RIGGING",
+        "link_url": "shopify://products/fantasy-rigging-tee-exclusive",
+        "image": "shopify://shop_images/000173140013.jpg",
+        "image_2": "shopify://shop_images/FantasyRigging-Back-Final.jpg",
+        "full_page_height_enable": true
+      }
+    },
+    "block_hero_image_fyfnVr": {
+      "type": "block-hero-image",
+      "name": "SHOP MENS",
+      "settings": {
         "headline": "SHOP MENS",
         "subtitle": "",
         "link_url": "shopify://collections/all-men",
@@ -27,6 +39,7 @@
     },
     "block_hero_video_7ni749": {
       "type": "block-hero-video",
+      "disabled": true,
       "name": "MENS PREVIEW VID",
       "settings": {
         "headline": "SHOP DENIM",
@@ -94,6 +107,7 @@
   },
   "order": [
     "hero-image",
+    "block_hero_image_fyfnVr",
     "block_featured_collection_TUqKU6",
     "block_hero_video_7ni749",
     "block_hero_image_Pr8NXa",
