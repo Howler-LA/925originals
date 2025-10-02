@@ -11,6 +11,7 @@
   "sections": {
     "hero-image": {
       "type": "block-hero-image",
+      "disabled": true,
       "name": "SHOP MENS",
       "settings": {
         "headline": "SHOP EXCLUSIVE",
