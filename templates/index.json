@@ -11,6 +11,19 @@
   "sections": {
     "hero-image": {
       "type": "block-hero-image",
+      "disabled": true,
+      "name": "SHOP MENS",
+      "settings": {
+        "headline": "SHOP EXCLUSIVE",
+        "subtitle": "FANTASY RIGGING",
+        "link_url": "shopify://products/fantasy-rigging-tee-exclusive",
+        "image": "shopify://shop_images/000173100033.jpg",
+        "image_2": "shopify://shop_images/FantasyRigging-Back-Final.jpg",
+        "full_page_height_enable": true
+      }
+    },
+    "block_hero_image_fyfnVr": {
+      "type": "block-hero-image",
       "name": "SHOP MENS",
       "settings": {
         "headline": "SHOP EXCLUSIVE",
