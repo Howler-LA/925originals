@@ -74,6 +74,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/container-queries'),
     require('@tailwindcss/typography')(),
+    require('@tailwindcss/forms')(),
     plugin(function ({ addVariant }) {
       addVariant('scrolled', '.scrolled &'),
         addVariant('mobile-menu-visible', '.mobile-menu-visible &')

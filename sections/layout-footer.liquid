@@ -2,46 +2,45 @@
   <div class="container grid lg:grid-cols-4 gap-10 lg:gap-x-20 lg:gap-y-10">
     
     <div class="text-subtle">
-      <div class="flex flex-col gap-2">
-        <p>Free shipping on orders over 400$</p>
-        <p>Credit card, Apple Pay, Paypal, Klarna</p>
-        <p>Free returns within 14 days.</p>
+      <div class="flex flex-col gap-2 h-10 justify-center">
+        {% render 'component-title' html:'span' title:shop.name | escape %}
       </div>
     </div>
     
-    <div class="grid grid-cols-2">
-      <nav class="flex flex-col gap-2">
-        <a href="#">Returns</a>
-        <a href="#">Stockists</a>
-        <a href="#">Legals</a>
-      </nav>
-      <nav class="flex flex-col gap-2">
-        <a href="#">Lookbooks</a>
-        <a href="#">Call Us</a>
-        <a href="#">Email Us</a>
+    <div class="grid">
+      <nav class="flex flex-row gap-2 leading-10">
+        <div class="flex flex-col gap-2 leading-10">© {{ shop.name }} 2025</div>
+        <span>|</span>
+        <a href="mailto:help@925originals.com">Email Us</a>
       </nav>
     </div>
 
-    <div class="flex flex-col gap-2">
-      <span>Join the Mailing List</span>
-      <button class="h-10 border-b flex justify-between items-center">
-        <span class="text-subtle">Email Address</span>
+    <div x-data="{subscribe:false}" class="flex flex-col gap-2">
+      <span class="sr-only">Join the Mailing List</span>
+      <button @click="subscribe=true" class="h-10 border-b flex justify-between items-center">
+        <span class="text-subtle">Join the Mailing List</span>
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>        
       </button>
+      <div 
+        style="display:none"
+        x-show="subscribe" 
+        x-transition.opacity.500ms 
+        class="fixed inset-0 z-[999] flex flex-col items-center justify-center"
+      >
+        <div x-show="subscribe" @click="subscribe=false" class="absolute inset-0 bg-black/25"></div>
+        <div class="bg-white p-5 md:p-10 lg:p-20 relative">
+          {% render 'mailchimp' %}
+        </div>
+      </div>
     </div>
     
     <div class="flex flex-col gap-2">
-      <span>Follow Us</span>
-      <nav class="flex-grow flex gap-2">
-        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
-        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
-        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
-        <a href="#" class="size-10 bg-neutral-100 hover:bg-neutral-200 transition ease rounded"></a>
+      <nav class="flex-grow flex gap-2 justify-end">
+        <a href="http://instagram.com/925originals" target="_blank" class="size-10 flex text-subtle items-center justify-center transition ease rounded">
+          <span class="sr-only">Instagram</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-8 fill-subtle" viewBox="0 0 32 32"><path d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0"></path></svg>
+        </a>
       </nav>
-    </div>
-    
-    <div class="col-span-full">
-      © {{ shop.name }} 2025
     </div>
 
   </div>

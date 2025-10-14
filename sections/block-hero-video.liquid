@@ -41,7 +41,7 @@
 
 <div class="h-screen bg-stone-200 relative overflow-hidden">
   {{ section.settings.video 
-    | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "absolute inset-0 object-cover h-full w-full mix-blend-multiply" }}
+    | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: "absolute inset-0 object-cover h-full w-full mix-blend-multiply" }}
   <div class="absolute inset-0 z-20 flex items-center justify-center">
     <div class="container flex flex-col items-start">
       {% if section.settings.headline %}

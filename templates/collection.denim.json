@@ -15,10 +15,6 @@
         "show_collection_description": true
       }
     },
-    "main-collection": {
-      "type": "main-collection",
-      "settings": {}
-    },
     "block_denim_selector_gfPccr": {
       "type": "block-denim-selector",
       "blocks": {
@@ -26,46 +22,48 @@
           "type": "item",
           "settings": {
             "heading": "Casual Fit",
-            "body": "<p>Mid-rise with a slim thigh and narrower knee for a close, comfortable fit. The tailored leg opening provides a modern, versatile look.</p>"
+            "body": "<p>Mid-rise with a slim thigh and narrower knee for a close, comfortable fit. The tailored leg opening provides a modern, versatile look.</p>",
+            "image": "shopify://shop_images/StockCasualDenim-JulianWash-front.jpg",
+            "tag": "casual-fit"
           }
         },
         "item_UU9c48": {
           "type": "item",
           "settings": {
             "heading": "Relaxed Fit",
-            "body": "<p>Relaxed fitting jeans made from 12 oz. cotton denim. A size 32 waist comes with a 10 1/2\" rise and 18 1/2\" leg opening. A roomy thigh, knee, and staight leg opening provide for a relaxed, classic look.</p>"
+            "body": "<p>Relaxed fitting jeans made from 12 oz. cotton denim. A size 32 waist comes with a 10 1/2\" rise and 18 1/2\" leg opening. A roomy thigh, knee, and staight leg opening provide for a relaxed, classic look.</p>",
+            "image": "shopify://shop_images/StockRelaxedDenim-NightWash-front.jpg",
+            "tag": "relaxed-fit"
           }
         },
         "item_wnLcHT": {
           "type": "item",
           "settings": {
             "heading": "Straight Fit",
-            "body": "<p>High rise with a moderate hip and wider knee for comfort. The relaxed leg opening keeps a clean, straight line from knee to hem for a classic, balanced look.</p>"
-          }
-        },
-        "item_haWrPa": {
-          "type": "item",
-          "settings": {
-            "heading": "",
-            "body": ""
+            "body": "<p>High rise with a moderate hip and wider knee for comfort. The relaxed leg opening keeps a clean, straight line from knee to hem for a classic, balanced look.</p>",
+            "image": "shopify://shop_images/StockStraightDenim-MidnightBlackWash-front.jpg",
+            "tag": "straight-fit"
           }
         }
       },
       "block_order": [
         "item_NKBJ3t",
         "item_UU9c48",
-        "item_wnLcHT",
-        "item_haWrPa"
+        "item_wnLcHT"
       ],
       "name": "Denim Selector",
       "settings": {
-        "heading": ""
+        "heading": "Shop by Style"
       }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "settings": {}
     }
   },
   "order": [
     "collection-header",
-    "main-collection",
-    "block_denim_selector_gfPccr"
+    "block_denim_selector_gfPccr",
+    "main-collection"
   ]
 }
