@@ -25,7 +25,11 @@
         {%- endif -%}
       </a>
       {% if link.links != blank %}
-        <div x-show="hoverable" class="pt-10 lg:pt-12 pb-5 lg:pb-10 mega-menu mb-16 sm:mb-0 bg-background bg-white transition ease duration-200 border-b border-black/5">
+        <div 
+          x-show="hoverable" 
+          style="display: none;"
+          class="pt-10 lg:pt-12 pb-5 lg:pb-10 mega-menu mb-16 sm:mb-0 bg-background bg-white transition ease duration-200 border-b border-black/5"
+        >
           <div class="container grid lg:grid-cols-5 gap-10 lg:gap-20">
             <div class="flex flex-col gap-8 justify-between lg:col-span-3 items-start">
               <div class="flex flex-col gap-4 items-start w-full">
