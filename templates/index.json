@@ -51,6 +51,9 @@
     },
     "block_hero_image_Pr8NXa": {
       "type": "block-hero-image",
+      "custom_css": [
+        ".subtitle {font-weight: 700 !important; /* makes FALL '25 COLLECTION bold */ opacity: 1 !important; /* ensures it's fully visible */}"
+      ],
       "name": "SHOP WOMANS",
       "settings": {
         "headline": "SHOP WOMANS",
