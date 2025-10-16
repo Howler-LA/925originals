@@ -26,7 +26,7 @@
       "name": "SHOP MENS",
       "settings": {
         "headline": "SHOP MENS",
-        "subtitle": "",
+        "subtitle": "FALL '25 COLLECTION",
         "link_url": "shopify://collections/all-men",
         "image": "shopify://shop_images/Landing_Page_Mens_1.jpg",
         "image_2": "shopify://shop_images/Landing_Page_Mens_2.jpg",
@@ -54,7 +54,7 @@
       "name": "SHOP WOMANS",
       "settings": {
         "headline": "SHOP WOMANS",
-        "subtitle": "",
+        "subtitle": "FALL '25 COLLECTION",
         "link_url": "shopify://collections/new-arrivals-womens",
         "image": "shopify://shop_images/delaney_landing_page_2.jpg",
         "image_2": "shopify://shop_images/delaney_landing_page_1.jpg",
