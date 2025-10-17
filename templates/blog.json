@@ -16,10 +16,39 @@
     "main-blog": {
       "type": "main-blog",
       "settings": {}
+    },
+    "block_subscribe_Kdxfeh": {
+      "type": "block-subscribe",
+      "blocks": {
+        "heading_Fzd7W3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Opening soon"
+          }
+        },
+        "paragraph_9JPyWG": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to know when we launch.</p>"
+          }
+        },
+        "email_form_NQBn7V": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_Fzd7W3",
+        "paragraph_9JPyWG",
+        "email_form_NQBn7V"
+      ],
+      "name": "Email signup banner",
+      "settings": {}
     }
   },
   "order": [
     "blog-header",
-    "main-blog"
+    "main-blog",
+    "block_subscribe_Kdxfeh"
   ]
 }
