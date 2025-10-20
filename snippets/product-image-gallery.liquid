@@ -1,8 +1,32 @@
-{% if collection.handle contains '-men' and product.metafields.media.mens %}
-  {% assign images = product.metafields.media.mens.value %}
-{% elsif collection.handle contains '-women' and product.metafields.media.womens %}
-  {% assign images = product.metafields.media.womens.value %}
-{% endif %}
+{% liquid
+  assign images = null
+  assign collection_type = null
+  
+  # Determine collection type with more flexible matching
+  if collection.handle contains '-men' or collection.handle contains 'mens' or collection.handle == 'men'
+    assign collection_type = 'mens'
+  elsif collection.handle contains '-women' or collection.handle contains 'womens' or collection.handle == 'women'
+    assign collection_type = 'womens'
+  elsif collection.handle contains 'unisex'
+    assign collection_type = 'unisex'
+  endif
+  
+  # Get images based on collection type
+  case collection_type
+    when 'mens'
+      if product.metafields.media.mens.value != blank
+        assign images = product.metafields.media.mens.value
+      endif
+    when 'womens'
+      if product.metafields.media.womens.value != blank
+        assign images = product.metafields.media.womens.value
+      endif
+    when 'unisex'
+      if product.metafields.media.unisex.value != blank
+        assign images = product.metafields.media.unisex.value
+      endif
+  endcase
+%}
 
 <div x-data="{
         imageGalleryOpened: false,
@@ -19,7 +43,7 @@
           {% endif %}
           {% for image in product.images %}
             {
-                'photo': '{{ image.src | img_url: 'master' }}',
+                'photo': '{{ image | image_url: width: 900 }}',
                 'alt': '{{ image.alt | escape }}'
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
@@ -47,6 +71,7 @@
     @image-gallery-prev.window="imageGalleryPrev()" 
     @keyup.right.window="imageGalleryNext();" 
     @keyup.left.window="imageGalleryPrev();"
+    {% if images %}data-has-custom-images="true"{% endif %}
     class="w-full h-full select-none">
     <div 
       class="select-none ease animate-fade-in-view" 
@@ -64,6 +89,8 @@
               :src="image.photo" 
               :alt="image.alt" 
               :data-index="index+1" 
+              width="900"
+              height="900"
               class="w-full h-full block object-contain cursor-pointer hover:opacity-90 transition-opacity ease duration-300"
             >
           </li>
@@ -94,6 +121,8 @@
               class="object-contain object-center w-full h-full select-none cursor-zoom-out" 
               :src="imageGalleryActiveUrl" 
               alt="" 
+              width="1200"
+              height="1200"
               style="display: none;"
             >
             <div @click="$event.stopPropagation(); $dispatch('image-gallery-next');" class="absolute right-0 flex items-center justify-center text-stone-800 -translate-x-10 rounded-full cursor-pointer xl:translate-x-24 2xl:translate-x-32 bg-white/10 w-14 h-14 hover:bg-white/20">

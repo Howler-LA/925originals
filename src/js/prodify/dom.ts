@@ -119,8 +119,15 @@ function swapProductInfo() {
         priceTarget.replaceWith(priceSource)
       }
 
-      if (mediaSource && mediaTarget) {
+      // Check if we have custom collection images before replacing media
+      const hasCustomImages = mediaTarget && mediaTarget.querySelector('[data-has-custom-images="true"]')
+      
+      // Only replace media if we don't have custom collection images
+      if (mediaSource && mediaTarget && !hasCustomImages) {
         mediaTarget.replaceWith(mediaSource)
+      } else if (hasCustomImages) {
+        // Preserve custom images during variant changes
+        console.log('Preserving custom collection images during variant change')
       }
 
       if (addButtonSource && addButtonTarget) {
