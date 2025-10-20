@@ -1,4 +1,9 @@
 @layer components {
+  /* Alpine.js x-cloak directive to prevent flash of unstyled content */
+  [x-cloak] {
+    display: none !important;
+  }
+
   .skip-to-content-link {
     @apply absolute z-50 px-4 py-2 text-white bg-cloud-burst rounded-lg shadow-lg;
   }

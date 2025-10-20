@@ -3,7 +3,7 @@
   Real-time filtering without page reloads
 {% endcomment %}
 
-<div x-data="alpineCollectionFilters()" x-init="init()">
+<div x-data="alpineCollectionFilters()" x-init="init()" x-cloak>
   
   <!-- Filter Toggle Container -->
   <div class="container mb-6">
@@ -13,16 +13,16 @@
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707v4.586a1 1 0 01-.293.707L9 19.414V14.414a1 1 0 00-.293-.707L2.293 7.293A1 1 0 012 6.586V4z"></path>
       </svg>
-      <span x-text="filtersVisible ? 'Hide Filters' : 'Show Filters'"></span>
+      <span x-text="filtersVisible ? 'Hide Filters' : 'Show Filters'">Show Filters</span>
       <!-- Active Filters Badge -->
       <span x-show="activeFiltersCount > 0" 
             class="bg-stone-800 text-white text-xs px-2 py-1 rounded-full" 
-            x-text="activeFiltersCount"></span>
+            x-text="activeFiltersCount" x-cloak></span>
     </button>
   </div>
 
   <!-- Filters Panel -->
-  <div x-show="filtersVisible" 
+  <div x-show="filtersVisible" x-cloak
        class="collection-filters mb-8 py-4 bg-stone-50 rounded-lg border border-stone-200">
     
     <!-- Filter Controls -->
@@ -58,7 +58,7 @@
 
       <!-- Clear Filters -->
       <button @click="clearFilters()" 
-              x-show="selectedType || sortBy"
+              x-show="selectedType || sortBy" x-cloak
               class="px-4 py-2 text-sm text-stone-600 hover:text-stone-800 border border-stone-300 rounded-md hover:bg-stone-100 transition-colors">
         Clear Filters
       </button>
@@ -66,8 +66,8 @@
     </div>
 
     <!-- Results Count -->
-    <div class="mt-4 text-sm text-stone-600 container">
-      Showing <span x-text="filteredCount"></span> of <span x-text="totalCount"></span> products
+    <div class="mt-4 text-sm text-stone-600 container" x-cloak>
+      Showing <span x-text="filteredCount">0</span> of <span x-text="totalCount">0</span> products
     </div>
 
   </div>
