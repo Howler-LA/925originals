@@ -1,89 +1,198 @@
-# Slayed Shopify Starter Theme
+# 925 Originals Shopify Theme
 
-## Demo
+A high-performance, modern Shopify theme built for 925 Originals denim brand, featuring advanced collection filtering, dynamic product galleries, and seamless user experience.
 
-[https://slayed-starter.myshopify.com/](https://slayed-starter.myshopify.com/)
+## 🚀 Key Features
 
-Password: sprite
+### ⚡ Real-Time Collection Filtering
+- **Alpine.js powered filtering** - Instant product filtering without page reloads
+- **Smart toggle interface** - Collapsible filters with active filter badges  
+- **Advanced sorting** - Price, date, alphabetical, and best selling options
+- **Product type filtering** - Filter by Jeans, T-shirts, and other categories
+- **URL state management** - Bookmarkable filtered states
+- **Mobile optimized** - Responsive design with proper touch targets
 
-## Chat
+### 🖼️ Dynamic Product Image Gallery
+- **Collection-specific images** - Custom metafield support for mens/womens/unisex collections
+- **Variant persistence** - Custom collection images persist during size/color changes
+- **Smart fallbacks** - Graceful degradation to standard product media
+- **Seamless switching** - No image flashing during variant selection
 
-Discord chat at #slayed on 
+### 🎨 Enhanced Navigation
+- **Smooth megamenu animations** - Professional Alpine.js transitions
+- **Improved hover states** - Polished interaction feedback
+- **Performance optimized** - Efficient Alpine.js component architecture
 
-[![](https://dcbadge.vercel.app/api/server/shopify-developers-597504637167468564)](https://discord.gg/shopify-developers-597504637167468564)
+### 🛠️ Technical Excellence
+- **X-cloak protection** - Prevents flash of unstyled content
+- **Modern build system** - Vite + Shopify CLI integration
+- **TypeScript support** - Type-safe JavaScript for better maintainability
+- **Tailwind CSS** - Utility-first styling with custom components
+- **Git workflow** - Proper version control and deployment pipeline
 
-## Shopify CLI
+## 🔧 Development Setup
 
-To easily log into your preferred store and theme, create a `shopify.theme.toml` in the root directory and define your environement details.
+### Prerequisites
+- Node.js 18+
+- Shopify CLI
+- Git
 
-Example:
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/Howler-LA/925originals.git
+cd 925originals
+
+# Install dependencies
+npm install
+
+# Configure Shopify CLI (create shopify.theme.toml)
+# See configuration section below
+```
+
+### Configuration
+
+Create `shopify.theme.toml` in the root directory:
 
 ```toml
 [environments.development]
-store = "slayed-starter"
-theme = "123123123"
+store = "ef632c-b2"
+theme = "175559147811"
 
 [environments.staging]
-store = "slayed-starter"
-theme = "123123123"
+store = "ef632c-b2"
+theme = "177624875299"
 ignore = ["templates/*", "config/*"]
 
 [environments.production]
-store = "slayed-starter"
-theme = "123123123"
+store = "ef632c-b2"
+theme = "175559147811"
 ignore = ["templates/*", "config/*"]
 ```
 
-### Commands
+## 📋 Available Commands
 
-| Command       | Purpose           | Notes  |
-| ------------- |:-------------:| :-----:|
-| `npm run dev`   | Develop with local dev server with live reload| See [Development Themes](https://shopify.dev/docs/themes/tools/cli#development-themes) |
-| `npm run deploy`     | Build and push to production environment theme (interactive)      | Command produces a menu to choose theme and confirm. This CAN overwrite the live theme! |
-| `npm run deploy:dev` | Build and push to development environment theme (non-interactive)     | Uses **shopify.theme.toml** config |
-| `npm run deploy:staging` | Build and push to staging environment theme (non-interactive)  | Does overrite remote themes section/theme content |
-| `npm run deploy:new` | Build and publish to new theme on Shopify (interactive) |     |
+| Command | Purpose | Environment |
+|---------|---------|-------------|
+| `npm run dev` | Local development with live reload | Development theme |
+| `npm run deploy` | Interactive production deploy | Production (with confirmation) |
+| `npm run deploy:staging` | Deploy to staging | Staging theme |
+| `npm run deploy:production` | Deploy to production | Live theme |
+| `npm run build` | Build assets only | Local build |
 
-For all other NPM scripts and Shopify CLI theme commands reference **package.json** and [Shopify CLI commands for themes](https://shopify.dev/docs/themes/tools/cli/commands)
+## 🎯 Recent Improvements
 
-## Vite
-Slayed uses [Vite](https://vitejs.dev/) and the [Shopify Vite Plugin](https://github.com/barrel/shopify-vite). See vite-plugin-shopify [config options](https://github.com/barrel/shopify-vite/tree/main/packages/vite-plugin-shopify#usage).
+### Collection Filtering System
+- **Real-time filtering** replaces slow page-based filtering
+- **Alpine.js components** for smooth interactions
+- **Smart state management** with URL synchronization
+- **Performance optimized** client-side filtering
 
-### HTTPS/SSL
+### Product Experience
+- **Custom collection images** enhance brand storytelling
+- **Variant switching** maintains collection context
+- **Responsive gallery** adapts to all screen sizes
+- **Professional animations** improve perceived performance
 
-Slayed uses [@vitejs/plugin-basic-ssl](https://www.npmjs.com/package/@vitejs/plugin-basic-ssl). This plugin generates an untrusted certificate which allows access to the Vite client from the Shopify dev server after proceeding past the browsers warning screen.
+### Code Quality
+- **Modern JavaScript** with ES6+ features
+- **Component architecture** for maintainable code
+- **Git workflow** with proper commit messages
+- **Performance monitoring** and optimization
 
-If your assets aren't loading due to ssl errors, visit https://127.0.0.1:3000, click Advanced and proceed, then navigate back to your Shopify CLI dev server at http://127.0.0.1:9292 and you should see your assets loaded properly.
+## 🔍 Architecture
 
-## CSS
+### Frontend Stack
+- **Alpine.js** - Reactive components and state management
+- **Tailwind CSS** - Utility-first styling framework
+- **Vite** - Modern build tool and development server
+- **TypeScript** - Type safety for critical components
 
-The standard Tailwind boilerplate is provided.
+### Shopify Integration
+- **Custom metafields** for collection-specific content
+- **Liquid templates** optimized for performance
+- **Section groups** for flexible page building
+- **Theme settings** for merchant customization
 
-Additionally, **src/css/global.css** can be used for global styles and is not tree-shaken. Layers and @apply can also be used in this file. This is made possible via [@tailwindcss/nesting](https://www.npmjs.com/package/@tailwindcss/nesting).
+### Key Files
 
-## Javascript
+```
+├── sections/
+│   ├── main-collection.liquid      # Collection page with filtering
+│   ├── block-hero-image.liquid     # Homepage hero sections
+│   └── header.liquid               # Navigation with megamenu
+├── snippets/
+│   ├── collection-filters-alpine.liquid  # Alpine.js filtering component
+│   ├── product-image-gallery.liquid      # Dynamic image gallery
+│   ├── card-product-single.liquid        # Product card component
+│   └── header-menu.liquid               # Megamenu component
+├── src/
+│   ├── js/prodify/                 # Variant switching logic
+│   ├── css/                        # Tailwind and custom styles
+│   └── entrypoints/                # JavaScript entry points
+```
 
-### Alpine.js
-[Alpine.js](https://alpinejs.dev/start-here) is included and Alpine magic properties, components, stores, and directives directories exist in **src/js/alpine**. The modules are auto-registered within **src/js/alpine/index.js**. Reference **src/js/alpine/components/dropdown.js** to see an example of how to export your module.
+## 🚀 Deployment
 
-> By no means do you need to register your Alpine components in this way, and to reduce bundle size it would be advantageous to register components within a section or snippet.
+### Staging Deployment
+```bash
+npm run deploy:staging
+```
 
-## Public Directory
-The **public** directory in the project root is a [Vite convention](https://vitejs.dev/guide/assets.html#the-public-directory) for placing your static assets. The *vite-plugin-shopify* Vite plugin moves these static files over to the **assets** on build, so you can serve them up just as you would if you placed them in **assets**. 
+### Production Deployment
+```bash
+npm run deploy:production
+# or interactive with confirmation
+npm run deploy
+```
 
-## Included Goodies
+### Git Workflow
+```bash
+# Make changes, then:
+git add .
+git commit -m "feat: description of changes"
+git push origin main
 
-### Liquid Ajax Cart
-[Liquid Ajax Cart]() library is installed and its directives are used throughout the Slayed sections. With the help of Liquid Ajax Cart you have an out-of-the-box working AJAX cart, aka "minicart".
+# Deploy to live theme
+npm run deploy:production
+```
 
-> Slayed uses v2 of Liquid Ajax Cart which has slightly different API than v1. See [differences-from-v1](https://liquid-ajax-cart.js.org/v2/differences-from-v1/)
+## 💡 Best Practices
 
-### Predictive Search
-The Shopify provided predictive search is already included and just needed to be enabled in the themes customizer. To prevent it from being rendered remove the reference from **theme.liquid**.
+### Performance
+- **Lazy loading** for below-fold images
+- **Critical CSS** inlined for faster rendering
+- **Component splitting** for smaller bundles
+- **Alpine.js optimization** with x-cloak protection
 
-### Prodify
-Prodify is a Slayed rework of the Shopify Dawn theme's custom element logic for handling variant pickers on the PDP. See **src/js/prodify**
+### Maintainability
+- **Semantic commit messages** following conventional commits
+- **Component-based architecture** for reusable code
+- **TypeScript integration** for type safety
+- **Comprehensive documentation** in code comments
 
-### Dynamic Import
+### User Experience
+- **Mobile-first design** with responsive breakpoints
+- **Accessibility standards** with proper ARIA attributes
+- **Progressive enhancement** for JavaScript features
+- **Graceful degradation** when features aren't available
 
-Dynamically import scripts. See demo in **src/entrypoints/theme.js**
+## 🤝 Contributing
+
+1. Create feature branch from `main`
+2. Make changes following code style
+3. Test thoroughly on development theme
+4. Submit pull request with description
+5. Deploy to staging for review
+6. Merge and deploy to production
+
+## 📞 Support
+
+For technical support or questions about the 925 Originals theme:
+- **Repository**: [Howler-LA/925originals](https://github.com/Howler-LA/925originals)
+- **Issues**: Create GitHub issues for bugs or feature requests
+- **Development**: Howler LA team
+
+---
+
+*Built with ❤️ for 925 Originals by Howler LA*
