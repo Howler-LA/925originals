@@ -22,10 +22,6 @@
   assign product_form_id = 'product-form-' | append: section.id
 -%}
 
-{% comment %} <script>
-  console.log({{ product.variants | json }})
-</script> {% endcomment %}
-
 {%- for value in option.values -%}
   {%- liquid
     assign option_not_exist = true
