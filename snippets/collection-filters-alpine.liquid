@@ -1,0 +1,209 @@
+{% comment %}
+  Alpine.js Collection Filtering System
+  Real-time filtering without page reloads
+{% endcomment %}
+
+<div x-data="alpineCollectionFilters()" x-init="init()">
+  
+  <!-- Filter Toggle Container -->
+  <div class="container mb-6">
+    <button @click="filtersVisible = !filtersVisible" 
+            class="flex items-center gap-2 px-4 py-2 bg-stone-100 hover:bg-stone-200 rounded-lg transition-colors text-sm font-medium text-stone-700">
+      <!-- Filter Icon -->
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707v4.586a1 1 0 01-.293.707L9 19.414V14.414a1 1 0 00-.293-.707L2.293 7.293A1 1 0 012 6.586V4z"></path>
+      </svg>
+      <span x-text="filtersVisible ? 'Hide Filters' : 'Show Filters'"></span>
+      <!-- Active Filters Badge -->
+      <span x-show="activeFiltersCount > 0" 
+            class="bg-stone-800 text-white text-xs px-2 py-1 rounded-full" 
+            x-text="activeFiltersCount"></span>
+    </button>
+  </div>
+
+  <!-- Filters Panel -->
+  <div x-show="filtersVisible" 
+       class="collection-filters mb-8 py-4 bg-stone-50 rounded-lg border border-stone-200">
+    
+    <!-- Filter Controls -->
+    <div class="container flex flex-wrap gap-6 items-center">
+      
+      <!-- Sort Dropdown -->
+      <div class="flex items-center gap-3">
+        <label class="text-sm font-medium text-stone-700">Sort:</label>
+        <select x-model="sortBy" @change="applyFilters()" 
+                class="px-3 py-2 pr-8 border border-stone-300 rounded-md text-sm focus:ring-2 focus:ring-stone-500 focus:border-stone-500 appearance-none bg-white">
+          <option value="">Default</option>
+          <option value="created-descending">Newest</option>
+          <option value="created-ascending">Oldest</option>
+          <option value="price-ascending">Price: Low to High</option>
+          <option value="price-descending">Price: High to Low</option>
+          <option value="title-ascending">A-Z</option>
+          <option value="title-descending">Z-A</option>
+          <option value="best-selling">Best Selling</option>
+        </select>
+      </div>
+
+      <!-- Product Type Filter -->
+      <div class="flex items-center gap-3">
+        <label class="text-sm font-medium text-stone-700">Type:</label>
+        <select x-model="selectedType" @change="applyFilters()" 
+                class="px-3 py-2 pr-8 border border-stone-300 rounded-md text-sm focus:ring-2 focus:ring-stone-500 focus:border-stone-500 appearance-none bg-white">
+          <option value="">All Types</option>
+          <template x-for="type in availableTypes" :key="type">
+            <option :value="type" x-text="type"></option>
+          </template>
+        </select>
+      </div>
+
+      <!-- Clear Filters -->
+      <button @click="clearFilters()" 
+              x-show="selectedType || sortBy"
+              class="px-4 py-2 text-sm text-stone-600 hover:text-stone-800 border border-stone-300 rounded-md hover:bg-stone-100 transition-colors">
+        Clear Filters
+      </button>
+
+    </div>
+
+    <!-- Results Count -->
+    <div class="mt-4 text-sm text-stone-600 container">
+      Showing <span x-text="filteredCount"></span> of <span x-text="totalCount"></span> products
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function alpineCollectionFilters() {
+  return {
+    allProducts: [],
+    availableTypes: [],
+    sortBy: '',
+    selectedType: '',
+    filteredCount: 0,
+    totalCount: 0,
+    filtersVisible: false,
+
+    get activeFiltersCount() {
+      let count = 0;
+      if (this.sortBy) count++;
+      if (this.selectedType) count++;
+      return count;
+    },
+
+    init() {
+      // Get all product data from the DOM
+      this.collectProductData();
+      this.extractFilterOptions();
+      
+      // Read URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      this.sortBy = urlParams.get('sort_by') || '';
+      this.selectedType = urlParams.get('type') || '';
+      
+      // Show filters if any are active
+      if (this.activeFiltersCount > 0) {
+        this.filtersVisible = true;
+      }
+      
+      // Apply initial filters
+      this.applyFilters();
+    },
+
+    collectProductData() {
+      const products = [];
+      const productElements = document.querySelectorAll('[data-product-id]');
+      
+      productElements.forEach(el => {
+        const productData = {
+          id: el.dataset.productId,
+          title: el.dataset.productTitle || '',
+          type: el.dataset.productType || '',
+          price: parseFloat(el.dataset.productPrice) || 0,
+          created: el.dataset.productCreated || '',
+          element: el
+        };
+        products.push(productData);
+      });
+      
+      this.allProducts = products;
+      this.totalCount = products.length;
+    },
+
+    extractFilterOptions() {
+      // Extract unique types
+      this.availableTypes = [...new Set(this.allProducts.map(p => p.type).filter(t => t))].sort();
+    },
+
+    applyFilters() {
+      let filtered = [...this.allProducts];
+
+      // Filter by type
+      if (this.selectedType) {
+        filtered = filtered.filter(product => product.type === this.selectedType);
+      }
+
+      // Sort products
+      if (this.sortBy) {
+        filtered = this.sortProducts(filtered, this.sortBy);
+      }
+
+      this.updateProductDisplay(filtered);
+      this.filteredCount = filtered.length;
+      this.updateURL();
+    },
+
+    sortProducts(products, sortBy) {
+      const sorted = [...products];
+      
+      switch(sortBy) {
+        case 'title-ascending':
+          return sorted.sort((a, b) => a.title.localeCompare(b.title));
+        case 'title-descending':
+          return sorted.sort((a, b) => b.title.localeCompare(a.title));
+        case 'price-ascending':
+          return sorted.sort((a, b) => a.price - b.price);
+        case 'price-descending':
+          return sorted.sort((a, b) => b.price - a.price);
+        case 'created-ascending':
+          return sorted.sort((a, b) => new Date(a.created) - new Date(b.created));
+        case 'created-descending':
+          return sorted.sort((a, b) => new Date(b.created) - new Date(a.created));
+        default:
+          return sorted;
+      }
+    },
+
+    updateProductDisplay(filteredProducts) {
+      // Hide all products first
+      this.allProducts.forEach(product => {
+        product.element.style.display = 'none';
+      });
+
+      // Show filtered products
+      filteredProducts.forEach((product, index) => {
+        product.element.style.display = 'block';
+        // Maintain grid order
+        product.element.style.order = index;
+      });
+    },
+
+    updateURL() {
+      const params = new URLSearchParams();
+      
+      if (this.sortBy) params.set('sort_by', this.sortBy);
+      if (this.selectedType) params.set('type', this.selectedType);
+      
+      const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+      window.history.replaceState({}, '', newUrl);
+    },
+
+    clearFilters() {
+      this.sortBy = '';
+      this.selectedType = '';
+      this.applyFilters();
+    }
+  }
+}
+</script>

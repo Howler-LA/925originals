@@ -2,10 +2,30 @@
 {
   "name": "Main Collection Section",
   "class": "section-main-collection pb-5 lg:pb-10",
-  "tag": "section"
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "Show collection filters",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 12,
+      "max": 48,
+      "step": 12,
+      "default": 24
+    }
+  ]
 }
 {% endschema %}
 
+{% if section.settings.show_filters %}
+  {% render 'collection-filters-alpine' %}
+{% endif %}
 
 <div id="ProductGridContainer">
   <div
@@ -14,33 +34,40 @@
     data-id="{{ section.id }}"
   >
     {%- liquid
-      paginate collection.products by 99
-        for product in collection.products
-          assign lazy_load = false
-          if forloop.index > 2
-            assign lazy_load = true
-          endif
-          for media in product.media
-            if media.media_type == 'video'
-              assign video = true
-            else
-              assign video = false
-            endif
-          endfor
-          if video == true
-            render 'card-product-double', card_product: product, lazy_load: lazy_load
-          else
-            render 'card-product-single', card_product: product, lazy_load: lazy_load
-          endif
-          
-        else
-          if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0
-            for i in (1..4)
-              render 'card-product-double'
-            endfor
-          endif
-        endfor
-      endpaginate
+      assign products_per_page = section.settings.products_per_page | default: 24
     -%}
+      
+    {% paginate collection.products by products_per_page %}
+        {% for product in collection.products %}
+          {% assign lazy_load = false %}
+          {% if forloop.index > 2 %}
+            {% assign lazy_load = true %}
+          {% endif %}
+          {% assign video = false %}
+          {% for media in product.media %}
+            {% if media.media_type == 'video' %}
+              {% assign video = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          {% if video == true %}
+            {% render 'card-product-double', card_product: product, lazy_load: lazy_load %}
+          {% else %}
+            {% render 'card-product-single', card_product: product, lazy_load: lazy_load %}
+          {% endif %}
+        {% else %}
+          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+            {% for i in (1..4) %}
+              {% render 'card-product-double' %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endpaginate %}
+    
+    {% if paginate.pages > 1 %}
+      <div class="col-span-full mt-8">
+        {% render 'pagination-navigation', paginate: paginate %}
+      </div>
+    {% endif %}
   </div>
 </div>

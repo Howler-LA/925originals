@@ -1,4 +1,12 @@
-<article class="shrink-0 flex flex-col gap-5 group col-span-2">
+<article class="shrink-0 flex flex-col gap-5 group col-span-2"
+         {% if card_product %}
+         data-product-id="{{ card_product.id }}"
+         data-product-title="{{ card_product.title }}"
+         data-product-type="{{ card_product.type }}"
+         data-product-vendor="{{ card_product.vendor }}"
+         data-product-price="{{ card_product.price }}"
+         data-product-created="{{ card_product.created_at }}"
+         {% endif %}>
   <a href="{{ card_product.url | within: collection }}" class="flex-grow bg-pink-100 relative">
     <div class="absolute inset-0">
       <div class="grid grid-cols-2 gap-px h-full">
