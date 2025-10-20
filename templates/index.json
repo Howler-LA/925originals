@@ -11,14 +11,13 @@
   "sections": {
     "hero-image": {
       "type": "block-hero-image",
-      "disabled": true,
       "name": "SHOP MENS",
       "settings": {
-        "headline": "SHOP EXCLUSIVE",
-        "subtitle": "FANTASY RIGGING",
-        "link_url": "shopify://products/fantasy-rigging-tee-exclusive",
-        "image": "shopify://shop_images/000173100033.jpg",
-        "image_2": "shopify://shop_images/FantasyRigging-Back-Final.jpg",
+        "headline": "FALL '25 LOOKBOOK",
+        "subtitle": "CLICK TO VIEW",
+        "link_url": "shopify://pages/fall-25-lookbook",
+        "image": "shopify://shop_images/925editorial-02.jpg",
+        "image_2": "shopify://shop_images/lookbook_extension-01.jpg",
         "full_page_height_enable": true
       }
     },
@@ -27,7 +26,7 @@
       "name": "SHOP MENS",
       "settings": {
         "headline": "SHOP MENS",
-        "subtitle": "",
+        "subtitle": "FALL '25 COLLECTION",
         "link_url": "shopify://collections/all-men",
         "image": "shopify://shop_images/Landing_Page_Mens_1.jpg",
         "image_2": "shopify://shop_images/Landing_Page_Mens_2.jpg",
@@ -46,16 +45,19 @@
         "headline": "SHOP DENIM",
         "subtitle": "",
         "link_url": "shopify://collections/denim-men",
-        "video": "shopify://files/videos/C0148.MP4",
+        "video": "shopify://files/videos/landing page clip test 2 - SD 480p.mov",
         "full_width": true
       }
     },
     "block_hero_image_Pr8NXa": {
       "type": "block-hero-image",
+      "custom_css": [
+        ".subtitle {font-weight: 700 !important; /* makes FALL '25 COLLECTION bold */ opacity: 1 !important; /* ensures it's fully visible */}"
+      ],
       "name": "SHOP WOMANS",
       "settings": {
         "headline": "SHOP WOMANS",
-        "subtitle": "",
+        "subtitle": "FALL '25 COLLECTION",
         "link_url": "shopify://collections/new-arrivals-womens",
         "image": "shopify://shop_images/delaney_landing_page_2.jpg",
         "image_2": "shopify://shop_images/delaney_landing_page_1.jpg",
