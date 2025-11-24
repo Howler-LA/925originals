@@ -27,10 +27,17 @@
   {% render 'collection-filters-alpine' %}
 {% endif %}
 
-<div id="ProductGridContainer">
+<div 
+  id="ProductGridContainer"
+  x-data="infiniteScroll"
+  data-collection-handle="{{ collection.handle }}"
+  data-section-id="{{ section.id }}"
+  data-products-per-page="{{ section.settings.products_per_page | default: 24 }}"
+>
   <div
     class="container grid grid-flow-row grid-cols-1 gap-5 lg:gap-20 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4"
     id="product-grid"
+    data-product-grid
     data-id="{{ section.id }}"
   >
     {%- liquid
@@ -62,11 +69,34 @@
           {% endfor %}
         {% endif %}
       {% endfor %}
-      {% if paginate.pages > 1 %}
-        <div class="col-span-full mt-8 order-last">
-          {% render 'pagination-navigation', paginate: paginate %}
+      
+      {% comment %} Hidden pagination info for infinite scroll component {% endcomment %}
+      <div 
+        data-pagination-info 
+        data-total-pages="{{ paginate.pages }}" 
+        class="hidden"
+      ></div>
+      
+      {% comment %} Loading indicator {% endcomment %}
+      <div 
+        x-show="loading" 
+        x-cloak
+        class="col-span-full mt-8 text-center order-last"
+      >
+        <div class="inline-block">
+          <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <p class="mt-2 text-sm text-gray-600">Loading more products...</p>
         </div>
-      {% endif %}
+      </div>
+      
+      {% comment %} End of results message {% endcomment %}
+      <div 
+        x-show="!hasMore && !loading && currentPage > 1" 
+        x-cloak
+        class="col-span-full mt-8 text-center order-last"
+      >
+        <p class="text-sm text-gray-600">You've reached the end of the collection</p>
+      </div>
     {% endpaginate %}
   </div>
 </div>
