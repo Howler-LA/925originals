@@ -97,12 +97,26 @@ export default {
             return;
           }
           
-          // Append new products to the grid
+          // Use DocumentFragment for better performance and to avoid layout shifts
+          const fragment = document.createDocumentFragment();
+          
+          // Append new products to the fragment
           productCards.forEach(card => {
             // Clone and append to avoid issues with event listeners
             const clonedCard = card.cloneNode(true);
-            this.gridContainer.appendChild(clonedCard);
+            // Ensure new products don't have conflicting order styles
+            clonedCard.style.order = '';
+            clonedCard.style.display = '';
+            fragment.appendChild(clonedCard);
           });
+          
+          // Append fragment to grid (single DOM operation)
+          this.gridContainer.appendChild(fragment);
+          
+          // Dispatch custom event to notify filter component of new products
+          window.dispatchEvent(new CustomEvent('products-loaded', {
+            detail: { count: productCards.length }
+          }));
           
           // Update total pages if available in response
           const responsePagination = sectionElement.querySelector('[data-pagination-info]');

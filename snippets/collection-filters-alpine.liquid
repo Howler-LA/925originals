@@ -109,6 +109,24 @@ function alpineCollectionFilters() {
       
       // Apply initial filters
       this.applyFilters();
+      
+      // Listen for new products loaded via infinite scroll
+      window.addEventListener('products-loaded', () => {
+        // Re-collect product data to include newly added products
+        this.collectProductData();
+        this.extractFilterOptions();
+        
+        // Re-apply filters if any are active
+        if (this.selectedType || this.sortBy) {
+          this.applyFilters();
+        } else {
+          // If no filters, ensure all products are visible and in natural order
+          this.allProducts.forEach(product => {
+            product.element.style.display = '';
+            product.element.style.order = '';
+          });
+        }
+      });
     },
 
     collectProductData() {
@@ -179,12 +197,13 @@ function alpineCollectionFilters() {
       // Hide all products first
       this.allProducts.forEach(product => {
         product.element.style.display = 'none';
+        product.element.style.order = '';
       });
 
       // Show filtered products
       filteredProducts.forEach((product, index) => {
-        product.element.style.display = 'block';
-        // Maintain grid order
+        product.element.style.display = '';
+        // Use CSS order to maintain grid order when filtering
         product.element.style.order = index;
       });
     },
