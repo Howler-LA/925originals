@@ -20,7 +20,7 @@
   {% endif %}
 {% endcapture %}
 
-<article class="shrink-0 flex flex-col gap-4 group {{ tags }}"
+<article class="shrink-0 flex flex-col group {{ tags }}"
          data-product-id="{{ card_product.id }}"
          data-product-title="{{ card_product.title }}"
          data-product-type="{{ card_product.type }}"
@@ -54,7 +54,7 @@
 
     </div>
   </a>
-  <header class="flex">
+  <header class="flex pt-4">
     <div class="flex-grow">
       <h3 class="text-black font-bold capitalize text-lg font-narrow tracking-tight">{{ card_product.title | downcase }}</h3>
       {% if card_product.options contains 'Color' %}
