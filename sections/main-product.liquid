@@ -155,7 +155,13 @@
           >
             <span x-text="color">Color!</span>
             <ul class="grid grid-cols-5 gap-2">
-              {% for related_product in collections.all.products %}
+              {% comment %}
+                Use current collection if available, otherwise fall back to collections.all
+              {% endcomment %}
+              {% unless collection and collection.products.size > 0 %}
+                {% assign collection = collections.all %}
+              {% endunless %}
+              {% for related_product in collection.products %}
 
                 {% capture color %}
                   {% if related_product.options contains 'Color' %}
@@ -176,6 +182,10 @@
                   {% endif %}
                 {% endcapture %}
 
+                {%  if related_product.title contains 'straight' %}
+                  {{ related_product.title }}
+                {% endif %}
+
                 {% if related_product.title == product.title %}
                   <li 
                     @mouseover="color = '{{ color | strip }}'"
@@ -188,9 +198,12 @@
                       {% assign product_color_hover = product_color | strip %}
                       class="block ring-1 {% if color_hover == product_color_hover %} ring-stone-400 {% else %} ring-stone-200 hover:ring-stone-400 {% endif %} p-2 absolute rounded inset-0">
                       <img
+                        width="{{ related_product.featured_image.width }}"
+                        height="{{ related_product.featured_image.height }}"
                         src="{{ related_product.featured_image | image_url: width: 300 }}"
                         alt="{{ related_product.featured_image.alt }}"
-                        class="w-full h-full object-contain">
+                        class="w-full h-full object-contain"
+                      />
                     </a>
                   </li>
                 {% endif %}
