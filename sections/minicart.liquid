@@ -20,61 +20,69 @@
   </div>
 
   <ul data-ajax-cart-section-scroll class="flex flex-col gap-10">
-    {% for line_item in cart.items %}
-      <li class="item grid grid-cols-3 gap-6">
-        <div class="product-thumb-wrapper bg-stone-100 p-4">
-          <img 
-            class="mix-blend-multiply"
-            src="{{ line_item.image | image_url: width: 100, height: 120, crop: 'center' }}" 
-            alt="{{ line_item.title }}" 
-            srcset="{{ line_item.image | image_url: width: 100, height: 120, crop: 'center' }} 1x, {{ line_item.image | image_url: width: 200, height: 240, crop: 'center' }} 2x"
-            width="{{ line_item.image.width }}"
-            height="{{ line_item.image.height }}"
-            loading="lazy"
-          >
-        </div>
-        <div class="item-details col-span-2 flex flex-col gap-2">
-          <h4 class="font-medium text-sm/5">{{ line_item.title }}</h4>
-          <div class="">
-            <div class="options">
-              {% for option in line_item.options_with_values %}
-                <p class="option text-sm" data-option-name="{{ option.name }}">
-                  <span class="font-medium">{{ option.name }} :</span>
-                  <span class="text-stone-600">{{ option.value }}</span>
-                </p>
-              {% endfor %}
-            </div>
-            <div class="quantity-row text-sm">
-              <span class="font-medium">Quantity:</span>
-              <span class="text-stone-600">{{ line_item.quantity }}</span>
-            </div>
-            <div class="price-row text-sm">
-              <span class="font-medium">Price:</span>
-              <span class="text-stone-600">{{ line_item.price | money }}</span>
-            </div>
+    {% if cart.items.size > 0 %}
+      {% for line_item in cart.items %}
+        <li class="item grid grid-cols-3 gap-6">
+          <div class="product-thumb-wrapper bg-stone-100 p-4">
+            <img 
+              class="mix-blend-multiply"
+              src="{{ line_item.image | image_url: width: 100, height: 120, crop: 'center' }}" 
+              alt="{{ line_item.title }}" 
+              srcset="{{ line_item.image | image_url: width: 100, height: 120, crop: 'center' }} 1x, {{ line_item.image | image_url: width: 200, height: 240, crop: 'center' }} 2x"
+              width="{{ line_item.image.width }}"
+              height="{{ line_item.image.height }}"
+              loading="lazy"
+            >
           </div>
-          <p class="remove text-sm">
-            <a class="underline underline-offset-4" href="{{ line_item.url_to_remove }}" data-ajax-cart-request-button>
-              Remove
-            </a>
-          </p>
-        </div>
+          <div class="item-details col-span-2 flex flex-col gap-2">
+            <h4 class="font-medium text-sm/5">{{ line_item.title }}</h4>
+            <div class="">
+              <div class="options">
+                {% for option in line_item.options_with_values %}
+                  <p class="option text-sm" data-option-name="{{ option.name }}">
+                    <span class="font-medium">{{ option.name }} :</span>
+                    <span class="text-stone-600">{{ option.value }}</span>
+                  </p>
+                {% endfor %}
+              </div>
+              <div class="quantity-row text-sm">
+                <span class="font-medium">Quantity:</span>
+                <span class="text-stone-600">{{ line_item.quantity }}</span>
+              </div>
+              <div class="price-row text-sm">
+                <span class="font-medium">Price:</span>
+                <span class="text-stone-600">{{ line_item.price | money }}</span>
+              </div>
+            </div>
+            <p class="remove text-sm">
+              <a class="underline underline-offset-4" href="{{ line_item.url_to_remove }}" data-ajax-cart-request-button>
+                Remove
+              </a>
+            </p>
+          </div>
+        </li>
+      {% endfor %}
+    {% else %}
+      <li class="text-center text-stone-500 py-8">
+        Nothing here
       </li>
-    {% endfor %}
+    {% endif %}
   </ul>
 
-  <div class="subtotal mt-10 px-10 py-6 -mx-10 border-t border-stone-100 flex justify-between items-center">
-    <p class="title">Subtotal</p>
-    <p class="amount">{{ cart.items_subtotal_price | money }}</p>
-  </div>
-  
-  <a 
-    data-theme="dark"
-    class="view-cart-details-link h-16 rounded-xl bg-stone-800 hover:bg-stone-900 text-stone-100 flex items-center justify-center" 
-    href="{{ routes.cart_url }}"
-  >
-    Checkout
-  </a>
+  {% if cart.items.size > 0 %}
+    <div class="subtotal mt-10 px-10 py-6 -mx-10 border-t border-stone-100 flex justify-between items-center">
+      <p class="title">Subtotal</p>
+      <p class="amount">{{ cart.items_subtotal_price | money }}</p>
+    </div>
+    
+    <a 
+      data-theme="dark"
+      class="view-cart-details-link h-16 rounded-xl bg-stone-800 hover:bg-stone-900 text-stone-100 flex items-center justify-center" 
+      href="{{ routes.cart_url }}"
+    >
+      Checkout
+    </a>
+  {% endif %}
 
 </div>
 

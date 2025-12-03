@@ -161,6 +161,7 @@
               {% unless collection and collection.products.size > 0 %}
                 {% assign collection = collections.all %}
               {% endunless %}
+              {% assign found_products = 0 %}
               {% for related_product in collection.products %}
 
                 {% capture color %}
@@ -187,6 +188,7 @@
                 {% endif %}
 
                 {% if related_product.title == product.title %}
+                  {% assign found_products = found_products | plus: 1 %}
                   <li 
                     @mouseover="color = '{{ color | strip }}'"
                     @mouseleave="color = '{{ product_color | strip }}'"
@@ -208,6 +210,12 @@
                   </li>
                 {% endif %}
               {% endfor %}
+              {% comment %} Show message if no products found {% endcomment %}
+              {% if found_products == 0 %}
+                <li class="col-span-full text-center text-sm text-stone-500 py-4">
+                  Nothing here
+                </li>
+              {% endif %}
             </ul>
           </div>
 
