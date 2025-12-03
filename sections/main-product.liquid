@@ -220,88 +220,98 @@
           </div>
 
           <div class="h-px bg-stone-200"></div>
-          
-          {% render 'product-variant-picker'
-            , product: product
-            , product_form_id: 'product-form-id'
-            , picker_type: section.settings.picker_type %}
-          
-          <div class="quantity-row hidden">
-            <label for="quantity-control-input">Quantity</label>
-            <div class="quantity-control-container">
-              <button type="button" data-prodify-quantity-decrement>
-                {% render 'icon-minus' %}
-              </button>
-              <input
-                tabindex="-1"
-                type="number"
-                id="quantity-control-input"
-                value="1"
-                disabled=""
-                data-prodify-quantity-presentation>
-              <button type="button" data-prodify-quantity-increment>
-                {% render 'icon-plus' %}
-              </button>
+
+          <div class="sticky bottom-0 bg-white/80 backdrop-blur-sm py-6 flex flex-col justify-center">
+            
+            {% render 'product-variant-picker'
+              , product: product
+              , product_form_id: 'product-form-id'
+              , picker_type: section.settings.picker_type %}
+            
+            <div class="quantity-row hidden">
+              <label for="quantity-control-input">Quantity</label>
+              <div class="quantity-control-container">
+                <button type="button" data-prodify-quantity-decrement>
+                  {% render 'icon-minus' %}
+                </button>
+                <input
+                  tabindex="-1"
+                  type="number"
+                  id="quantity-control-input"
+                  value="1"
+                  disabled=""
+                  data-prodify-quantity-presentation>
+                <button type="button" data-prodify-quantity-increment>
+                  {% render 'icon-plus' %}
+                </button>
+              </div>
             </div>
+
+            <ajax-cart-product-form>
+              <form
+                action="{{ routes.cart_add_url }}"
+                id="product_form_id"
+                class="product-form"
+                novalidate="novalidate"
+                data-prodify-product-form>
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ product.selected_or_first_available_variant.id }}">
+                <input
+                  type="hidden"
+                  name="quantity"
+                  value="1"
+                  data-prodify-quantity-hidden-input>
+                  
+                <div data-ajax-cart-errors="form" class="text-red-500 mb-[10px]">
+                  <!-- Error messages appear here -->
+                </div>
+
+                {% comment %} Buttons container: side by side on mobile, stacked on larger screens {% endcomment %}
+                <div class="flex flex-row lg:flex-col gap-2">
+                  <div class="flex-1">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="w-full h-14 rounded-xl px-6 text-white bg-stone-900 flex items-center justify-center hover:after:border-offset-1 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-black"
+                      {% if product.selected_or_first_available_variant.available == false %}
+                      disabled
+                      {% endif %}>
+                      <span class="[[processing]_&]:hidden">
+                        {%- if product.selected_or_first_available_variant.available -%}
+                          Add to cart
+                        {%- else -%}
+                          Sold out
+                        {%- endif -%}
+                      </span>
+                      <span class="hidden [[processing]_&]:block [[processing]_&]:cursor-not-allowed">
+                        Adding to cart...
+                      </span>
+                    </button>
+                  </div>
+
+                  {%- if product.selected_or_first_available_variant.available -%}
+                    <div class="flex-1">
+                      <button
+                        type="button"
+                        class="w-full h-14 rounded-xl px-6 text-stone-700 border border-stone-900/50 flex items-center justify-center hover:border-stone-900 transition ease"
+                        onclick="onBuyNowClicked()">
+                        Buy it now
+                      </button>
+                    </div>
+                    <script>
+                      const onBuyNowClicked = () => {
+                        window.location.href = `/cart/${window?.prodify?.currentVariant?.id}:1`;
+                      }
+                    </script>
+                  {%- endif -%}
+                </div>
+
+                {{ form | payment_button }}
+              </form>
+            </ajax-cart-product-form>
           </div>
-
-          <ajax-cart-product-form>
-            <form
-              action="{{ routes.cart_add_url }}"
-              id="product_form_id"
-              class="product-form"
-              novalidate="novalidate"
-              data-prodify-product-form>
-              <input
-                type="hidden"
-                name="id"
-                value="{{ product.selected_or_first_available_variant.id }}">
-              <input
-                type="hidden"
-                name="quantity"
-                value="1"
-                data-prodify-quantity-hidden-input>
-              <div class="mb-[10px]">
-                <button
-                  type="submit"
-                  name="add"
-                  class="w-full h-14 rounded-xl px-6 text-white bg-stone-900 flex items-center justify-center hover:after:border-offset-1 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-black"
-                  {% if product.selected_or_first_available_variant.available == false %}
-                  disabled
-                  {% endif %}>
-                  <span class="[[processing]_&]:hidden">
-                    {%- if product.selected_or_first_available_variant.available -%}
-                      Add to cart
-                    {%- else -%}
-                      Sold out
-                    {%- endif -%}
-                  </span>
-                  <span class="hidden [[processing]_&]:block [[processing]_&]:cursor-not-allowed">
-                    Adding to cart...
-                  </span>
-                </button>
-              </div>
-              <div data-ajax-cart-errors="form" class="text-red-500">
-                <!-- Error messages appear here -->
-              </div>
-
-              {%- if product.selected_or_first_available_variant.available -%}
-                <button
-                  type="button"
-                  class="w-full h-14 rounded-xl px-6 text-stone-700 border border-stone-900/50 flex items-center justify-center hover:border-stone-900 transition ease"
-                  onclick="onBuyNowClicked()">
-                  Buy it now
-                </button>
-                <script>
-                  const onBuyNowClicked = () => {
-                    window.location.href = `/cart/${window?.prodify?.currentVariant?.id}:1`;
-                  }
-                </script>
-              {%- endif -%}
-
-              {{ form | payment_button }}
-            </form>
-          </ajax-cart-product-form>
 
           <div class="border-b">
             {% for block in section.blocks %}
