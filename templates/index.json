@@ -13,6 +13,18 @@
       "type": "block-hero-image",
       "name": "SHOP MENS",
       "settings": {
+        "headline": "SHOP THE WINTER COLLECTION",
+        "subtitle": "NEW ARRIVALS",
+        "link_url": "shopify://collections/new-arrivals-men",
+        "image": "shopify://shop_images/Stock_Straight_Q4_Pair.jpg",
+        "image_2": "shopify://shop_images/925-Holiday-04_8d36eab8-a481-4843-a936-ec86d097410c.png",
+        "full_page_height_enable": true
+      }
+    },
+    "block_hero_image_U34Jy8": {
+      "type": "block-hero-image",
+      "name": "SHOP MENS",
+      "settings": {
         "headline": "FALL '25 LOOKBOOK",
         "subtitle": "CLICK TO VIEW",
         "link_url": "shopify://pages/fall-25-lookbook",
@@ -110,6 +122,7 @@
   },
   "order": [
     "hero-image",
+    "block_hero_image_U34Jy8",
     "block_hero_image_fyfnVr",
     "block_featured_collection_TUqKU6",
     "block_hero_video_7ni749",
