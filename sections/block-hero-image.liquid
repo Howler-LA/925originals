@@ -55,15 +55,17 @@
   <div class="lg:absolute inset-0 flex items-center py-5">
     <div class="container flex flex-col items-start">
       {% if section.settings.headline %}
-        <a href="{{ section.settings.link_url }}" class="font-bold relative transition ease group/logo hover:text-white">
-          <div class="absolute inset-0 -mx-1">
-            <div class="absolute inset-0 bg-black max-w-0 transition-all ease w-full group-hover/logo:max-w-full"></div>
-          </div>
-          {% render 'component-title' html:'span' title:section.settings.headline %}
+        <a href="{{ section.settings.link_url }}" class="group/logo flex flex-col items-start p-4 -ml-4">
+          <span class="font-bold relative transition ease bg-white inline-block group-hover/logo:text-white">
+            <div class="absolute inset-0 -mx-1">
+              <div class="absolute inset-0 bg-black max-w-0 transition-all ease w-full group-hover/logo:max-w-full"></div>
+            </div>
+            {% render 'component-title' html:'span' title:section.settings.headline %}
+          </span>
+          {% if section.settings.subtitle %}
+            <span class="lg:text-black/75 bg-white relative font-narrow font-bold leading-none">{{ section.settings.subtitle }}</span>
+          {% endif %}
         </a>
-      {% endif %}
-      {% if section.settings.subtitle %}
-        <div class="lg:text-black/75 relative">{{ section.settings.subtitle }}</div>
       {% endif %}
     </div>
   </div>
