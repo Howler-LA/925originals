@@ -10,18 +10,20 @@
   id="dialog-modal-example"
   x-data="modal"
   x-init="init($el)"
-  class="max-w-md rounded-md"
+  class="max-w-2xl w-full rounded-md bg-white"
   @click="close($event)"
   >
-  <form action="" class="p-12">
-    <div class="prose">
-      <h1>{{ settings.modal_title }}</h1>
-      <p>{{ settings.modal_description }}</p>
-      <button type="button" @click="open = false" class="btn rounded-none">
-        Close
-      </button>
-    </div>
-  </form>
+  <div class="p-12 relative">
+    <button 
+      type="button" 
+      @click="open = false" 
+      class="absolute top-4 right-4 text-stone-600 hover:text-stone-900"
+      aria-label="Close modal"
+    >
+      {% render 'icon-close-x' %}
+    </button>
+    {% render 'mailchimp' %}
+  </div>
 </dialog>
 
 <script>
