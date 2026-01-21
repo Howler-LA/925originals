@@ -21,9 +21,9 @@
     id="cart">
     <div class="cart-inner container">
       {% if cart.item_count > 0 %}
-        <table style="width:100%" role="table" aria-label="Shopping cart">
+        <table class="w-full" role="table" aria-label="Shopping cart">
           <thead>
-            <tr style="text-align: left;">
+            <tr class="text-left">
               <th scope="col">Product</th>
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
@@ -38,7 +38,7 @@
                   <div class="cart-product flex items-center gap-4">
                     {% if line_item.image %}
                       <img
-                        class="cart-product__image bg-stone-100 rounded"
+                        class="w-14 h-[72px] object-cover shrink-0 bg-stone-100 rounded"
                         src="{{ line_item.image | image_url: width: 120 }}"
                         srcset="{{ line_item.image | image_url: width: 60 }} 1x, {{ line_item.image | image_url: width: 120 }} 2x"
                         width="{{ line_item.image.width }}"
@@ -47,14 +47,14 @@
                         alt="{{ line_item.title }}"
                       >
                     {% else %}
-                      <div class="cart-product__image bg-stone-100 rounded" aria-hidden="true"></div>
+                      <div class="w-14 h-[72px] bg-stone-100 rounded" aria-hidden="true"></div>
                     {% endif %}
 
-                    <div class="cart-product__meta">
+                    <div class="leading-tight">
                       {{ line_item.title }}
                     </div>
                   </div>
-                  <div data-ajax-cart-errors="{{ line_item.key }}" style="color: red; font-size: 10px;">
+                  <div data-ajax-cart-errors="{{ line_item.key }}" class="text-red-600 text-xs">
                     <!-- Error messages appear here -->
                   </div>
                 </th>
@@ -68,13 +68,13 @@
                     onclick="window.location.href='{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | minus: 1 | at_least: 1 }}'"
                     data-ajax-cart-quantity-minus
                     aria-label="Decrease quantity for {{ line_item.title }}"
-                    class="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                    class="min-size-[44px] flex items-center justify-center"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      class="w-6 h-6"
+                      class="size-6"
                       aria-hidden="true">
                       <path
                         fill-rule="evenodd"
@@ -87,12 +87,11 @@
                     value="{{ line_item.quantity }}"
                     name="updates[]"
                     data-ajax-cart-quantity-input="{{ line_item.key }}"
-                    style="width: 40px;"
-                    class="noscroll"
+                    class="noscroll w-10 tabular-nums"
                     aria-label="Quantity for {{ line_item.title }}"
                     readonly>
                   <img
-                    class="loading-indicator"
+                    class="loading-indicator size-4"
                     src="{{ 'loading.gif' | asset_url }}"
                     alt=""
                     width="16"
@@ -105,13 +104,13 @@
                     onclick="window.location.href='{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | plus: 1 }}'"
                     data-ajax-cart-quantity-plus
                     aria-label="Increase quantity for {{ line_item.title }}"
-                    class="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                    class="min-size-[44px] flex items-center justify-center"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      class="w-6 h-6"
+                      class="size-6"
                       aria-hidden="true">
                       <path
                         fill-rule="evenodd"
@@ -125,7 +124,7 @@
                 <a href="{{ line_item.url_to_remove }}" @click.prevent="window.location.replace($el.href)" aria-label="Remove {{ line_item.title }}">Remove</a>
               </td>
               <td data-label="Total">
-                <strong>{{ line_item.final_line_price | money }}</strong>
+                <strong class="tabular-nums">{{ line_item.final_line_price | money }}</strong>
               </td>
             </tr>
           {% endfor %}
@@ -133,11 +132,11 @@
         </table>
 
         <div class="cart-summary-row py-8 flex flex-col items-end border-t">
-          <div class="totals mb-[10px] flex items-center justify-end">
+          <div class="totals mb-2.5 flex items-center justify-end">
             <h3 class="mr-8 m-0">Subtotal</h3>
-            <p class="m-0">{{ cart.original_total_price | money }}</p>
+            <p class="m-0 tabular-nums">{{ cart.original_total_price | money }}</p>
           </div>
-          <small class="mb-[10px]">
+          <small class="mb-2.5">
             {{ section.settings['summary-message'] }}
           </small>
           <button
@@ -149,7 +148,10 @@
           </button>
         </div>
       {% else %}
-        <h2>You have no items in your cart.</h2>
+        <div class="text-center py-12">
+          <h2 class="text-balance">You have no items in your cart.</h2>
+          <a href="/collections/all" class="btn inverted mt-4 inline-block">Continue Shopping</a>
+        </div>
       {% endif %}
     </div>
   </form>
@@ -183,12 +185,6 @@
     max-width: 350px;
   }
 
-  .cart .error-notif {
-    display: block;
-    font-size: 12px;
-    color: red;
-  }
-
   .cart tr > td,
   .cart tr > th {
     padding-bottom: 1em;
@@ -204,21 +200,8 @@
     border-bottom: 0;
   }
 
-  .cart .cart-product__image {
-    width: 56px;
-    height: 72px;
-    object-fit: cover;
-    flex: 0 0 auto;
-  }
-
-  .cart .cart-product__meta {
-    line-height: 1.2;
-  }
-
   .cart .loading-indicator {
     display: none;
-    height: 16px;
-    width: 16px;
   }
 
   .cart input[type="number"] {

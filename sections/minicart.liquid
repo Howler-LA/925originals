@@ -41,23 +41,68 @@
             >
           </div>
           <div class="item-details col-span-2 flex flex-col gap-2">
-            <h4 class="font-medium text-sm/5">{{ line_item.title }}</h4>
+            <h4 class="font-medium text-sm/5">{{ line_item.product.title }}</h4>
             <div class="">
               <div class="options">
                 {% for option in line_item.options_with_values %}
                   <p class="option text-sm" data-option-name="{{ option.name }}">
-                    <span class="font-medium">{{ option.name }} :</span>
+                    <span class="font-medium">{{ option.name }}:</span>
                     <span class="text-stone-600">{{ option.value }}</span>
                   </p>
                 {% endfor %}
               </div>
-              <div class="quantity-row text-sm">
+              <div class="quantity-row text-sm flex items-center gap-2">
                 <span class="font-medium">Quantity:</span>
-                <span class="text-stone-600">{{ line_item.quantity }}</span>
+                <ajax-cart-quantity class="flex items-center gap-1">
+                  <a
+                    href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | minus: 1 }}"
+                    data-ajax-cart-request-button
+                    aria-label="Decrease quantity for {{ line_item.product.title }}"
+                    class="min-size-[32px] flex items-center justify-center hover:bg-stone-100 rounded transition"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="size-4"
+                      aria-hidden="true">
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                  <input
+                    type="number"
+                    value="{{ line_item.quantity }}"
+                    name="updates[]"
+                    data-ajax-cart-quantity-input="{{ line_item.key }}"
+                    class="w-8 text-center tabular-nums text-sm border-0 bg-transparent"
+                    aria-label="Quantity for {{ line_item.product.title }}"
+                    readonly>
+                  <a
+                    href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | plus: 1 }}"
+                    data-ajax-cart-request-button
+                    aria-label="Increase quantity for {{ line_item.product.title }}"
+                    class="min-size-[32px] flex items-center justify-center hover:bg-stone-100 rounded transition"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="size-4"
+                      aria-hidden="true">
+                      <path
+                        fill-rule="evenodd"
+                        d="M12 5.25a.75.75 0 01.75.75v5.25H18a.75.75 0 010 1.5h-5.25V18a.75.75 0 01-1.5 0v-5.25H6a.75.75 0 010-1.5h5.25V6a.75.75 0 01.75-.75z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </ajax-cart-quantity>
               </div>
               <div class="price-row text-sm">
                 <span class="font-medium">Price:</span>
-                <span class="text-stone-600">{{ line_item.price | money }}</span>
+                <span class="text-stone-600 tabular-nums">{{ line_item.price | money }}</span>
               </div>
             </div>
             <p class="remove text-sm">
@@ -148,6 +193,17 @@
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 30px 130px -8px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Remove default number input spinners */
+  .minicart input[type="number"]::-webkit-outer-spin-button,
+  .minicart input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .minicart input[type="number"] {
+    -moz-appearance: textfield;
   }
 
   @media(max-width: 576px) {
