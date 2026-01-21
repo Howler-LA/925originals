@@ -1,10 +1,55 @@
 <style id="head-css">
   :root {
     --test-css-var: '10px';
+    --focus-ring-color: #2563eb;
+    --focus-ring-offset: 2px;
   }
 
   [x-cloak] {
     display: none !important;
+  }
+
+  /* Visible Focus Indicators for Accessibility */
+  *:focus {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* Enhanced focus for buttons and links */
+  button:focus-visible,
+  a:focus-visible,
+  [role="button"]:focus-visible,
+  [role="menuitem"]:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  }
+
+  /* Focus for form inputs */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 1px;
+    border-color: var(--focus-ring-color);
+  }
+
+  /* Ensure sufficient color contrast for text */
+  .text-stone-600 {
+    color: #57534e; /* Adjusted for better contrast */
+  }
+
+  .text-subtle {
+    color: #44403c; /* Ensure 4.5:1 contrast ratio */
   }
 </style>
 

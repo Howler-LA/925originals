@@ -5,10 +5,16 @@
 
   <div class="flex items-center justify-between h-10 mb-10">
     <h2 id="minicart-label">Your Bag</h2>
-    <button @click="$store.global.isMinicartVisible = false">{% render 'icon-close-x' %}</button>
+    <button
+      @click="$store.global.isMinicartVisible = false"
+      aria-label="Close cart"
+      class="min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2"
+    >
+      {% render 'icon-close-x' %}
+    </button>
   </div>
 
-  <div class="item-count-message sr-only">
+  <div class="item-count-message sr-only" aria-live="polite" aria-atomic="true">
     You have
     <span
       class="count"
@@ -19,7 +25,7 @@
     in your cart!
   </div>
 
-  <ul data-ajax-cart-section-scroll class="flex flex-col gap-10">
+  <ul data-ajax-cart-section-scroll class="flex flex-col gap-10" aria-labelledby="minicart-label">
     {% if cart.items.size > 0 %}
       {% for line_item in cart.items %}
         <li class="item grid grid-cols-3 gap-6">

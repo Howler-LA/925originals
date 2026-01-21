@@ -14,47 +14,74 @@
   }
 {% endschema %}
 
-<div class="cart px-6 md:px-8 py-12" data-ajax-cart-section>
+<div class="cart prose max-w-none py-12" data-ajax-cart-section>
   <form
     action="{{ routes.cart_url }}"
     method="post"
     id="cart">
     <div class="cart-inner container">
       {% if cart.item_count > 0 %}
-        <table style="width:100%">
-          <tr style="text-align: left;">
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th></th>
-            <th>Total</th>
-          </tr>
-          {% for line_item in cart.items %}
-            <tr>
-              <td>
-                {{ line_item.title }}
-                <div data-ajax-cart-errors="{{ line_item.key }}" style="color: red; font-size: 10px;">
-                  <!-- Error messages appear here -->
-                </div>
-              </td>
-              <td>
-                {{ line_item.price | money }}
-              </td>
-              <td>
-                <ajax-cart-quantity class="flex">
-                  <a href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | minus: 1 | at_least: 1 }}" data-ajax-cart-quantity-minus>
+        <table style="width:100%" role="table" aria-label="Shopping cart">
+          <thead>
+            <tr style="text-align: left;">
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col"><span class="sr-only">Actions</span></th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for line_item in cart.items %}
+              <tr>
+                <th scope="row" data-label="Product">
+                  <div class="cart-product flex items-center gap-4">
+                    {% if line_item.image %}
+                      <img
+                        class="cart-product__image bg-stone-100 rounded"
+                        src="{{ line_item.image | image_url: width: 120 }}"
+                        srcset="{{ line_item.image | image_url: width: 60 }} 1x, {{ line_item.image | image_url: width: 120 }} 2x"
+                        width="{{ line_item.image.width }}"
+                        height="{{ line_item.image.height }}"
+                        loading="lazy"
+                        alt="{{ line_item.title }}"
+                      >
+                    {% else %}
+                      <div class="cart-product__image bg-stone-100 rounded" aria-hidden="true"></div>
+                    {% endif %}
+
+                    <div class="cart-product__meta">
+                      {{ line_item.title }}
+                    </div>
+                  </div>
+                  <div data-ajax-cart-errors="{{ line_item.key }}" style="color: red; font-size: 10px;">
+                    <!-- Error messages appear here -->
+                  </div>
+                </th>
+                <td data-label="Price">
+                  {{ line_item.price | money }}
+                </td>
+              <td data-label="Quantity">
+                <ajax-cart-quantity class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onclick="window.location.href='{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | minus: 1 | at_least: 1 }}'"
+                    data-ajax-cart-quantity-minus
+                    aria-label="Decrease quantity for {{ line_item.title }}"
+                    class="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      class="w-6 h-6">
+                      class="w-6 h-6"
+                      aria-hidden="true">
                       <path
                         fill-rule="evenodd"
                         d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
                         clip-rule="evenodd" />
                     </svg>
-
-                  </a>
+                  </button>
                   <input
                     type="number"
                     value="{{ line_item.quantity }}"
@@ -62,41 +89,53 @@
                     data-ajax-cart-quantity-input="{{ line_item.key }}"
                     style="width: 40px;"
                     class="noscroll"
+                    aria-label="Quantity for {{ line_item.title }}"
                     readonly>
                   <img
                     class="loading-indicator"
                     src="{{ 'loading.gif' | asset_url }}"
-                    alt="Loading Indicator"
-                    role="alert"
-                    aria-busy="false">
-                  <a href="{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | plus: 1 }}" data-ajax-cart-quantity-plus>
+                    alt=""
+                    width="16"
+                    height="16"
+                    role="status"
+                    aria-busy="false"
+                    aria-hidden="true">
+                  <button
+                    type="button"
+                    onclick="window.location.href='{{ routes.cart_change_url }}?id={{ line_item.key }}&quantity={{ line_item.quantity | plus: 1 }}'"
+                    data-ajax-cart-quantity-plus
+                    aria-label="Increase quantity for {{ line_item.title }}"
+                    class="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      class="w-6 h-6">
+                      class="w-6 h-6"
+                      aria-hidden="true">
                       <path
                         fill-rule="evenodd"
                         d="M12 5.25a.75.75 0 01.75.75v5.25H18a.75.75 0 010 1.5h-5.25V18a.75.75 0 01-1.5 0v-5.25H6a.75.75 0 010-1.5h5.25V6a.75.75 0 01.75-.75z"
                         clip-rule="evenodd" />
                     </svg>
-                  </a>
+                  </button>
                 </ajax-cart-quantity>
               </td>
-              <td>
-                <a href="{{ line_item.url_to_remove }}" @click.prevent="window.location.replace($el.href)">Remove</a>
+              <td data-label="Actions">
+                <a href="{{ line_item.url_to_remove }}" @click.prevent="window.location.replace($el.href)" aria-label="Remove {{ line_item.title }}">Remove</a>
               </td>
-              <td>
-                {{ line_item.final_line_price | money }}
+              <td data-label="Total">
+                <strong>{{ line_item.final_line_price | money }}</strong>
               </td>
             </tr>
           {% endfor %}
+          </tbody>
         </table>
 
-        <div class="cart-summary-row py-8 flex flex-col ">
-          <div class="totals mb-[10px] flex items-center">
-            <h3 class="mr-8">Subtotal</h3>
-            <p>{{ cart.original_total_price | money }}</p>
+        <div class="cart-summary-row py-8 flex flex-col items-end border-t">
+          <div class="totals mb-[10px] flex items-center justify-end">
+            <h3 class="mr-8 m-0">Subtotal</h3>
+            <p class="m-0">{{ cart.original_total_price | money }}</p>
           </div>
           <small class="mb-[10px]">
             {{ section.settings['summary-message'] }}
@@ -117,7 +156,7 @@
 </div>
 
 {% comment %} Remove to allow user to key in quantity {% endcomment %}
-{% comment %} <script>
+<script>
   document.addEventListener("wheel", function(event){
     if (document.activeElement.type === "number" &&
        document.activeElement.classList.contains("noscroll"))
@@ -126,7 +165,7 @@
         document.activeElement.blur();
     }
   });
-</script> {% endcomment %}
+</script>
 
 <style>
   .cart .cart-inner .cart-summary-row {
@@ -155,6 +194,27 @@
     padding-bottom: 1em;
   }
 
+  /* Vertically center table cells (desktop/table layout) */
+  .cart table tbody td,
+  .cart table tbody th {
+    vertical-align: middle;
+  }
+
+  .cart table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .cart .cart-product__image {
+    width: 56px;
+    height: 72px;
+    object-fit: cover;
+    flex: 0 0 auto;
+  }
+
+  .cart .cart-product__meta {
+    line-height: 1.2;
+  }
+
   .cart .loading-indicator {
     display: none;
     height: 16px;
@@ -176,5 +236,49 @@
   .cart input[type=number] {
     -moz-appearance: textfield;
     /* Firefox */
+  }
+
+  /* Responsive table improvements */
+  @media (max-width: 768px) {
+    .cart table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .cart table thead {
+      display: none; /* Hide headers on mobile, will add labels via CSS */
+    }
+
+    .cart table tbody {
+      display: block;
+    }
+
+    .cart table tr {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .cart table th[scope="row"],
+    .cart table td {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      text-align: left !important;
+    }
+
+    .cart table th[scope="row"]::before,
+    .cart table td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+
+    .cart table th[scope="row"] {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
   }
 </style>

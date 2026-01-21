@@ -1,17 +1,19 @@
 {% schema %}
   {
     "name": "404 Section",
-    "class": "section-404",
+    "class": "section-404 flex-grow flex flex-col",
     "tag": "section",
     "settings": []
   }
 {% endschema %}
 
 
-<div class="pb-5 lg:pb-10 flex-grow">
+<div class="pb-5 lg:pb-10 flex-grow flex flex-col items-center justify-center">
   <div class="container">
-    <header class="flex flex-col gap-2">
-      {% render 'component-title' html:'h1' title:'404 Page Not Found' %}
+    <header class="flex flex-col items-center">
+      <h1 class="tracking-tight leading-none bg-black px-1 relative font-bold font-narrow uppercase text-lg lg:text-4xl">
+        <span class="leading-none block text-white">404 Page Not Found</span>
+      </h1>
     </header>
   </div>
 </div>

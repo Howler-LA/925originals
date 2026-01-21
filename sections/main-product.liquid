@@ -189,16 +189,17 @@
 
                 {% if related_product.title == product.title %}
                   {% assign found_products = found_products | plus: 1 %}
-                  <li 
+                  <li
                     @mouseover="color = '{{ color | strip }}'"
                     @mouseleave="color = '{{ product_color | strip }}'"
                     class="related-product-item relative group aspect-square"
                   >
-                    <a 
-                      href="{{ related_product.url | within: collection }}" 
+                    <a
+                      href="{{ related_product.url | within: collection }}"
                       {% assign color_hover = color | strip %}
                       {% assign product_color_hover = product_color | strip %}
-                      class="block ring-1 {% if color_hover == product_color_hover %} ring-stone-400 {% else %} ring-stone-200 hover:ring-stone-400 {% endif %} p-2 absolute rounded inset-0">
+                      class="block ring-1 {% if color_hover == product_color_hover %} ring-stone-400 {% else %} ring-stone-200 hover:ring-stone-400 {% endif %} p-2 absolute rounded inset-0"
+                      aria-label="View {{ product.title }} in {{ color | strip }}">
                       <img
                         width="{{ related_product.featured_image.width }}"
                         height="{{ related_product.featured_image.height }}"
@@ -235,11 +236,11 @@
                   {% render 'icon-minus' %}
                 </button>
                 <input
-                  tabindex="-1"
                   type="number"
                   id="quantity-control-input"
                   value="1"
                   disabled=""
+                  aria-label="Quantity"
                   data-prodify-quantity-presentation>
                 <button type="button" data-prodify-quantity-increment>
                   {% render 'icon-plus' %}
@@ -296,15 +297,10 @@
                       <button
                         type="button"
                         class="w-full h-14 rounded-xl px-6 text-stone-700 border border-stone-900/50 flex items-center justify-center hover:border-stone-900 transition ease"
-                        onclick="onBuyNowClicked()">
+                        @click="window.location.href = `/cart/${window?.prodify?.currentVariant?.id}:1`">
                         Buy it now
                       </button>
                     </div>
-                    <script>
-                      const onBuyNowClicked = () => {
-                        window.location.href = `/cart/${window?.prodify?.currentVariant?.id}:1`;
-                      }
-                    </script>
                   {%- endif -%}
                 </div>
 

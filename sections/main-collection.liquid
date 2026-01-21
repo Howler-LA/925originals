@@ -45,30 +45,30 @@
     -%}
       
     {% paginate collection.products by products_per_page %}
-      {% for product in collection.products %}
-        {% assign lazy_load = false %}
-        {% if forloop.index > 2 %}
-          {% assign lazy_load = true %}
-        {% endif %}
-        {% assign video = false %}
-        {% for media in product.media %}
-          {% if media.media_type == 'video' %}
-            {% assign video = true %}
-            {% break %}
+        {% for product in collection.products %}
+          {% assign lazy_load = false %}
+          {% if forloop.index > 2 %}
+            {% assign lazy_load = true %}
+          {% endif %}
+          {% assign video = false %}
+          {% for media in product.media %}
+            {% if media.media_type == 'video' %}
+              {% assign video = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          {% if video == true %}
+            {% render 'card-product-double', card_product: product, lazy_load: lazy_load %}
+          {% else %}
+            {% render 'card-product-single', card_product: product, lazy_load: lazy_load %}
+          {% endif %}
+        {% else %}
+          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+            {% for i in (1..4) %}
+              {% render 'card-product-double' %}
+            {% endfor %}
           {% endif %}
         {% endfor %}
-        {% if video == true %}
-          {% render 'card-product-double', card_product: product, lazy_load: lazy_load %}
-        {% else %}
-          {% render 'card-product-single', card_product: product, lazy_load: lazy_load %}
-        {% endif %}
-      {% else %}
-        {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-          {% for i in (1..4) %}
-            {% render 'card-product-double' %}
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
       
       {% comment %} Hidden pagination info for infinite scroll component {% endcomment %}
       <div 
